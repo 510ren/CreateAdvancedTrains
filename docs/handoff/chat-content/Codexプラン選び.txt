@@ -1,0 +1,160 @@
+はい。今回のように**ChatGPT側で設計を詰め、Codex側で実装する**運用なら、リポジトリに以下のような `docs/` を用意するのがおすすめです。
+
+```text id="wsouw8"
+create-advanced-trains/
+├─ docs/
+│  ├─ PROJECT.md
+│  ├─ ARCHITECTURE.md
+│  ├─ DEVELOPMENT_STATUS.md
+│  ├─ DEVELOPMENT_RULES.md
+│  │
+│  ├─ design/
+│  │  ├─ ATO.md
+│  │  ├─ BRAKING_MODEL.md
+│  │  ├─ TASC.md
+│  │  ├─ NOTCH.md
+│  │  ├─ SIGNAL.md
+│  │  └─ ATC.md
+│  │
+│  └─ technical/
+│     ├─ CREATE_6_0_8.md
+│     ├─ UNITS.md
+│     └─ SERVER_CLIENT.md
+│
+├─ src/
+├─ build.gradle
+├─ gradle.properties
+└─ README.md
+```
+
+### 最低限作るべきもの
+
+特に重要なのはこの5つです。
+
+| ファイル | 役割 |
+|---|---|
+| `PROJECT.md` | プロジェクト全体の目的・前提 |
+| `ARCHITECTURE.md` | クラス構成・システム構成 |
+| `DEVELOPMENT_STATUS.md` | 現在どこまで実装済みか |
+| `DEVELOPMENT_RULES.md` | Codexが守るべき開発ルール |
+| `design/BRAKING_MODEL.md` | 制動モデルの確定仕様 |
+
+### 機能ごとの仕様
+
+今後の機能追加に合わせて、
+
+```text id="8ae8by"
+design/
+├─ ATO.md
+├─ BRAKING_MODEL.md
+├─ TASC.md
+├─ NOTCH.md
+├─ SIGNAL.md
+└─ ATC.md
+```
+
+と**機能ごとに分離**するのがよいです。
+
+特に今回のプロジェクトでは、制動モデルのように数学的な仕様が重要なので、コードと仕様を混ぜない方が安全です。
+
+### Create固有の技術情報
+
+```text id="jsi9wf"
+technical/
+├─ CREATE_6_0_8.md
+├─ UNITS.md
+└─ SERVER_CLIENT.md
+```
+
+も有用です。
+
+ここには、
+
+- Create 6.0.8で確認したAPI
+- `Train`関連の利用方法
+- `targetSpeed` / `speed`
+- blocks/tick等の単位
+- サーバー・クライアントの責務
+
+などを記録します。
+
+---
+
+## さらに重要なファイル
+
+ルートに **`AGENTS.md`** を置くことを強くおすすめします。
+
+```text id="lbp7tr"
+create-advanced-trains/
+├─ AGENTS.md
+├─ docs/
+│  └─ ...
+├─ src/
+└─ build.gradle
+```
+
+これは**Codexに対する開発指示書**として使うファイルです。
+
+例えば、
+
+```text id="ajttli"
+AGENTS.md
+```
+
+に、
+
+```text id="4i5xvb"
+このプロジェクトはMinecraft 1.20.1 Forge + Create 6.0.8を対象とする。
+
+CreateのTrain.speedを通常制御で直接変更しない。
+
+既存アーキテクチャを確認してからコードを変更する。
+
+不明なCreate APIを推測で実装しない。
+
+実装後はGradle buildを実行する。
+
+...
+```
+
+といったルールを置きます。
+
+これによって、**毎回チャットでプロジェクト固有の注意事項を説明する必要がなくなります**。
+
+---
+
+### 最終的にはこの構造が扱いやすいです
+
+```text id="puookx"
+AGENTS.md
+    ↓
+Codexが常に守るルール
+
+docs/PROJECT.md
+    ↓
+「このModは何なのか」
+
+docs/ARCHITECTURE.md
+    ↓
+「どういう構造なのか」
+
+docs/DEVELOPMENT_STATUS.md
+    ↓
+「現在どこまで進んでいるのか」
+
+docs/design/*.md
+    ↓
+「各機能をどう設計するのか」
+
+docs/technical/*.md
+    ↓
+「Create / Minecraft上でどう実装するのか」
+
+src/
+    ↓
+実際のコード
+```
+
+この形なら、**このChatGPTプロジェクトで決定した設計をMarkdownへ確定 → Gitに保存 → Codexがリポジトリを読む**という流れを作れます。
+
+また、今後仕様変更があった場合も、会話履歴だけを頼りにせず、`docs/` が**プロジェクトの正式な仕様書**になります。

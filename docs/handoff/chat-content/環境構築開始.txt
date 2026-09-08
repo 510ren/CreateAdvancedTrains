@@ -1,0 +1,632 @@
+はい。では、**現在のPhase 3～4を維持したまま、設定による機能ON/OFF基盤を先に実装**します。
+
+今回は以下まで完成させます。
+
+- Forge Configを追加
+- `control.enabled`
+- `features.ato`
+- `features.speed_limit`
+- 将来用に `tasc / braking / notch / signal / atc`
+- `TrainController`から設定を参照
+- `ATO OFF`でCATのATO介入を停止
+- `Speed Limit OFF`で速度制限処理を停止
+- `control.enabled = false`でCAT全体の列車制御介入を停止
+
+---
+
+# 1. 設定クラスを作成
+
+新規ファイル：
+
+```text id="hqpcrj"
+src/main/java/dev/edudio/createadvancedtrains/config/AdvancedTrainsConfig.java
+```
+
+```java id="gkrjn9"
+package dev.edudio.createadvancedtrains.config;
+
+import net.minecraftforge.common.ForgeConfigSpec;
+
+public final class AdvancedTrainsConfig {
+
+    public static final ForgeConfigSpec SPEC;
+
+    public static final ForgeConfigSpec.BooleanValue CONTROL_ENABLED;
+
+    public static final ForgeConfigSpec.BooleanValue ATO_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue TASC_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue BRAKING_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue NOTCH_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue SPEED_LIMIT_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue SIGNAL_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue ATC_ENABLED;
+
+    static {
+        ForgeConfigSpec.Builder builder =
+                new ForgeConfigSpec.Builder();
+
+        builder.comment(
+                "Create: Advanced Trains configuration"
+        ).push("control");
+
+        CONTROL_ENABLED = builder
+                .comment(
+                        "Enable Create: Advanced Trains train control."
+                )
+                .define("enabled", true);
+
+        builder.pop();
+
+        builder.comment(
+                "Enable or disable individual train control features."
+        ).push("features");
+
+        ATO_ENABLED = builder
+                .comment(
+                        "Enable Automatic Train Operation (ATO)."
+                )
+                .define("ato", true);
+
+        TASC_ENABLED = builder
+                .comment(
+                        "Enable Train Automatic Stop Control (TASC)."
+                )
+                .define("tasc", true);
+
+        BRAKING_ENABLED = builder
+                .comment(
+                        "Enable braking curve control."
+                )
+                .define("braking", true);
+
+        NOTCH_ENABLED = builder
+                .comment(
+                        "Enable notch control."
+                )
+                .define("notch", true);
+
+        SPEED_LIMIT_ENABLED = builder
+                .comment(
+                        "Enable speed limit control."
+                )
+                .define("speed_limit", true);
+
+        SIGNAL_ENABLED = builder
+                .comment(
+                        "Enable signal-based train control."
+                )
+                .define("signal", true);
+
+        ATC_ENABLED = builder
+                .comment(
+                        "Enable ATC/ATS control."
+                )
+                .define("atc", true);
+
+        builder.pop();
+
+        SPEC = builder.build();
+    }
+
+    private AdvancedTrainsConfig() {
+    }
+}
+```
+
+---
+
+# 2. `CreateAdvancedTrains.java`を変更
+
+現在のメインクラスにForge Configを登録します。
+
+```text id="d6k1az"
+src/main/java/dev/edudio/createadvancedtrains/CreateAdvancedTrains.java
+```
+
+```java id="eoq6et"
+package dev.edudio.createadvancedtrains;
+
+import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+
+@Mod(CreateAdvancedTrains.MOD_ID)
+public class CreateAdvancedTrains {
+
+    public static final String MOD_ID =
+            "create_advanced_trains";
+
+    public CreateAdvancedTrains() {
+        ModLoadingContext.get().registerConfig(
+                ModConfig.Type.SERVER,
+                AdvancedTrainsConfig.SPEC
+        );
+
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+}
+```
+
+`MinecraftForge.EVENT_BUS.register(this);` は現時点では必須ではありません。
+
+既に別の場所でイベント登録を行っている場合は、そこに合わせて構いません。
+
+---
+
+# 3. 生成される設定ファイル
+
+ゲームを一度起動すると、概ね
+
+```text id="qyyi7q"
+config/create_advanced_trains-server.toml
+```
+
+が生成されます。
+
+中身は、
+
+```toml id="wm1a31"
+[control]
+	enabled = true
+
+[features]
+	ato = true
+	tasc = true
+	braking = true
+	notch = true
+	speed_limit = true
+	signal = true
+	atc = true
+```
+
+という形になります。
+
+現時点では未実装の機能も `true` になっていますが、**それらは実際には何もしません**。
+
+---
+
+# 4. `TrainController`を変更
+
+ここが重要です。
+
+現在の `TrainController` に設定を追加します。
+
+```text id="jppy6w"
+src/main/java/dev/edudio/createadvancedtrains/train/TrainController.java
+```
+
+以下のようにしてください。
+
+```java id="1bwvfq"
+package dev.edudio.createadvancedtrains.train;
+
+import java.util.UUID;
+
+import com.simibubi.create.content.trains.entity.Train;
+
+import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
+import dev.edudio.createadvancedtrains.control.AtoController;
+
+public class TrainController {
+
+    private final UUID trainId;
+
+    private final AtoController atoController;
+
+    private TrainState state;
+
+    private double createTargetSpeed;
+    private double atoTargetSpeed;
+
+    public TrainController(Train train) {
+        this.trainId = train.id;
+
+        this.atoController =
+                new AtoController();
+
+        this.createTargetSpeed =
+                train.targetSpeed;
+
+        this.atoTargetSpeed =
+                train.targetSpeed;
+
+        updateState(train);
+    }
+
+    public UUID getTrainId() {
+        return trainId;
+    }
+
+    public TrainState getState() {
+        return state;
+    }
+
+    public double getCreateTargetSpeed() {
+        return createTargetSpeed;
+    }
+
+    public double getAtoTargetSpeed() {
+        return atoTargetSpeed;
+    }
+
+    public AtoController getAtoController() {
+        return atoController;
+    }
+
+    public void applyAtoTargetSpeed(Train train) {
+
+        /*
+         * CATによる列車制御全体が無効なら、
+         * CreateのtargetSpeedには介入しない。
+         */
+        if (!AdvancedTrainsConfig.CONTROL_ENABLED.get()) {
+            return;
+        }
+
+        /*
+         * ATOが無効なら、
+         * CreateのtargetSpeedには介入しない。
+         */
+        if (!AdvancedTrainsConfig.ATO_ENABLED.get()) {
+            return;
+        }
+
+        /*
+         * CATが介入する前のCreateのtargetSpeedを保存する。
+         */
+        createTargetSpeed =
+                train.targetSpeed;
+
+        /*
+         * ATOによる最終目標速度を計算する。
+         */
+        atoTargetSpeed =
+                atoController.calculateTargetSpeed(
+                        createTargetSpeed
+                );
+
+        /*
+         * Createへ目標速度を返す。
+         */
+        train.targetSpeed =
+                atoTargetSpeed;
+
+        updateState(train);
+    }
+
+    public void update(Train train) {
+        updateState(train);
+    }
+
+    private void updateState(Train train) {
+
+        state = new TrainState(
+                train.speed,
+                createTargetSpeed,
+                atoTargetSpeed
+        );
+    }
+}
+```
+
+---
+
+# 5. Speed Limit側にも設定を反映
+
+ここは少し重要です。
+
+現在の
+
+```text id="gquefq"
+AtoController
+    ↓
+SpeedLimitController
+```
+
+という構造は維持します。
+
+`AtoController` を変更します。
+
+```text id="sxmxw9"
+src/main/java/dev/edudio/createadvancedtrains/control/AtoController.java
+```
+
+```java id="x2wap9"
+package dev.edudio.createadvancedtrains.control;
+
+import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
+import dev.edudio.createadvancedtrains.speed.SpeedLimitController;
+
+public class AtoController {
+
+    private final SpeedLimitController speedLimitController;
+
+    public AtoController() {
+        this.speedLimitController =
+                new SpeedLimitController();
+    }
+
+    public SpeedLimitController getSpeedLimitController() {
+        return speedLimitController;
+    }
+
+    public double calculateTargetSpeed(
+            double createTargetSpeed
+    ) {
+
+        /*
+         * 速度制限機能が無効なら、
+         * CreateのtargetSpeedをそのまま返す。
+         */
+        if (!AdvancedTrainsConfig.SPEED_LIMIT_ENABLED.get()) {
+            return createTargetSpeed;
+        }
+
+        return speedLimitController.apply(
+                createTargetSpeed
+        );
+    }
+}
+```
+
+これで、
+
+```text id="mxwpw2"
+ATO = ON
+Speed Limit = ON
+```
+
+なら、
+
+```text id="ff7dhj"
+Create target
+     ↓
+SpeedLimitController
+     ↓
+ATO target
+```
+
+となります。
+
+一方、
+
+```text id="4gjn7s"
+ATO = ON
+Speed Limit = OFF
+```
+
+なら、
+
+```text id="5u9v8b"
+Create target
+     ↓
+ATO
+     ↓
+Create targetをそのまま返す
+```
+
+となります。
+
+---
+
+# 6. 現在の動作はこうなります
+
+### 全機能ON
+
+```text id="tw4kzd"
+Create
+ targetSpeed
+    ↓
+TrainController
+    ↓
+ATO
+    ↓
+Speed Limit
+    ↓
+train.targetSpeed
+```
+
+---
+
+### ATO OFF
+
+```text id="e1ysfv"
+Create
+ targetSpeed
+    ↓
+TrainController
+    ↓
+介入しない
+```
+
+つまりCreate標準の自動運転がそのまま動きます。
+
+---
+
+### Speed Limit OFF
+
+```text id="7e9d3i"
+Create target
+    ↓
+ATO
+    ↓
+Speed Limitを通さない
+    ↓
+ATO target = Create target
+```
+
+---
+
+### CAT全体OFF
+
+```text id="t3dig9"
+Create target
+    ↓
+CAT
+    ↓
+介入しない
+```
+
+これは非常に重要で、**トラブル発生時にCATの列車制御だけを完全に切れる**ようになります。
+
+---
+
+# 7. 今回、未実装機能についてはまだ何もしない
+
+例えば、
+
+```toml id="9i59ns"
+braking = false
+```
+
+にしても、現在はBrakingCurve自体が存在しないので動作は変わりません。
+
+これは意図的です。
+
+今後、
+
+```text id="v483li"
+BrakingCurve
+```
+
+を実装した段階で、
+
+```java id="2czt62"
+if (AdvancedTrainsConfig.BRAKING_ENABLED.get()) {
+    // braking curve
+}
+```
+
+を追加します。
+
+同様に、
+
+```text id="hz4xap"
+TASC
+Notch
+Signal
+ATC
+```
+
+もそれぞれ実装時に設定と接続します。
+
+---
+
+# 8. ただし、一点だけ今のうちに設計を修正したい
+
+現在の構造では、
+
+```text id="0r48oz"
+TrainController
+ └─ AtoController
+      └─ SpeedLimitController
+```
+
+です。
+
+これは現段階では問題ありません。
+
+しかし、今後、
+
+```text id="ez6e2o"
+ATO
+TASC
+Braking
+Signal
+ATC
+```
+
+が増えると、
+
+```text id="ltlqq3"
+AtoController
+ ├─ SpeedLimit
+ ├─ Braking
+ ├─ TASC
+ ├─ Signal
+ └─ ATC
+```
+
+という巨大なクラスになりかねません。
+
+そのため、**今回の設定基盤は作りますが、まだController統合部分は大きく変更しない**のがよいです。
+
+将来的には、
+
+```text id="rm63vj"
+                    ┌─ SpeedLimit
+                    ├─ BrakingCurve
+Create target ──────┼─ TASC
+                    ├─ Signal
+                    ├─ ATC
+                    └─ ATO
+                         ↓
+                 TargetSpeedResolver
+                         ↓
+                 atoTargetSpeed
+                         ↓
+                 Train.targetSpeed
+```
+
+のような構造に発展させるのが適切です。
+
+---
+
+## 今回の実装後に確認すること
+
+まずビルドしてください。
+
+```powershell id="t2zup4"
+$env:JAVA_HOME="C:\Program Files\Java\jdk-17"
+.\gradlew clean build
+```
+
+その後ゲームを起動し、
+
+```text id="cdzy93"
+config/create_advanced_trains-server.toml
+```
+
+が生成されることを確認します。
+
+そして、まず通常状態で
+
+```text id="93pbbh"
+control.enabled = true
+ato = true
+speed_limit = true
+```
+
+として、**現在と同じ速度制限動作になること**を確認します。
+
+次に、
+
+```toml id="uuu3dq"
+[features]
+	ato = false
+```
+
+として再起動し、**ATO TargetがCreate Targetと同じになり、CATによる速度制限が解除されること**を確認します。
+
+さらに、
+
+```toml id="btu8o4"
+ato = true
+speed_limit = false
+```
+
+として、**ATOは動作するがSpeed Limitだけが無効になること**を確認します。
+
+最後に、
+
+```toml id="dmp4wz"
+[control]
+	enabled = false
+```
+
+として、**CATが列車の`targetSpeed`に介入しなくなること**を確認します。
+
+ここまで確認できれば、**設定基盤については一旦完成**として、その後に予定していた「実車データを参考にしたBrakingProfile → BrakingCurve」の設計へ進められます。

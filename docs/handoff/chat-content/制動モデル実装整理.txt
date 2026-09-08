@@ -1,0 +1,1676 @@
+はい。今後の**仕様設計・Create 6.0.8の調査・Codexへの実装指示の基準資料**としてそのまま利用できるように、制動関連と「CAT対応列車をブロック搭載で判定する」仕様を統合して整理します。
+
+特に、**「決定済み」「未決定」「調査必須」「実装前に必要なこと」**を明確に分離します。  
+なお、アップロード資料で確認できる内容を基礎とし、今回追加されたCAT Controller Blockの方針も統合しています。fileciteturn5file0L1-L20
+
+:::writing{variant="document" id="58321" title="Create: Advanced Trains — 制動モデル・CAT対応列車仕様 基準資料"}
+# Create: Advanced Trains
+## 制動モデル・CAT対応列車仕様 基準資料
+
+**対象環境**
+
+- Minecraft Java Edition 1.20.1
+- Minecraft Forge
+- Create 6.0.8
+- Mod ID: `create_advanced_trains`
+
+本資料は、Create: Advanced Trains（以下CAT）の制動・自動運転・ノッチ制御、およびCAT制御対象列車の判定方法について、現時点で決定している仕様、未決定事項、必要な調査事項、実装前の準備事項をまとめた基準資料である。
+
+---
+
+# 1. 基本設計方針
+
+CATはCreate本体の列車物理を可能な限り利用し、通常の列車速度を直接操作しない。
+
+基本構造は、
+
+```text id="78wv4q"
+Create Train
+    ↓
+TrainController
+    ↓
+CAT各種制御
+ ├─ ATO
+ ├─ TASC
+ ├─ BrakingCurve
+ ├─ Speed Limit
+ ├─ Signal
+ ├─ ATC
+ └─ Notch
+    ↓
+atoTargetSpeed / CAT制御
+    ↓
+Create Train
+```
+
+を基本とする。
+
+通常の速度制御では、
+
+```java id="frdkq4"
+train.speed
+```
+
+を直接変更せず、
+
+```java id="341xyy"
+train.targetSpeed
+```
+
+を利用する。
+
+ただし、将来的なCATノッチ制御では、単純な`targetSpeed`制御だけでなく、CAT独自のノッチから加減速要求を生成する構造へ発展させる。
+
+---
+
+# 2. CAT制御対象列車
+
+## 2.1 基本方針
+
+CATによる制御を受ける列車は、
+
+> **CATが追加する専用ブロックを列車に組み込んでいること**
+
+を条件とする。
+
+CAT専用ブロックの仮称：
+
+```text id="3dghwt"
+CAT Train Controller
+```
+
+このブロックを列車内に1個以上搭載している場合、その`Train`をCAT制御対象とする。
+
+---
+
+## 2.2 列車種別による判定は行わない
+
+CATでは、
+
+```text id="nv8vep"
+Create標準列車か？
+モノレールか？
+他アドオンの列車か？
+特殊車両か？
+```
+
+という車両種別そのものをCAT対応判定の基準にしない。
+
+代わりに、
+
+```text id="jbgs9p"
+Train
+ ↓
+編成を構成するCarriage
+ ↓
+各CarriageのContraption
+ ↓
+搭載ブロックを検索
+ ↓
+CAT Controller Blockの有無
+```
+
+で判定する。
+
+したがって、他アドオンによって追加された列車種別であっても、CAT Controller Blockを搭載でき、CAT側がその列車のContraptionを正しく取得できるなら、CAT制御対象にできる設計を目指す。
+
+---
+
+## 2.3 CAT Controller Blockの判定
+
+基本仕様：
+
+```text id="swke6f"
+Train
+ │
+ ├─ Carriage 0
+ ├─ Carriage 1
+ ├─ Carriage 2
+ └─ Carriage 3
+        │
+        └─ CAT Controller Block
+                ↓
+          CAT対応列車
+```
+
+編成中の**いずれか1つのCarriageにCAT Controller Blockが存在すれば、列車全体をCAT対応とする**。
+
+原則として、複数搭載されている場合もCAT対応とする。
+
+---
+
+## 2.4 非対応列車
+
+CAT Controller Blockを搭載していない列車にはCATは介入しない。
+
+```text id="aojizy"
+Create Train
+ ↓
+CAT Controller Blockなし
+ ↓
+CAT非対応
+ ↓
+Create標準動作
+```
+
+これにより、既存のCreate列車への影響を最小限にする。
+
+---
+
+# 3. CAT Controller Blockの将来的な役割
+
+最初は単純な「CAT対応列車であることを示す装置」として扱う。
+
+将来的には、
+
+```text id="qr95hw"
+CAT Train Controller
+ ├─ ATO
+ ├─ TASC
+ ├─ ATC
+ ├─ ATS
+ ├─ Brake Controller
+ └─ Notch Controller
+```
+
+などの車上装置として発展させることを検討する。
+
+また、将来的には装置を複数種類に分割する可能性もある。
+
+例：
+
+```text id="e6yg2y"
+CAT Controller
+CAT ATO Unit
+CAT ATC Unit
+CAT Brake Unit
+CAT Signal Receiver
+```
+
+ただし、これは現時点では未確定であり、最初の実装ではCAT Controller Block一つで十分とする。
+
+---
+
+# 4. CAT Controller Blockについて調査が必要な事項
+
+以下は実装前にCreate 6.0.8のソースコードで確認する。
+
+## 必須調査
+
+### 4.1 TrainからCarriageを取得する方法
+
+確認対象：
+
+```text id="esky6x"
+Train
+ └─ carriages
+```
+
+Create 6.0.8での実際のフィールド・型・アクセス方法を確認する。
+
+---
+
+### 4.2 CarriageからContraptionを取得する方法
+
+確認対象：
+
+```text id="i1briu"
+Carriage
+ ↓
+Contraption
+```
+
+実際にどのオブジェクトから列車構成ブロックへアクセスできるか確認する。
+
+---
+
+### 4.3 Contraptionから搭載ブロックを取得する方法
+
+確認対象：
+
+```text id="uglie0"
+Contraption
+ ↓
+BlockInfo / BlockEntity / BlockState等
+```
+
+実際のCreate 6.0.8 APIを確認する。
+
+特に、
+
+- ブロック一覧を取得できるか
+- BlockStateを取得できるか
+- BlockEntityを取得できるか
+- ブロックのローカル座標を取得できるか
+- 列車組立後もこの情報が保持されるか
+
+を調査する。
+
+---
+
+### 4.4 他アドオンの列車との互換性
+
+Create標準Carriage以外の列車・特殊車両について、
+
+```text id="owbamg"
+Train
+ ↓
+Carriage
+ ↓
+Contraption
+```
+
+という構造が同様に成立するかを調査する。
+
+CAT側では、可能な限り特定アドオン名や列車種別をハードコードしない。
+
+---
+
+# 5. TrainControllerとの関係
+
+CAT対応判定は`TrainController`の上位条件とする。
+
+概念：
+
+```text id="ujxks5"
+Train
+ ↓
+CatTrainDetector
+ ↓
+CAT Controller Block?
+ ├─ NO  → 何もしない
+ └─ YES
+      ↓
+TrainController
+      ↓
+CAT制御
+```
+
+`TrainControllerManager`は、CAT対応列車のみControllerを生成・維持する方向とする。
+
+列車の識別には、
+
+```java id="c9aomu"
+Train UUID
+```
+
+を使用する。
+
+---
+
+# 6. 制動モデルの基本方針
+
+制動モデルはPhase 5の中心機能とする。
+
+ただし、
+
+> **制動モデルの数学・仕様が確定するまではJava実装を開始しない。**
+
+これは明確な開発方針とする。
+
+---
+
+# 7. BrakingCurveの役割
+
+BrakingCurveは最終的な目標速度そのものではない。
+
+BrakingCurveの出力は、
+
+> **現在位置から安全に停止するために許される最大速度**
+
+とする。
+
+つまり、
+
+```text id="8x785x"
+残距離
++
+現在の制動性能
++
+ブレーキ応答時間
++
+安全余裕
+ ↓
+BrakingCurve
+ ↓
+最大許容速度
+```
+
+である。
+
+---
+
+# 8. 最終目標速度
+
+ATO Controllerが複数の速度制約を統合する。
+
+概念：
+
+```text id="vm31ch"
+Speed Limit
+Signal
+TASC
+ATC
+BrakingCurve
+その他の速度制約
+        ↓
+   最小値を採用
+        ↓
+  atoTargetSpeed
+        ↓
+train.targetSpeed
+```
+
+つまり、
+
+```text id="dtafw3"
+BrakingCurve = 最大許容速度
+ATO = 複数の制約を統合して最終目標速度を決定
+```
+
+とする。
+
+資料でも、TASC、BrakingCurve、Signal、SpeedLimit、ATC等を制約として扱い、最も厳しい速度を採用する方針が確認されている。fileciteturn5file14L1-L25
+
+---
+
+# 9. Create targetSpeedの扱い
+
+Createが設定している、
+
+```java id="er5ntv"
+train.targetSpeed
+```
+
+はCAT側で、
+
+```text id="49o3oi"
+createTargetSpeed
+```
+
+として保持する。
+
+概念：
+
+```text id="izcocp"
+Create targetSpeed
+        ↓
+createTargetSpeed
+        ↓
+CAT各制約
+        ↓
+atoTargetSpeed
+        ↓
+train.targetSpeed
+```
+
+ただし、
+
+```text id="x8wr3u"
+Create targetSpeed == 0
+```
+
+を単純に「最終目標速度0」と解釈してはいけない。
+
+Createの0は、
+
+- 停車要求
+- Schedule関連
+- その他の状態
+
+など複数の意味を持ち得るため、
+
+```text id="x82r9c"
+Create targetSpeed = 0
+        ↓
+停止理由を判定
+        ↓
+CAT側で停止要求として分類
+```
+
+する。
+
+資料でも`createTargetSpeed`と`createStopRequest`、`stationDestination`、`distanceToStation`等を分離する方針が示されている。fileciteturn5file15L1-L25
+
+---
+
+# 10. 常用制動
+
+常用最大減速度を固定値として、
+
+```text id="jv8tes"
+0.8 m/s²
+```
+
+などとする方式は採用しない。
+
+基本方針：
+
+```text id="1g0rd8"
+Create train.acceleration()
+        ↓
+CAT基準値
+        ↓
+CATのB7制動特性
+        ↓
+常用最大減速度
+```
+
+とする。
+
+これにより、Create側の列車ごとの加速度設定に応じてCATの制動性能も変化できる。
+
+ただし、
+
+> CATのB7が`train.acceleration()`の何倍になるか
+
+は未確定である。
+
+---
+
+# 11. 非常制動
+
+EBについても、
+
+```text id="ua7eit"
+train.acceleration()
+ ↓
+CAT独自のEB特性
+```
+
+を基本とする。
+
+EBの減速度倍率は未確定。
+
+Createの物理挙動を調査したうえでCAT側の数値を決定する。
+
+---
+
+# 12. 最重要調査：Create 6.0.8の加速度・制動挙動
+
+以下をCreate 6.0.8の実ソースから調査する。
+
+### 必須
+
+1. `Train.acceleration()`の正確な意味
+2. `Train.acceleration()`の単位
+3. 通常運転時の速度変化
+4. `targetSpeed`への追従方法
+5. `approachTargetSpeed()`の計算
+6. 手動運転時の速度制御
+7. Create側の速度制限処理
+8. `targetSpeed`が変更されるtick順序
+9. `Train.tick()`内の速度更新順序
+10. `CarriageContraptionEntity`側からの速度制御
+11. Createが持つ既存の加速・減速係数
+12. CAT制御後にCreate側がどのように速度を変更するか
+
+特に、
+
+```text id="2vrz9z"
+Train.tick()
+CarriageContraptionEntity
+Navigation
+approachTargetSpeed()
+```
+
+の関係を確認する。
+
+---
+
+# 13. ブレーキ応答時間
+
+これは確定事項。
+
+```text id="k8rs9v"
+10 tick
+=
+0.5秒
+```
+
+をブレーキ応答時間として扱う。
+
+制動開始要求が発生してから実際の制動力が作用するまでの遅れとしてモデル化する。
+
+---
+
+# 14. 安全余裕
+
+安全余裕には、
+
+```text id="7cvofa"
+距離による余裕
++
+減速度に対する安全係数
+```
+
+の**両方を使用する**。
+
+つまり、
+
+```text id="r2gxqr"
+安全余裕
+ ├─ distance margin
+ └─ deceleration factor
+```
+
+とする。
+
+具体的な数値は未確定。
+
+---
+
+# 15. 基本的な制動距離
+
+一定減速度の場合の基本式：
+
+```text id="zk9rvf"
+d = v² / (2a)
+```
+
+ブレーキ応答時間を含める場合：
+
+```text id="8dkyih"
+d_total
+=
+v × t_response
++
+v² / (2a)
++
+d_margin
+```
+
+となる。
+
+ここで、
+
+- `v` = 速度
+- `t_response` = ブレーキ応答時間
+- `a` = 減速度
+- `d_margin` = 距離安全余裕
+
+とする。
+
+ただし、CATでは減速度が速度依存となるため、最終的にはこの単純式をそのまま使用するとは限らない。
+
+---
+
+# 16. 速度依存減速度
+
+CATの制動性能は、
+
+> **速度によって減速度が変化する**
+
+モデルを採用する。
+
+概念：
+
+```text id="qpa0xk"
+速度
+ ↓
+減速度テーブル
+ ↓
+その速度における制動性能
+```
+
+例：
+
+```text id="rfsjv7"
+speed → deceleration
+```
+
+という関数として、
+
+```text id="otwzrt"
+a = f(v)
+```
+
+を実現する。
+
+---
+
+# 17. 減速度テーブル
+
+常用制動と非常制動は別々に管理する。
+
+```text id="hevvf1"
+Service Brake Table
+Emergency Brake Table
+```
+
+概念：
+
+```text id="8abm99"
+速度          常用        非常
+0～5           A1          E1
+5～10          A2          E2
+10～15         A3          E3
+...
+```
+
+とする。
+
+ただし、区間境界、補間方法、具体的な速度点、具体的な減速度値は未確定。
+
+---
+
+# 18. 減速度テーブルの設計方式
+
+現在は以下の2案を候補とする。
+
+## 案A：各ノッチを個別テーブル化
+
+```text id="m71zdx"
+B1 → a1(v)
+B2 → a2(v)
+B3 → a3(v)
+...
+B7 → a7(v)
+EB → aEB(v)
+```
+
+## 案B：B7を基準曲線として倍率化
+
+```text id="l2sx8h"
+B7 = aB7(v)
+
+B6 = aB7(v) × k6
+B5 = aB7(v) × k5
+...
+B1 = aB7(v) × k1
+```
+
+どちらを採用するかは未決定。
+
+実車の制動特性とCreate側の挙動を調査してから決定する。
+
+---
+
+# 19. クリープ制御
+
+停止直前には通常のBrakingCurveとは別の低速制御領域を設ける。
+
+概念：
+
+```text id="66wcbn"
+通常走行
+ ↓
+制動曲線
+ ↓
+低速制御
+ ↓
+クリープ
+ ↓
+停止
+```
+
+目的は、停止直前の位置合わせを安定させること。
+
+Createでは、
+
+- tick単位の離散制御
+- targetSpeed追従遅れ
+- 浮動小数点誤差
+- 慣性
+- Create側速度制御
+
+などを考慮する必要がある。fileciteturn5file2L1-L20
+
+---
+
+# 20. クリープ速度
+
+現在のプロジェクト方針では、
+
+```text id="4jhfgi"
+0.4 blocks/s
+```
+
+をクリープ速度の暫定値とする。
+
+ただし、最終値は未確定。
+
+実際のCreate列車の挙動を確認し、
+
+- 0.2 blocks/s
+- 0.3 blocks/s
+- 0.4 blocks/s
+- 0.5 blocks/s
+
+等を試験して決定する。
+
+---
+
+# 21. 低速制御への切替速度
+
+低速制御へ移行する速度は未確定。
+
+初期試験範囲：
+
+```text id="b1u0eb"
+2～10 blocks/s
+```
+
+とする。
+
+実際の列車挙動を測定したうえで決定する。
+
+---
+
+# 22. 停止位置許容誤差
+
+暫定値：
+
+```text id="a8kk4l"
+±0.5 blocks
+```
+
+ただし、Createの駅・Station Block・停車位置の実際の仕様を確認した後に正式決定する。
+
+必要な調査：
+
+```text id="kzlkvz"
+駅ブロック
+ ↓
+Createが保持する停止位置
+ ↓
+Train位置
+ ↓
+実際の停止判定
+```
+
+---
+
+# 23. 勾配
+
+将来的には勾配を制動計算へ組み込める構造にする。
+
+ただしV1では、
+
+```text id="hev89v"
+gradient effect = 0
+```
+
+とする。
+
+実装時には、
+
+```text id="qhx8nc"
+gradient
+```
+
+を独立した入力値・パラメータとして扱える設計にしておく。
+
+将来的には、
+
+```text id="0i88d2"
+下り勾配
+→ 制動距離増加
+
+上り勾配
+→ 制動距離減少
+```
+
+のような補正を追加できるようにする。
+
+---
+
+# 24. 編成重量・編成長
+
+将来的に考慮する。
+
+候補：
+
+```text id="2putxl"
+列車重量
+編成長
+車両数
+車両ごとの制動性能
+車両ごとの動力性能
+```
+
+ただしV1でどこまで導入するかは未確定。
+
+特にCreateで正確な車両重量を取得できるかは調査が必要。
+
+---
+
+# 25. CAT独自ノッチシステム
+
+CATではCreate標準のW/Sによる直接的な速度操作を最終的に置き換える。
+
+CAT独自ノッチ：
+
+```text id="tyu5u6"
+P1
+P2
+P3
+P4
+P5
+N
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+EB
+```
+
+これらは**すべてCAT独自仕様**であり、Createの既存ブレーキ段数をそのまま利用するものではない。
+
+---
+
+# 26. ノッチの役割
+
+ノッチは速度そのものではなく、
+
+```text id="tgav23"
+Notch
+ ↓
+要求加速度 / 要求減速度
+ ↓
+列車制御
+```
+
+として扱う。
+
+つまり、
+
+```text id="6xyjju"
+P1 = ○○の加速要求
+P2 = ○○の加速要求
+...
+B1 = ○○の減速要求
+...
+B7 = 最大常用制動
+EB = 非常制動
+```
+
+という構造を目指す。
+
+具体的な数値は未確定。
+
+---
+
+# 27. ATOとノッチ
+
+将来的にはATOが直接、
+
+```text id="x2uvvi"
+targetSpeed = X
+```
+
+だけを要求するのではなく、
+
+```text id="96h5wx"
+必要な加速度 / 減速度
+ ↓
+適切なノッチを選択
+ ↓
+P1～P5 / N / B1～B7
+```
+
+という制御に発展させる。
+
+したがって、
+
+```text id="wackhq"
+ATO
+ ↓
+Required Acceleration
+ ↓
+NotchController
+ ↓
+Notch
+ ↓
+Train Control
+```
+
+という構造を目標とする。
+
+---
+
+# 28. EB
+
+EBは通常のノッチとは異なる特殊状態として扱う。
+
+```text id="qhrgun"
+P1～P5
+N
+B1～B7
+    ↓ 異常
+EB
+    ↓
+EMERGENCY_BRAKING
+    ↓
+EMERGENCY_LOCKED
+```
+
+とする。
+
+---
+
+# 29. 自動運転時のEB
+
+自動運転中は通常、EBを使用しない。
+
+TASC、BrakingCurve、SpeedLimit、Signal、ATC等によって、通常制動で安全に停止できるよう事前に減速する。
+
+ただし、
+
+```text id="1o799i"
+現在速度が高すぎる
++
+停止までの距離が短すぎる
+```
+
+などにより、
+
+> 常用制動では安全に停止できない
+
+と判断した場合、自動的にEBを発動する。
+
+例：
+
+```text id="7ngprg"
+速度 = 50 blocks/s
+停止位置まで = 100 blocks
+```
+
+など。
+
+---
+
+# 30. 自動EB発動後の状態
+
+自動運転中のEBは通常制御ではなく、**重大な異常状態**として扱う。
+
+```text id="5nrt6q"
+AUTOMATIC
+ ↓
+Emergency Brake
+ ↓
+EMERGENCY_BRAKING
+ ↓
+EMERGENCY_LOCKED
+```
+
+非常制動が発動した場合、通常の自動運転へ自動復帰させない。
+
+復旧にはプレイヤーによる操作を要求する。
+
+現時点の方針では、
+
+```text id="74uucu"
+レンチ等による復旧
+ ↓
+非常制動解除
+ ↓
+運転再開可能
+```
+
+とする。
+
+---
+
+# 31. EB発動表示
+
+自動EB発動時の表示は脱線と区別する。
+
+表示：
+
+```text id="b5zlem"
+非常制動発動
+```
+
+とする。
+
+脱線状態として扱ったり、「脱線」と表示したりしない。
+
+---
+
+# 32. 手動運転時のEB
+
+手動運転中は専用キーによってEBを発動できるようにする。
+
+```text id="js8fuj"
+MANUAL
+ ↓
+EBキー
+ ↓
+EMERGENCY_BRAKING
+```
+
+EBは単純に、
+
+```java id="lvqwd5"
+train.targetSpeed = 0;
+```
+
+とするのではなく、独立したEmergency Brake制御として扱う。
+
+---
+
+# 33. 手動運転と自動運転
+
+CATではCreateの内部フラグをそのまま、
+
+```text id="y571ah"
+AUTOMATIC
+MANUAL
+```
+
+として扱わない。
+
+CAT側に独自状態を持たせる。
+
+概念：
+
+```java id="uyu7m9"
+enum DrivingMode {
+    AUTOMATIC,
+    MANUAL
+}
+```
+
+`TrainController`が列車UUIDごとに保持する。
+
+---
+
+# 34. Create側の状態は入力情報として利用
+
+Create側には、
+
+```text id="47sl0u"
+runtime.paused
+runtime.isAutoSchedule
+Schedule
+Manual Control
+Navigation
+```
+
+などの状態がある。
+
+これらをCATの運転モード判定に利用するが、
+
+> Createの単一フラグをCATのDrivingModeそのものにはしない。
+
+`runtime.paused`は手動操作と関係する一方、Schedule停止など別の意味でも使用されるためである。fileciteturn5file3L1-L25
+
+---
+
+# 35. 運転モードについて未確定の事項
+
+以下はCreate 6.0.8の状態遷移をさらに調査してから決定する。
+
+- AUTOMATIC → MANUALとなる瞬間
+- 手動運転開始イベント
+- 手動運転終了イベント
+- プレイヤーが運転席を離れた場合
+- Schedule再開時の状態
+- Schedule終了時の状態
+- Scheduleが存在しない列車
+- Scheduleが一時停止している列車
+- 列車停止中の状態
+- 複数プレイヤーが関与する場合
+- ワールド再読み込み後のDrivingMode復元
+
+これらは制動数学とは別に「DrivingMode State Machine」として整理する。
+
+---
+
+# 36. 制動モデルとTASCの関係
+
+TASCは、
+
+> **停止位置を基準として制御する機能**
+
+とする。
+
+BrakingCurveは、
+
+> **残距離から安全に停止できる最大許容速度を計算するモデル**
+
+とする。
+
+したがって、
+
+```text id="bmaiwf"
+Station
+ ↓
+停止位置
+ ↓
+TASC
+ ↓
+残距離
+ ↓
+BrakingCurve
+ ↓
+最大許容速度
+ ↓
+ATO
+ ↓
+targetSpeed
+```
+
+となる。fileciteturn5file13L1-L20
+
+---
+
+# 37. 制動モデル全体構造
+
+最終的な構造：
+
+```text id="jcxssh"
+                         Train
+                           │
+              ┌────────────┴────────────┐
+              ↓                         ↓
+      train.acceleration()           speed
+              │                         │
+              └────────────┬────────────┘
+                           ↓
+                    Braking Profile
+                           │
+                ┌──────────┴──────────┐
+                ↓                     ↓
+          Service Brake          Emergency Brake
+             Table                   Table
+                │                     │
+                └──────────┬──────────┘
+                           ↓
+                   Speed-dependent
+                    Deceleration
+                           ↓
+                     BrakingCurve
+                           ↓
+                  Maximum Permitted Speed
+                           │
+                           ↓
+                    ATO Controller
+                           │
+          ┌────────────────┼────────────────┐
+          ↓                ↓                ↓
+         TASC            Signal        Speed Limit
+          │                │                │
+          └────────────────┼────────────────┘
+                           ↓
+                          ATC
+                           ↓
+                    Minimum Constraint
+                           ↓
+                    atoTargetSpeed
+                           ↓
+                  Create targetSpeed
+```
+
+この責務分離を基本構造とする。
+
+---
+
+# 38. 現時点で「決定済み」の事項
+
+## 列車認識
+
+- CAT制御対象はCAT Controller Block搭載列車
+- 編成中のいずれかのCarriageに搭載されていればよい
+- 列車種別そのものでは判定しない
+- 他アドオンの列車もCAT Controller Block方式で対応できる構造を目指す
+- 非対応列車にはCATは介入しない
+
+## 制動
+
+- BrakingCurveは最大許容速度を返す
+- BrakingCurveは最終目標速度ではない
+- 最終目標速度はATOが複数制約の最小値として決定
+- 常用制動は`train.acceleration()`を基準にする
+- EBも`train.acceleration()`を基準にする
+- ブレーキ応答時間は10 tick = 0.5秒
+- 安全余裕は距離余裕＋減速度係数
+- 減速度は速度依存
+- 減速度テーブル方式を採用する方向
+- 常用制動と非常制動のテーブルを分離
+- V1では勾配による実質的な影響を与えない
+- 将来の勾配対応を考慮した構造にする
+- クリープ制御を導入する
+- クリープ速度は0.4 blocks/sを暫定値とする
+- CATノッチはCreate標準ノッチの流用ではなく完全に独自仕様
+- P1～P5 / N / B1～B7 / EBを使用
+- EBは特殊な非常状態として扱う
+- 自動運転中のEBは通常使用しない
+- 常用制動で安全に停止できない場合のみ自動EB
+- 自動EB発動後は異常状態としてロック
+- 復旧にはプレイヤー操作を要求
+- 表示は「非常制動発動」
+
+## 運転モード
+
+- CAT独自の`DrivingMode`を持つ
+- `AUTOMATIC` / `MANUAL`を基本とする
+- Create側の`paused`等をCATの状態そのものにはしない
+- 運転モード・自動制御は原則サーバー側
+
+---
+
+# 39. 「未決定」の事項
+
+以下はまだ仕様として固定してはいけない。
+
+## 制動性能
+
+- B7の具体的減速度
+- EBの具体的減速度
+- `train.acceleration()`に対するB7倍率
+- `train.acceleration()`に対するEB倍率
+- B1～B6の減速度
+- P1～P5の加速度
+- ノッチ間の倍率関係
+- 速度依存テーブルの具体的速度点
+- テーブルの具体的減速度値
+- テーブル補間方法
+- 低速域の減速度モデル
+
+## TASC
+
+- 正確な停止位置
+- 停止位置許容誤差の最終値
+- 低速制御切替速度
+- クリープ開始距離
+- クリープ終了条件
+- 停止判定条件
+- 停止位置補正アルゴリズム
+
+## 安全余裕
+
+- distance marginの具体値
+- deceleration factorの具体値
+- 速度によって安全余裕を変えるか
+- 応答遅れのモデル化方法
+
+## EB
+
+- 常用制動からEBへ切り替える厳密な条件
+- EB発動判定式
+- EB発動後の速度・位置処理
+- EB解除条件
+- レンチ操作との具体的連携
+
+## ノッチ
+
+- 各ノッチの具体的加減速度
+- ATOによるノッチ選択アルゴリズム
+- ノッチ変更の速度・加速度条件
+- ノッチ変更速度
+- ノッチ変更時の遷移
+- P→N→Bの切替制限
+- EBへの移行条件
+
+## CAT Controller Block
+
+- 正式名称
+- Block ID
+- ブロックモデル
+- 設置方法
+- GUIの有無
+- 複数搭載時の扱い
+- ブロック破壊時の扱い
+- 編成組立後の検出方法
+- 他アドオン列車との具体的互換性
+
+---
+
+# 40. 今後「必ず調査する」事項
+
+優先度を付ける。
+
+## 最優先：Create 6.0.8
+
+### A. 制動・速度物理
+
+```text id="c2udzb"
+Train.acceleration()
+Train.speed
+Train.targetSpeed
+Train.approachTargetSpeed()
+Train.tick()
+```
+
+について実ソースを確認する。
+
+特に、
+
+```text id="m0bbq3"
+targetSpeed
+ ↓
+速度変化
+```
+
+の数学的関係を確認する。
+
+---
+
+### B. 手動運転
+
+```text id="iy48m3"
+CarriageContraptionEntity
+Navigation
+ScheduleRuntime
+Train
+```
+
+を確認し、
+
+- W/S入力
+- 手動速度
+- targetSpeed
+- navigation
+- paused
+- schedule
+
+の状態遷移を整理する。
+
+---
+
+### C. 駅・停止位置
+
+Create 6.0.8について、
+
+```text id="ahz162"
+Station
+TrackTarget
+TravellingPoint
+Navigation
+DiscoveredPath
+```
+
+等の関係を確認する。
+
+特に、
+
+> Createが認識する「駅の停止位置」が実際にどこなのか
+
+を確定する。
+
+---
+
+### D. CAT Controller Block
+
+```text id="sf5l1o"
+Train
+ ↓
+Carriage
+ ↓
+Contraption
+ ↓
+搭載Block
+```
+
+をCreate 6.0.8の実ソースで確認する。
+
+---
+
+### E. 他アドオン互換性
+
+可能な限り、
+
+```text id="6kys4t"
+通常Create Train
+特殊Carriage
+モノレール等の別方式
+```
+
+でもCAT Controller Block方式が成立するかを調査する。
+
+---
+
+# 41. 制動モデル数学で次に決めること
+
+実装に入る前に、最低限以下を確定する。
+
+```text id="1j8ybr"
+1. 減速度テーブルの速度点
+2. 各速度点の減速度
+3. B7の基準減速度
+4. B1～B6の関係
+5. EBの減速度
+6. 速度区間間の補間方法
+7. ブレーキ応答遅れ
+8. 距離安全余裕
+9. 減速度安全係数
+10. 勾配補正のインターフェース
+11. 制動距離計算方法
+12. 残距離→最大許容速度の逆算方法
+13. 低速制御切替速度
+14. クリープ開始条件
+15. クリープ速度
+16. 停止判定
+17. 停止位置許容誤差
+18. EB発動条件
+```
+
+ここまで確定した時点で、初めてBrakingCurveのJava実装へ移行する。
+
+---
+
+# 42. 単位
+
+制動モデルでは単位を明確にする。
+
+Createの速度：
+
+```text id="76eh66"
+blocks/tick
+```
+
+変換：
+
+```text id="o0yg8i"
+blocks/s = blocks/tick × 20
+
+km/h = blocks/tick × 72
+
+blocks/tick = km/h ÷ 72
+```
+
+したがって、
+
+```text id="yg5f8c"
+1 blocks/tick = 20 blocks/s = 72 km/h
+```
+
+である。
+
+制動モデルの実装段階では、単なる`double`を乱用せず、
+
+```text id="gkeda7"
+BlocksPerTick
+BlocksPerSecond
+KilometersPerHour
+```
+
+などの単位値オブジェクトを導入する方向とする。
+
+---
+
+# 43. 実装開始条件
+
+以下を満たすまでPhase 5のJava実装を開始しない。
+
+```text id="7nbusx"
+Create 6.0.8の速度物理調査
+        ↓
+Create accelerationの意味確定
+        ↓
+B7/EB基準決定
+        ↓
+速度依存制動テーブル決定
+        ↓
+制動距離数学決定
+        ↓
+安全余裕決定
+        ↓
+低速制御決定
+        ↓
+クリープ決定
+        ↓
+停止位置決定
+        ↓
+EB条件決定
+        ↓
+BrakingCurve仕様完成
+        ↓
+Java実装開始
+```
+
+---
+
+# 44. 推奨される実装後の構造
+
+最終的には、
+
+```text id="s3mmlw"
+TrainController
+│
+├─ TrainIdentity
+│
+├─ DrivingMode
+│
+├─ CatTrainDetector
+│
+├─ NotchController
+│
+├─ AtoController
+│
+├─ TascController
+│
+├─ BrakingCurve
+│
+├─ EmergencyBrakeController
+│
+├─ SpeedLimitController
+│
+├─ SignalController
+│
+├─ AtcController
+│
+└─ TargetSpeedResolver
+```
+
+のように責務を分離する。
+
+特に、
+
+```text id="949x8v"
+BrakingCurve
+```
+
+は「制動性能から最大許容速度を求める数学モデル」に集中させ、
+
+```text id="30emgb"
+TascController
+```
+
+は「どこに止まるべきか」を担当し、
+
+```text id="5bplr3"
+AtoController / TargetSpeedResolver
+```
+
+が各制約を統合する。
+
+---
+
+# 45. 最終的な全体像
+
+```text id="cl9vog"
+                  Create Train
+                       │
+                       ↓
+              CAT Controller Block?
+                  /          \
+                NO            YES
+                │              │
+          Create標準動作       ↓
+                         TrainController
+                              │
+                    ┌─────────┴─────────┐
+                    ↓                   ↓
+              DrivingMode          Train State
+               /       \
+       AUTOMATIC       MANUAL
+           │              │
+           ↓              ↓
+          ATO        Notch Controller
+           │              │
+           ├──────────────┤
+           ↓
+       Target Speed / Notch
+           │
+           ├─ Speed Limit
+           ├─ Signal
+           ├─ ATC
+           ├─ TASC
+           └─ BrakingCurve
+                    │
+                    ↓
+             最大許容速度
+                    │
+                    ↓
+             TargetSpeedResolver
+                    │
+                    ↓
+              atoTargetSpeed
+                    │
+                    ↓
+             Create Train
+                    │
+                    ↓
+             Create物理処理
+                    │
+                    ↓
+                Train.speed
+```
+
+非常時：
+
+```text id="xunkdv"
+通常制御
+   ↓
+常用制動では安全停止不能
+   ↓
+Emergency Brake
+   ↓
+EB
+   ↓
+EMERGENCY_BRAKING
+   ↓
+EMERGENCY_LOCKED
+   ↓
+プレイヤーによる復旧
+```
+
+---
+
+# 46. 開発上の最重要原則
+
+1. **Minecraft 1.20.1 + Forge + Create 6.0.8を固定する。**
+2. Create 6.0.8の実ソースを基準にする。
+3. 不明なCreate APIを推測して実装しない。
+4. `Train.speed`の直接変更は原則行わない。
+5. CATは独自の制御状態を持つ。
+6. CAT対応判定は「CAT Controller Block搭載」を基本とする。
+7. Create標準列車・他アドオン列車の種類をハードコードしない。
+8. BrakingCurveは最大許容速度を計算する。
+9. ATOが複数の制約を統合する。
+10. ノッチはCAT独自仕様とする。
+11. EBは通常制御とは別の異常状態として扱う。
+12. 制動数学・仕様が確定するまでPhase 5のJava実装を開始しない。
+13. 実装開始時には速度・距離・加速度等の単位を明示する。
+14. 機能ごとの責務を分離し、将来のATC・信号・ノッチ拡張を妨げない設計にする。
+:::
+
+この資料を今後の**「制動モデル＋CAT対応列車」の基準仕様**として扱うのがよいです。特に現段階では、**コードを書くより先に「Create 6.0.8の速度物理」「Carriage/Contraptionから搭載ブロックを取得する方法」「駅の停止位置」の3点を実ソースで確定すること**が重要です。アップロード資料でも、制動数学を確定してからJava実装へ移る方針が明示されています。fileciteturn5file0L1-L20
+
+次にCodexへ渡すなら、この資料を `docs/design/BRAKING_MODEL.md` と `docs/design/CAT_TRAIN.md` に分割し、Create 6.0.8の実ソース調査結果を `docs/technical/CREATE_6_0_8.md` に集約する構成が適しています。
