@@ -16,6 +16,9 @@ public final class AdvancedTrainsConfig {
     public static final ForgeConfigSpec.BooleanValue SIGNAL_ENABLED;
     public static final ForgeConfigSpec.BooleanValue ATC_ENABLED;
 
+    public static final ForgeConfigSpec.BooleanValue TRAIN_DATA_DEBUG_ENABLED;
+    public static final ForgeConfigSpec.IntValue TRAIN_DATA_DEBUG_SAMPLE_INTERVAL_TICKS;
+
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
@@ -67,6 +70,25 @@ public final class AdvancedTrainsConfig {
                         "Enable ATC/ATS control.")
                 .define("atc", true);
 
+        builder.pop();
+
+        builder.comment(
+                "Server-side diagnostic logging.").push("debug");
+
+        builder.comment(
+                "Passive Create train data logging.").push("train_data");
+
+        TRAIN_DATA_DEBUG_ENABLED = builder
+                .comment(
+                        "Write passive train data samples to JSON Lines log files.")
+                .define("enabled", false);
+
+        TRAIN_DATA_DEBUG_SAMPLE_INTERVAL_TICKS = builder
+                .comment(
+                        "Number of server ticks between train data samples.")
+                .defineInRange("sample_interval_ticks", 1, 1, Integer.MAX_VALUE);
+
+        builder.pop();
         builder.pop();
 
         SPEC = builder.build();
