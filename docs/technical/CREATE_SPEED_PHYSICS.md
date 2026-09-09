@@ -42,6 +42,16 @@ Navigationには、停止位置の直前で`Train.speed`を直接補正する標
 `approachTargetSpeed()`による通常の加減速とは別経路であり、CATの通常制御がこれを置換・
 包括的にフックしてはならない。
 
+## 手動運転時の停車対象距離
+
+`Navigation.destination`と`distanceToDestination`は、Navigationが開始されている自動運転では
+Create計算済みの正本として利用できる。一方、手動運転時にはdestinationがなく、HUDや将来の制動計算が
+同値を0として扱ってはならない。
+
+次の実装では、まずNavigation値を使い、利用できない場合だけCreate 6.0.8の手動運転が次の
+GlobalStationを見つける探索と同じロジックを読み取り専用で実行する。候補station、進行方向、線路距離、
+符号の定義は未検証であり、SolがCreate 6.0.8実ソースから確認するまで仮定しない。
+
 ## 実測ベースライン
 
 `docs/reference/logs/09-09_3/`のCAT無効・毎tickログでは、加速度設定1.0 blocks/s²に

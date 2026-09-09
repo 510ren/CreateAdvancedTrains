@@ -35,6 +35,7 @@ public final class TrainStatusHudPacket {
             buffer.writeDouble(entry.atoTargetSpeedBlocksPerSecond());
             buffer.writeDouble(entry.measuredAccelerationBlocksPerSecondSquared());
             buffer.writeDouble(entry.createBaseAccelerationBlocksPerSecondSquared());
+            buffer.writeDouble(entry.distanceToDestinationBlocks());
         }
     }
 
@@ -52,6 +53,7 @@ public final class TrainStatusHudPacket {
                     buffer.readEnum(Notch.class),
                     buffer.readEnum(Notch.class),
                     buffer.readBoolean(),
+                    buffer.readDouble(),
                     buffer.readDouble(),
                     buffer.readDouble(),
                     buffer.readDouble(),

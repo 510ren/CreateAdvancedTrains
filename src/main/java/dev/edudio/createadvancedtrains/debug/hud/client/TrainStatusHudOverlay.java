@@ -18,10 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * Development HUD showing the server-observed state of every Create train.
  */
-@Mod.EventBusSubscriber(
-        modid = CreateAdvancedTrains.MOD_ID,
-        value = Dist.CLIENT,
-        bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TrainStatusHudOverlay {
 
     private static final int LEFT = 6;
@@ -47,7 +44,7 @@ public final class TrainStatusHudOverlay {
 
         graphics.drawString(
                 font,
-                "CAT Train Debug [speed: blocks/s, acceleration: blocks/s^2]",
+                "CAT Train Debug [speed: blocks/s, acceleration: blocks/s^2, distance: blocks]",
                 LEFT,
                 TOP,
                 HEADING_COLOR,
@@ -93,14 +90,15 @@ public final class TrainStatusHudOverlay {
 
         return String.format(
                 Locale.ROOT,
-                "%s  V %s  A %s (base %s)  N %s  Create %s  ATO %s",
+                "%s  V %s  A %s (base %s)  N %s  Create %s  ATO %s  D %s",
                 entry.trainId().toString().substring(0, 8),
                 number(entry.speedBlocksPerSecond()),
                 number(entry.measuredAccelerationBlocksPerSecondSquared()),
                 number(entry.createBaseAccelerationBlocksPerSecondSquared()),
                 notch,
                 number(entry.createTargetSpeedBlocksPerSecond()),
-                number(entry.atoTargetSpeedBlocksPerSecond()));
+                number(entry.atoTargetSpeedBlocksPerSecond()),
+                number(entry.distanceToDestinationBlocks()));
     }
 
     private static String number(double value) {

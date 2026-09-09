@@ -17,7 +17,8 @@ public record TrainStatusHudEntry(
         double createTargetSpeedBlocksPerSecond,
         double atoTargetSpeedBlocksPerSecond,
         double measuredAccelerationBlocksPerSecondSquared,
-        double createBaseAccelerationBlocksPerSecondSquared) {
+        double createBaseAccelerationBlocksPerSecondSquared,
+        double distanceToDestinationBlocks) {
 
     public TrainStatusHudEntry {
         Objects.requireNonNull(trainId, "trainId");

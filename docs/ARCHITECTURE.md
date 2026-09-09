@@ -26,6 +26,27 @@ Create Schedule / Navigation / Manual control
 `accelerationMod` は目標速度ではない。Navigationと手動運転側の双方がこのメソッドを
 呼ぶため、目標速度への介入点はここへ集約する。
 
+## Create列車情報の照会境界
+
+Create内部値の読み取り・Createと同じ探索規則による導出は、将来の各ControllerやHUDへ分散させない。
+Server側の単一ユーティリティ（名称候補: `CreateTrainQueryUtil`）を設け、Create列車に関する読み取り専用の
+問い合わせをここへ集約する。
+
+最初に必要な問い合わせは次のとおりである。
+
+| 問い合わせ | 要件 |
+| --- | --- |
+| 次の停車対象までの距離 | `Navigation.destination`と有効な`distanceToDestination`がある場合は、その符号付きblocks値を正本として返す。 |
+| 手動運転時の次の停車対象までの距離 | Navigation値が利用不能な場合に限り、Create 6.0.8の手動運転で使う次の到達可能GlobalStation探索と同じ入力・進行方向規則で、線路上の距離を導出する。Navigation状態を開始・変更してはならない。 |
+| 停車に向けた減速か | Createが出したnative target、現在速度、進行方向、停車対象の有無を一箇所で判定する。個々のControllerが独自に比較式を持ってはならない。 |
+
+距離が求められないことは有効な状態であり、数値0を代用してはならない。問い合わせ結果は距離・単位・
+取得元（Navigation / 手動探索 / unavailable）を区別できる値とし、HUDはunavailableを`0`ではなく
+`--`などの未取得表示にする。将来のBrakingCurve、TASC、信号、HUDはこの照会境界を利用する。
+
+Create 6.0.8の手動探索API・進行方向・距離の符号・副作用は、実装前に実ソースで確認する。安全な
+読み取りだけで手動探索を再現できない場合、Solは状態変更を伴う代替案を実装せず、根拠と選択肢を報告する。
+
 ## 列車単位の状態
 
 `TrainControllerManager`は `Map<UUID, TrainController>` を保持する。`TrainController`は

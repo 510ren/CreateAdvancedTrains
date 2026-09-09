@@ -132,7 +132,8 @@ public final class TrainStatusHudServerEvents {
                 toBlocksPerSecond(createTargetSpeed),
                 toBlocksPerSecond(atoTargetSpeed),
                 MEASURED_ACCELERATIONS.getOrDefault(train.id, Double.NaN),
-                toBlocksPerSecondSquared(Math.abs(train.acceleration())));
+                toBlocksPerSecondSquared(Math.abs(train.acceleration())),
+                train.navigation.distanceToDestination);
     }
 
     private static double toBlocksPerSecond(double blocksPerTick) {
