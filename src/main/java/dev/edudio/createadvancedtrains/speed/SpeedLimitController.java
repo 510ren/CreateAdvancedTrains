@@ -1,5 +1,7 @@
 package dev.edudio.createadvancedtrains.speed;
 
+import static dev.edudio.createadvancedtrains.constants.UnitConstants.TICKS_PER_SECOND;
+
 import java.util.EnumMap;
 
 /**
@@ -17,8 +19,6 @@ import java.util.EnumMap;
  * </p>
  */
 public class SpeedLimitController {
-
-    private static final double TICKS_PER_SECOND = 20.0;
 
     private final EnumMap<SpeedLimitSource, Double> limits = new EnumMap<>(SpeedLimitSource.class);
 

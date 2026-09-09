@@ -39,9 +39,14 @@ code for this project. Its responsibilities are:
 - Implementing an approved, sufficiently complete specification.
 - Inspecting the current repository and the relevant Create 6.0.8 source as
   necessary to make the approved design compile and work correctly.
-- Running the requested build and relevant verification.
-- Reporting changed files, verification results, deviations, risks, and any
-  specification gaps.
+- Running the requested Gradle build and static, source-level verification.
+- Reporting changed files, build result, static verification results, deviations,
+  risks, and any specification gaps.
+
+Sol must not launch Minecraft, operate a Minecraft client or world, collect live
+test data, or perform manual/runtime acceptance testing. The user performs all
+runtime and gameplay tests. Specifications may state the manual test procedure
+and expected observations, but those are not Sol completion conditions.
 
 Sol must not make unapproved product, safety, physics, or architecture
 decisions. If a specification is incomplete, contradictory, or incompatible
@@ -113,11 +118,13 @@ states:
 3. Exact unresolved items that Sol must not decide.
 4. Relevant Create 6.0.8 classes or behaviours to verify.
 5. Expected class responsibilities, public inputs/outputs, and units.
-6. Acceptance criteria and required build or runtime checks.
+6. Source-level acceptance criteria and required build checks. Runtime/manual
+   test procedures, when needed, must be identified as user-owned checks.
 7. Files or existing behaviour that must remain unchanged.
 
-After implementation, Sol must return an implementation report before a design
-agent marks the task as conforming to the specification.
+After implementation, Sol must return an implementation report containing the
+build result and static verification before a design agent reviews it. Runtime
+conformance is established only after the user's manual test result is recorded.
 
 ## CAT-specific non-negotiable rules
 

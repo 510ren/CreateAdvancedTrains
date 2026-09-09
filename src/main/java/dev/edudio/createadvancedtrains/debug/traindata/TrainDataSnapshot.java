@@ -1,5 +1,8 @@
 package dev.edudio.createadvancedtrains.debug.traindata;
 
+import static dev.edudio.createadvancedtrains.constants.UnitConstants.TICKS_PER_SECOND;
+import static dev.edudio.createadvancedtrains.constants.UnitConstants.TICKS_PER_SECOND_SQUARED;
+
 import java.util.UUID;
 
 import com.simibubi.create.content.trains.entity.Train;
@@ -29,9 +32,6 @@ public record TrainDataSnapshot(
         double accelerationBlocksPerTickSquared,
         double accelerationBlocksPerSecondSquared,
         NavigationSnapshot navigation) {
-
-    private static final double TICKS_PER_SECOND = 20.0;
-    private static final double TICKS_PER_SECOND_SQUARED = TICKS_PER_SECOND * TICKS_PER_SECOND;
 
     public static TrainDataSnapshot capture(
             Train train,

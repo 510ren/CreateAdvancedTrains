@@ -19,6 +19,11 @@ public final class AdvancedTrainsConfig {
     public static final ForgeConfigSpec.BooleanValue TRAIN_DATA_DEBUG_ENABLED;
     public static final ForgeConfigSpec.IntValue TRAIN_DATA_DEBUG_SAMPLE_INTERVAL_TICKS;
 
+    public static final ForgeConfigSpec.BooleanValue PHASE5A_NOTCH_TEST_ENABLED;
+    public static final ForgeConfigSpec.ConfigValue<String> PHASE5A_NOTCH_TEST_SELECTION_MODE;
+    public static final ForgeConfigSpec.ConfigValue<String> PHASE5A_NOTCH_TEST_FIXED_NOTCH;
+    public static final ForgeConfigSpec.BooleanValue PHASE5A_NOTCH_TEST_HOLD_STOP_TARGET_UNTIL_STOP;
+
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
@@ -87,6 +92,32 @@ public final class AdvancedTrainsConfig {
                 .comment(
                         "Number of server ticks between train data samples.")
                 .defineInRange("sample_interval_ticks", 1, 1, Integer.MAX_VALUE);
+
+        builder.pop();
+
+        builder.comment(
+                "Phase 5A fixed service-brake notch test. This is not a production control mode.")
+                .push("phase5a_notch_test");
+
+        PHASE5A_NOTCH_TEST_ENABLED = builder
+                .comment(
+                        "Enable the Phase 5A notch test and its separate JSON Lines control log.")
+                .define("enabled", false);
+
+        PHASE5A_NOTCH_TEST_SELECTION_MODE = builder
+                .comment(
+                        "Selection mode. Phase 5A train control supports FIXED_FOR_TEST only.")
+                .define("selection_mode", "FIXED_FOR_TEST");
+
+        PHASE5A_NOTCH_TEST_FIXED_NOTCH = builder
+                .comment(
+                        "Fixed service-brake notch used for the whole enabled test session: B1 through B7.")
+                .define("fixed_notch", "B1");
+
+        PHASE5A_NOTCH_TEST_HOLD_STOP_TARGET_UNTIL_STOP = builder
+                .comment(
+                        "Keep the final target speed at zero after Create Navigation first requests a stop. FIXED_FOR_TEST only.")
+                .define("hold_stop_target_until_stop", false);
 
         builder.pop();
         builder.pop();

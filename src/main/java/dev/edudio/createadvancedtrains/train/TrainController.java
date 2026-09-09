@@ -2,6 +2,8 @@ package dev.edudio.createadvancedtrains.train;
 
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 import com.simibubi.create.content.trains.entity.Train;
 
 import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
@@ -10,7 +12,7 @@ import dev.edudio.createadvancedtrains.speed.SpeedLimitSource;
 
 public class TrainController {
 
-    private final UUID trainId;
+    private @Nonnull final UUID trainId;
 
     private final AtoController atoController;
 
@@ -20,6 +22,14 @@ public class TrainController {
     private double atoTargetSpeed;
 
     public TrainController(Train train) {
+        if (train == null) {
+            throw new IllegalArgumentException("Train must not be null");
+        }
+
+        if (train.id == null) {
+            throw new IllegalArgumentException("Train.id must not be null");
+        }
+
         this.trainId = train.id;
 
         this.atoController = new AtoController();

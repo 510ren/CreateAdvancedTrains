@@ -98,6 +98,29 @@ Phase 5Aで必須とする。試験開始時に指定した`B1`〜`B7`を`comman
 停止判定、残距離、速度差、信号、TASC、ATOの判断でノッチを変更してはならない。これにより、
 初速・線路条件・ノッチごとの減速度、応答、停止距離を分離して測定する。
 
+`FIXED_FOR_TEST`は列車を発車・停止させる機能ではない。Createが既存のNavigationまたは
+プレイヤー操作により、現在速度より低い同方向の`targetSpeed`を要求している場合だけ、
+その減速過程に指定ノッチの性能を適用する。Phase 5A機構は`Train.targetSpeed`、
+`createTargetSpeed`、`atoTargetSpeed`を生成・上書き・0へ固定してはならない。減速要求が
+ないtickでは、試験ノッチを適用せず、その理由を制御試験記録へ残す。
+
+#### 任意の試験専用停止目標保持
+
+Create標準Navigationは基準`train.acceleration()`だけで制動距離を再計算する。B7のような強い
+試験制動を外部から加えると、Navigationが再加速targetを出し、固定ノッチの連続性能を測れない。
+そのため、Phase 5Aには次の**任意かつ試験専用**の停止目標保持を設ける。
+
+- `FIXED_FOR_TEST`かつ設定有効時だけ使用する。`AUTO`および将来の製品版ATO/TASCには適用しない。
+- Create Navigationが、その列車に有効なdestinationを持つ状態で、初めて停止用のnative
+  `targetSpeed = 0`を出した時に開始する。
+- 開始後、列車が停止するまで、Createの各速度追従呼出で用いる最終`targetSpeed`を0にする。
+  これにより、固定Bノッチの10 tick応答、定常減速度、停止距離を連続した減速要求で測定する。
+- `Train.speed`を直接変更してはならない。保持対象は試験呼出における`targetSpeed`だけである。
+- 停止完了、試験設定の無効化、列車/ワールドの消滅、試験セッション終了では、列車UUIDごとの
+  保持状態を必ず破棄する。無効時・解除後に通常Create走行へ持続的なtargetを書き残してはならない。
+- この保持は試験治具であり、製品版の「安全に停止できる動的targetSpeed」やノッチ切替を代替しない。
+  本実装ではBrakingCurveとTargetSpeedResolverが動的targetSpeedを決定する。
+
 ### `AUTO`
 
 最終的な自動運転で必要なモードであるが、Phase 5Aの性能測定の対象外とする。
@@ -119,6 +142,7 @@ Phase 5Aの制御試験は、通常のノッチ機能設定とは別の明示的
 enabled = false
 selection_mode = "FIXED_FOR_TEST"
 fixed_notch = "B1"
+hold_stop_target_until_stop = false
 ```
 
 | 設定 | 有効値 | 要件 |
@@ -126,6 +150,7 @@ fixed_notch = "B1"
 | `enabled` | `true` / `false` | `false`が既定。`false`では既存走行を変更せず、テストログも作らない。 |
 | `selection_mode` | `FIXED_FOR_TEST` / `AUTO` | Phase 5Aの実測は`FIXED_FOR_TEST`だけを使用する。`AUTO`はSelector単体の将来検証用であり、実走行制御の根拠にしない。 |
 | `fixed_notch` | `B1`〜`B7` | `FIXED_FOR_TEST`で必須。無効値なら制御を開始せず、理由をサーバーログへ記録する。 |
+| `hold_stop_target_until_stop` | `true` / `false` | 既定`false`。`true`は`FIXED_FOR_TEST`限定の試験治具であり、destinationを持つNavigationの最初のnative停止要求後、停止まで最終targetを0に保持する。 |
 
 この設定は試験専用であり、将来のプレイヤー向けノッチ操作、`自動運転時のみ`・`手動運転時のみ`
 などの機能有効範囲を置き換えない。製品機能の有効範囲は、booleanではなく列挙型の単一設定で
@@ -157,10 +182,12 @@ commandedNotch
 appliedNotch
 transitionElapsedTicks
 currentSpeedBlocksPerSecond
+createTargetSpeedBlocksPerSecond
 baseAccelerationBlocksPerSecondSquared
 profileTargetAccelerationBlocksPerSecondSquared
 effectiveAccelerationBlocksPerSecondSquared
 measuredAccelerationBlocksPerSecondSquared
+applicationState               # applied / no_braking_demand / disabled / invalid_input 等
 navigation.distanceToDestinationBlocks
 ```
 
@@ -169,12 +196,86 @@ navigation.distanceToDestinationBlocks
 ディレクトリ・ファイル・Writerを作成しない。既存のTrainDataDebuggerのログ形式・依存関係を
 変更してはならない。
 
+### 9.1 性能測定前の呼出単位観測
+
+Phase 5AのProfile性能を評価する前に、同一server tick内の
+`Train.approachTargetSpeed()`呼出を区別して記録できなければならない。sampleごとに最後の
+targetSpeedだけを残す方式では、Profile値と実測加速度の関係を判定できないためである。
+
+次の計測信頼性修正では、既存のB1〜B7倍率、`NotchResponseModel`の応答則、
+`Train.targetSpeed`への非介入、加速度修飾の返却条件を変更してはならない。目的は観測の追加と、
+Create 6.0.8実ソースに基づく呼出順の確認だけである。
+
+新しいschemaVersionの各sampleには、少なくとも次を追加する。
+
+```text
+approachCallCount
+brakingDemandCallCount
+notchModifierAppliedCallCount
+approachCalls[]
+  sequenceInServerTick
+  preCatTargetSpeedBlocksPerSecond
+  finalTargetSpeedBlocksPerSecond
+  brakingDemand
+  applicationReason             # 減速要求なしの場合
+  originalAccelerationMod
+  returnedAccelerationMod
+  notchModifierApplied
+responseState
+  storedEffectiveAccelerationBlocksPerSecondSquared
+  activeEffectiveAccelerationBlocksPerSecondSquared  # このsampleで未適用ならnull
+  transitionElapsedTicks
+  transitionTimebase            # 現行実装が何を1 tickとして数えたか
+```
+
+`measuredAccelerationBlocksPerSecondSquared`はserver tick全体の速度差であり、一回の
+`approachTargetSpeed()`呼出が発生させた減速度ではないことを、schema内の説明または
+session_startで明記する。複数呼出があるtickでProfile目標値とserver tick実測値を直接比較しては
+ならない。
+
+停止目標保持を実装したschemaVersion 4以降は、試験条件と実際にCreateへ渡した値を区別できるよう、
+session_startと各`approachCalls[]`へ少なくとも次を追加する。
+
+```text
+session_start
+  holdStopTargetUntilStop
+
+approachCalls[]
+  nativeTargetSpeedBlocksPerSecond       # 試験保持前のCreate入力
+  finalTargetSpeedBlocksPerSecond        # Createの速度追従が実際に用いる値
+  stopTargetHoldState                    # INACTIVE / LATCHED / RELEASED
+  stopTargetHoldOverrideApplied
+  stopTargetHoldTriggerReason            # 初回ラッチ時だけ。例: navigation_native_stop_target
+```
+
+停止目標保持の有無を混在させたログから、Bノッチの性能値を同じ表へ集計してはならない。
+
+停止目標保持を有効にする固定ノッチ測定では、駅Aから駅Bへ自動運転を開始しても、B駅到着までを
+一つの性能サンプルとしては扱わない。有効な一測定区間は、最初の`stopTargetHoldState = LATCHED`から
+対応する最初の`stopTargetHoldState = RELEASED`までである。解除後の再加速・再ラッチは別サイクルであり、
+停止距離・定常減速度・応答の同一サンプルへ混在させない。駅停車精度はPhase 5Aの対象外である。
+
+SolはCreate 6.0.8実ソースを確認し、応答時間10 tickの時間基準をserver tick、呼出回数、
+または連続適用tickのどれとして実装すべきかを、根拠と選択肢付きで報告する。この計測信頼性
+修正では、その時間基準や制御挙動を独断で変更してはならない。
+
+### 9.2 schemaVersion 3で確認された試験条件の分離
+
+V3計測により、同一server tickでの複数呼出・二重修飾は当該走行の原因ではないと確認できた。
+一方、B7が中断した160→100 blocks/sの加速tickは、ATOを有効にしたまま、速度制限を100 blocks/sへ
+手動変更していた試験条件による。これはtargetSpeedの所有権・Mixin介入点の不具合を示すものではない。
+
+Phase 5AのProfile性能試験では、ATO、速度制限、TASC、EBおよび製品版の自動ノッチ選択を無効にし、
+`FIXED_FOR_TEST`だけを有効にする。Create標準のNavigationまたはプレイヤー操作が実際に現在速度より
+低い同方向targetSpeedを出した場合だけ、固定ノッチを適用する。この分離済み条件をsession_startに
+記録し、連続した減速要求の区間だけを応答・減速度・停止距離の性能値に使う。
+
 測定は、B1〜B7について、少なくとも複数の初速・加速度設定・進行方向で行う。160 blocks/sを
 目標とするProfileを最終化する前に、実際に高速度域へ到達する線路または試験条件を用意する。
 各条件の反復回数、初速、制動開始位置、速度点ごとの実測減速度、停止距離、応答完了時刻、
 停止誤差を表へ集計する。
 
-## 10. Solへ依頼する前の確認と受入条件
+## 10. Solへ依頼する前の確認と完了条件
 
 Java実装を依頼する前に、Phase 5 Java実装開始の明示承認を別途得る。Solは実装前に、
 Create 6.0.8実ソースで次を確認する。
@@ -185,16 +286,24 @@ Create 6.0.8実ソースで次を確認する。
 3. `targetSpeed`を通すことで、CreateのNavigation・手動運転と競合しないこと。
 4. Phase 5Aの試験設定を有効にしていないとき、既存走行へ一切の影響がないこと。
 
-実装した場合の受入条件は次である。
+Solの完了条件は、次のソースレベル確認とGradle buildに限る。Minecraftの起動・操作、
+固定ノッチ走行、制御試験ログの実出力、実測加減速度の確認はユーザーが手動で行うため、
+Solの完了条件には含めない。
 
-- `FIXED_FOR_TEST`でB1〜B7のいずれかを指定すると、要求ノッチは試験中に変わらない。
-- 暫定倍率がB1=1.0からB7=4.0まで0.5刻みでProfileへ反映される。
-- ノッチ要求・再要求時の実効加減速度は10 tickで連続的に遷移し、遷移中に不連続がない。
-- 速度変化だけでは遷移進捗が再開始されず、新ノッチ要求時だけ再遷移する。
-- 各必須フィールドを含む列車別JSON Lines制御試験記録を出力し、無効時は出力・制御・
-  ディレクトリ作成を行わない。
-- `Train.speed`を直接変更せず、既存の受動型TrainDataDebuggerを制御依存へ変更しない。
-- Gradle buildが成功し、最低1本のBノッチ試験でログと実測値を提示する。
+- ソース上で、`FIXED_FOR_TEST`の指定ノッチを維持する状態遷移が実装されている。
+- 停止目標保持が無効のとき、Phase 5A機構が`Train.targetSpeed`、`createTargetSpeed`、
+  `atoTargetSpeed`を変更せず、既存の減速要求に対してだけ適用される構造になっている。
+- 停止目標保持が有効なときは、`FIXED_FOR_TEST`・Navigation destinationあり・最初のnative停止要求後に
+  限り、Createの速度追従へ渡す最終`targetSpeed`を0に保持する。`Train.speed`の直接変更、`AUTO`への
+  適用、試験終了後のtarget保持をしてはならない。
+- ProfileがB1=1.0からB7=4.0まで0.5刻みの暫定倍率を持ち、応答・再遷移・毎tick再評価の
+  規則を実装している。
+- 無効設定時に制御・Writer・出力ディレクトリを作らないガードがソース上にある。
+- `Train.speed`を直接変更せず、既存の受動型TrainDataDebuggerを制御依存へ変更していない。
+- Gradle buildが成功する。
+
+ユーザー手動試験では、B1〜B7の固定走行、10 tick遷移、無効設定、ログ出力、実測加減速度を
+確認し、その結果を`docs/research/EXPERIMENTS.md`へ記録する。
 
 ## 11. 変更可能な暫定事項
 

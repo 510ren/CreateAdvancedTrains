@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
-import dev.edudio.createadvancedtrains.speed.SpeedLimitController;
+import dev.edudio.createadvancedtrains.CreateAdvancedTrains;
 import dev.edudio.createadvancedtrains.speed.SpeedLimitSource;
 import dev.edudio.createadvancedtrains.train.TrainControllerManager;
 import net.minecraft.commands.CommandSourceStack;
@@ -13,14 +13,14 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = "create_advanced_trains", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ChangeSpeedLimitCommands {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
         dispatcher.register(
-                Commands.literal("create_advanced_trains")
+                Commands.literal(CreateAdvancedTrains.MOD_ID)
                         .then(Commands.literal("speed_limit")
                                 .then(Commands.literal("test")
                                         .then(Commands.literal("set")
