@@ -29,8 +29,8 @@ import dev.edudio.createadvancedtrains.debug.traindata.TrainDataSnapshot.WorldPo
  */
 final class TrainDataLogWriter {
 
-    private static final int SCHEMA_VERSION = 1;
-    private static final int FLUSH_INTERVAL_SAMPLES = 20;
+    private static final int SCHEMA_VERSION = 2;
+    private static final int FLUSH_INTERVAL_RECORDS = 20;
 
     private static final Gson GSON = new GsonBuilder()
             .disableHtmlEscaping()
@@ -44,7 +44,7 @@ final class TrainDataLogWriter {
     private final Path path;
     private final BufferedWriter writer;
 
-    private int samplesSinceFlush;
+    private int recordsSinceFlush;
     private boolean closed;
 
     private TrainDataLogWriter(
@@ -126,16 +126,95 @@ final class TrainDataLogWriter {
             record.add("navigation", navigation(snapshot.navigation()));
 
             writeLine(record);
-            samplesSinceFlush++;
-
-            if (samplesSinceFlush >= FLUSH_INTERVAL_SAMPLES) {
-                writer.flush();
-                samplesSinceFlush = 0;
-            }
+            flushPeriodically();
 
             return true;
         } catch (IOException | RuntimeException exception) {
             writeErrorAndClose("sample_write_failed", exception);
+            return false;
+        }
+    }
+
+    public boolean writeApproachCall(ApproachCallSnapshot snapshot) {
+        if (closed) {
+            return false;
+        }
+
+        try {
+            JsonObject record = baseRecord("approach_call");
+            record.addProperty("serverTick", snapshot.serverTick());
+            record.addProperty("callIndexInServerTick", snapshot.callIndexInServerTick());
+            record.addProperty("firstApproachCallThisServerTick", snapshot.firstApproachCallThisServerTick());
+
+            record.addProperty("speedBlocksPerSecond", snapshot.speedBlocksPerSecond());
+            record.addProperty("nativeTargetBlocksPerSecond", snapshot.nativeTargetBlocksPerSecond());
+            record.addProperty("finalTargetBlocksPerSecond", snapshot.finalTargetBlocksPerSecond());
+
+            addNullableString(record, "navigationState", snapshot.navigationState());
+            addNullableNumber(record, "distanceToDestinationBlocks", snapshot.distanceToDestinationBlocks());
+            addNullableString(record, "nativeZeroClassification", snapshot.nativeZeroClassification());
+            record.addProperty("waitingForSignal", snapshot.waitingForSignal());
+            record.addProperty("manualTick", snapshot.manualTick());
+
+            addNullableString(record, "brakingCurveStatus", snapshot.brakingCurveStatus());
+            addNullableNumber(
+                    record,
+                    "brakingCurveLimitBlocksPerSecond",
+                    snapshot.brakingCurveLimitBlocksPerSecond());
+            addNullableNumber(
+                    record,
+                    "brakingCurveUsableDistanceBlocks",
+                    snapshot.brakingCurveUsableDistanceBlocks());
+            addNullableNumber(
+                    record,
+                    "brakingCurvePredictedStoppingDistanceBlocks",
+                    snapshot.brakingCurvePredictedStoppingDistanceBlocks());
+            addNullableNumber(
+                    record,
+                    "brakingCurvePredictedOvershootBlocks",
+                    snapshot.brakingCurvePredictedOvershootBlocks());
+
+            addNullableNumber(record, "resolvedLimitBlocksPerSecond", snapshot.resolvedLimitBlocksPerSecond());
+            addNullableNumber(record, "safeSpeedBlocksPerSecond", snapshot.safeSpeedBlocksPerSecond());
+            addNullableNumber(record, "lowerBandBlocksPerSecond", snapshot.lowerBandBlocksPerSecond());
+            addNullableNumber(record, "upperBandBlocksPerSecond", snapshot.upperBandBlocksPerSecond());
+            addNullableNumber(record, "brakeLimitBlocksPerSecond", snapshot.brakeLimitBlocksPerSecond());
+
+            addNullableString(record, "previousRequestedNotch", snapshot.previousRequestedNotch());
+            addNullableString(record, "selectedNotch", snapshot.selectedNotch());
+            addNullableNumber(
+                    record,
+                    "selectionPredictionBlocksPerSecond",
+                    snapshot.selectionPredictionBlocksPerSecond());
+            addNullableBoolean(record, "selectionBrakeInsufficient", snapshot.selectionBrakeInsufficient());
+
+            record.addProperty("responseAdvanced", snapshot.responseAdvanced());
+            addNullableString(record, "commandedNotch", snapshot.commandedNotch());
+            addNullableString(record, "appliedNotch", snapshot.appliedNotch());
+            addNullableInteger(record, "transitionElapsedTicks", snapshot.transitionElapsedTicks());
+            addNullableNumber(record, "transitionProgress", snapshot.transitionProgress());
+            addNullableNumber(
+                    record,
+                    "transitionStartAccelerationBlocksPerSecondSquared",
+                    snapshot.transitionStartAccelerationBlocksPerSecondSquared());
+            addNullableNumber(
+                    record,
+                    "targetAccelerationBlocksPerSecondSquared",
+                    snapshot.targetAccelerationBlocksPerSecondSquared());
+            addNullableNumber(
+                    record,
+                    "effectiveAccelerationBlocksPerSecondSquared",
+                    snapshot.effectiveAccelerationBlocksPerSecondSquared());
+
+            record.addProperty("originalAccelerationMod", snapshot.originalAccelerationMod());
+            record.addProperty("returnedAccelerationMod", snapshot.returnedAccelerationMod());
+            addNullableString(record, "atoOperatingState", snapshot.atoOperatingState());
+
+            writeLine(record);
+            flushPeriodically();
+            return true;
+        } catch (IOException | RuntimeException exception) {
+            writeErrorAndClose("approach_call_write_failed", exception);
             return false;
         }
     }
@@ -173,6 +252,7 @@ final class TrainDataLogWriter {
         record.addProperty("startedAtUtc", sessionStartedAtUtc.toString());
         record.addProperty("dimension", dimension);
         record.addProperty("sampleIntervalTicks", sampleIntervalTicks);
+        record.addProperty("approachCallIntervalTicks", 1);
 
         JsonObject units = new JsonObject();
         units.addProperty("speedInternal", "blocks/tick");
@@ -332,6 +412,36 @@ final class TrainDataLogWriter {
             parent.add(name, JsonNull.INSTANCE);
         } else {
             parent.addProperty(name, value);
+        }
+    }
+
+    private static void addNullableInteger(
+            JsonObject parent,
+            String name,
+            Integer value) {
+        if (value == null) {
+            parent.add(name, JsonNull.INSTANCE);
+        } else {
+            parent.addProperty(name, value);
+        }
+    }
+
+    private static void addNullableBoolean(
+            JsonObject parent,
+            String name,
+            Boolean value) {
+        if (value == null) {
+            parent.add(name, JsonNull.INSTANCE);
+        } else {
+            parent.addProperty(name, value);
+        }
+    }
+
+    private void flushPeriodically() throws IOException {
+        recordsSinceFlush++;
+        if (recordsSinceFlush >= FLUSH_INTERVAL_RECORDS) {
+            writer.flush();
+            recordsSinceFlush = 0;
         }
     }
 

@@ -10,6 +10,8 @@ TASCは駅のGlobalStation EdgePointへ停止するための低速・停止位�
 - 駅ブロックを持つ停車にだけ適用する。
 - 駅の60 blocks手前から低速制御候補へ入る。
 - 駅の20 blocks手前から0.2〜0.4 blocks/sのクリープ速度へ近づける。
+- 停止位置までの正規化済み残距離が`1.0 blocks`に達するまでに、進行方向速度を
+  `0.4 blocks/s`以下へ落とす。これは最終位置補正へ入る前の必須クリープ到達条件である。
 - 停止は停止位置に対して±0.5 blocks以内かつ`v < 0.01 blocks/s`で判定する。
 - `AT_DESTINATION_OR_ARRIVAL_PENDING`を共有状態として消費し、ATO・通常ノッチと競合しない。
 
@@ -17,6 +19,13 @@ TASCは駅のGlobalStation EdgePointへ停止するための低速・停止位�
 
 TASCは停止位置、残距離、現在速度、実効加減速度から低速域の速度制約またはノッチ要求を返す。
 Createの`Train.speed`、Navigation、world状態を直接変更しない。信号停止・EB判定は担当しない。
+
+## 有効・無効時の動作
+
+TASCは、現実の電車のように低速で自然に減速し、クリープから定位置へ停車するCAT側の最終停車機能である。
+将来のTASC有効設定が無効の場合、CATはこの低速制御・クリープ・定位置補正を適用しない。
+CreateのNavigationによる駅停止は維持し、Create標準の駅停止挙動へ委ねる。この無効化は、
+Navigationの停止、BrakingCurveによるtarget 0の保持、または駅目的地の削除を意味しない。
 
 ## 未決定事項
 

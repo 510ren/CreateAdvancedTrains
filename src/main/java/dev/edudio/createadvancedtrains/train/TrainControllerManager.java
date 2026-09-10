@@ -12,6 +12,7 @@ public class TrainControllerManager {
     public static final TrainControllerManager INSTANCE = new TrainControllerManager();
 
     private final Map<UUID, TrainController> controllers = new HashMap<>();
+    private long currentServerTick = Long.MIN_VALUE;
 
     public TrainController getOrCreate(Train train) {
         return controllers.computeIfAbsent(
@@ -29,6 +30,7 @@ public class TrainControllerManager {
 
     public void clear() {
         controllers.clear();
+        currentServerTick = Long.MIN_VALUE;
     }
 
     public int size() {
@@ -37,7 +39,7 @@ public class TrainControllerManager {
 
     public void update(Train train) {
         TrainController controller = getOrCreate(train);
-        controller.applyAtoTargetSpeed(train, false);
+        controller.update(train);
     }
 
     public void updateAll(Iterable<Train> trains) {
@@ -48,6 +50,14 @@ public class TrainControllerManager {
 
     public void refreshSharedState(Train train) {
         getOrCreate(train).update(train);
+    }
+
+    public void beginServerTick(long serverTick) {
+        currentServerTick = serverTick;
+    }
+
+    public long currentServerTick() {
+        return currentServerTick;
     }
 
     public void refreshAllSharedState(Iterable<Train> trains) {

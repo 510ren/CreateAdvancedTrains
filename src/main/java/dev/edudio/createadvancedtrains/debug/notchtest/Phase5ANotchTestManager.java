@@ -273,7 +273,7 @@ public final class Phase5ANotchTestManager {
         Notch commandedNotch = selector.select();
         NotchTestTrainState state = trainStates.get(trainId);
         if (state == null) {
-            return new NotchStatus(commandedNotch, Notch.COAST, false);
+            return new NotchStatus(commandedNotch, Notch.N, false);
         }
 
         return new NotchStatus(
@@ -497,7 +497,7 @@ public final class Phase5ANotchTestManager {
             boolean controlApplied) {
 
         private static NotchStatus inactive() {
-            return new NotchStatus(Notch.COAST, Notch.COAST, false);
+            return new NotchStatus(Notch.N, Notch.N, false);
         }
     }
 }

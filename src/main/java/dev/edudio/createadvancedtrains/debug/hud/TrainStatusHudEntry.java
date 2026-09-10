@@ -12,9 +12,7 @@ import dev.edudio.createadvancedtrains.train.query.StopTargetDistance;
 public record TrainStatusHudEntry(
         UUID trainId,
         double speedBlocksPerSecond,
-        Notch commandedNotch,
-        Notch appliedNotch,
-        boolean notchControlApplied,
+        Notch currentNotch,
         double createTargetSpeedBlocksPerSecond,
         double atoTargetSpeedBlocksPerSecond,
         double measuredAccelerationBlocksPerSecondSquared,
@@ -23,8 +21,7 @@ public record TrainStatusHudEntry(
 
     public TrainStatusHudEntry {
         Objects.requireNonNull(trainId, "trainId");
-        Objects.requireNonNull(commandedNotch, "commandedNotch");
-        Objects.requireNonNull(appliedNotch, "appliedNotch");
+        Objects.requireNonNull(currentNotch, "currentNotch");
         Objects.requireNonNull(stopTargetDistance, "stopTargetDistance");
     }
 }

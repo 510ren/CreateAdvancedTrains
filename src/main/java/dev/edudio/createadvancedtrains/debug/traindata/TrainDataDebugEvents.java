@@ -21,11 +21,13 @@ public final class TrainDataDebugEvents {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(TickEvent.ServerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) {
+        if (event.phase == TickEvent.Phase.START) {
+            TrainDataDebugger.INSTANCE.onServerTickStart(event.getServer());
             return;
         }
-
-        TrainDataDebugger.INSTANCE.onServerTick(event.getServer());
+        if (event.phase == TickEvent.Phase.END) {
+            TrainDataDebugger.INSTANCE.onServerTick(event.getServer());
+        }
     }
 
     @SubscribeEvent

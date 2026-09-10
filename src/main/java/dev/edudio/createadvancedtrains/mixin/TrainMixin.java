@@ -5,6 +5,7 @@ import com.simibubi.create.content.trains.entity.Train;
 import dev.edudio.createadvancedtrains.debug.hud.TrainTargetSpeedTracker;
 import dev.edudio.createadvancedtrains.debug.notchtest.Phase5ANotchTestManager;
 import dev.edudio.createadvancedtrains.debug.notchtest.StopTargetHoldResult;
+import dev.edudio.createadvancedtrains.debug.traindata.TrainDataDebugger;
 import dev.edudio.createadvancedtrains.train.TrainController;
 import dev.edudio.createadvancedtrains.train.TrainControllerManager;
 
@@ -21,7 +22,10 @@ public abstract class TrainMixin {
         double nativeTargetSpeed = train.targetSpeed;
 
         TrainController controller = TrainControllerManager.INSTANCE.getOrCreate(train);
-        controller.applyAtoTargetSpeed(train, true);
+        float phase6AccelerationMod = controller.applyAtoControl(
+                train,
+                accelerationMod,
+                TrainControllerManager.INSTANCE.currentServerTick());
 
         StopTargetHoldResult stopTargetHold = Phase5ANotchTestManager.INSTANCE.applyStopTargetHold(
                 train,
@@ -33,11 +37,22 @@ public abstract class TrainMixin {
                 nativeTargetSpeed,
                 finalTargetSpeed);
 
-        return Phase5ANotchTestManager.INSTANCE.modifyAccelerationMod(
+        float returnedAccelerationMod = Phase5ANotchTestManager.INSTANCE.modifyAccelerationMod(
                 train,
                 nativeTargetSpeed,
                 finalTargetSpeed,
-                accelerationMod,
+                phase6AccelerationMod,
                 stopTargetHold);
+
+        TrainDataDebugger.INSTANCE.recordApproachCall(
+                train,
+                controller,
+                TrainControllerManager.INSTANCE.currentServerTick(),
+                nativeTargetSpeed,
+                finalTargetSpeed,
+                accelerationMod,
+                returnedAccelerationMod);
+
+        return returnedAccelerationMod;
     }
 }

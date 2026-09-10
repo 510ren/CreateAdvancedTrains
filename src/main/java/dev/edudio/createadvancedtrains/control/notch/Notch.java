@@ -4,10 +4,15 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * Discrete notch values used by the Phase 5A profile and response model.
+ * Discrete product P/N/B notches.
  */
 public enum Notch {
-    COAST,
+    P1,
+    P2,
+    P3,
+    P4,
+    P5,
+    N,
     B1,
     B2,
     B3,
@@ -17,7 +22,15 @@ public enum Notch {
     B7;
 
     public boolean isServiceBrake() {
-        return this != COAST;
+        return ordinal() >= B1.ordinal();
+    }
+
+    public boolean isPower() {
+        return ordinal() >= P1.ordinal() && ordinal() <= P5.ordinal();
+    }
+
+    public boolean isNeutral() {
+        return this == N;
     }
 
     public static Optional<Notch> parseServiceBrake(String value) {

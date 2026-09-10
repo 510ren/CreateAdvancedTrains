@@ -29,6 +29,9 @@ public final class TrainControlServerEvents {
             return;
         }
 
+        TrainControllerManager.INSTANCE.beginServerTick(
+                (long) event.getServer().getTickCount() + 1L);
+
         ServerLevel level = event.getServer().overworld();
         GlobalRailwayManager railwayManager = Create.RAILWAYS.sided(level);
         if (railwayManager == null) {

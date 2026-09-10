@@ -19,7 +19,7 @@ final class NotchTestTrainState {
             "one_step_per_server_tick_with_notch_modifier_applied";
 
     private NotchResponseModel responseModel;
-    private Notch lastCompletedNotch = Notch.COAST;
+    private Notch lastCompletedNotch = Notch.N;
 
     private long currentServerTick = Long.MIN_VALUE;
     private double previousSpeedBlocksPerTick;
@@ -39,7 +39,7 @@ final class NotchTestTrainState {
     private StopTargetHoldResult currentCallStopTargetHold = StopTargetHoldResult.inactive();
     private Double baseAccelerationBlocksPerSecondSquared;
     private Double profileTargetAccelerationBlocksPerSecondSquared;
-    private Response response = NotchResponseModel.coastResponse();
+    private Response response = NotchResponseModel.neutralResponse();
     private String applicationState = "no_approach_call";
     private String applicationReason;
     private Float originalAccelerationMod;

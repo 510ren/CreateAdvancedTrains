@@ -118,8 +118,9 @@ states:
 3. Exact unresolved items that Sol must not decide.
 4. Relevant Create 6.0.8 classes or behaviours to verify.
 5. Expected class responsibilities, public inputs/outputs, and units.
-6. Source-level acceptance criteria and required build checks. Runtime/manual
-   test procedures, when needed, must be identified as user-owned checks.
+6. Source-level acceptance criteria and either the requested build checks or an
+   explicit user-approved build omission. Runtime/manual test procedures, when
+   needed, must be identified as user-owned checks.
 7. Files or existing behaviour that must remain unchanged.
 
 After implementation, Sol must return an implementation report containing the

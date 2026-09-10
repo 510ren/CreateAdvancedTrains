@@ -82,13 +82,6 @@ public final class TrainStatusHudOverlay {
     }
 
     private static String format(TrainStatusHudEntry entry) {
-        String notch = entry.commandedNotch() == entry.appliedNotch()
-                ? entry.commandedNotch().name()
-                : entry.commandedNotch().name() + ">" + entry.appliedNotch().name();
-        if (entry.notchControlApplied()) {
-            notch += "[active]";
-        }
-
         return String.format(
                 Locale.ROOT,
                 "%s  V %s  A %s (base %s)  N %s  Create %s  ATO %s  D %s",
@@ -96,7 +89,7 @@ public final class TrainStatusHudOverlay {
                 number(entry.speedBlocksPerSecond()),
                 number(entry.measuredAccelerationBlocksPerSecondSquared()),
                 number(entry.createBaseAccelerationBlocksPerSecondSquared()),
-                notch,
+                entry.currentNotch().name(),
                 number(entry.createTargetSpeedBlocksPerSecond()),
                 number(entry.atoTargetSpeedBlocksPerSecond()),
                 distance(entry.stopTargetDistance()));

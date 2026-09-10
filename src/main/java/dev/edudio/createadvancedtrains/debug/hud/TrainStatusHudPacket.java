@@ -31,9 +31,7 @@ public final class TrainStatusHudPacket {
         for (TrainStatusHudEntry entry : packet.entries) {
             buffer.writeUUID(entry.trainId());
             buffer.writeDouble(entry.speedBlocksPerSecond());
-            buffer.writeEnum(entry.commandedNotch());
-            buffer.writeEnum(entry.appliedNotch());
-            buffer.writeBoolean(entry.notchControlApplied());
+            buffer.writeEnum(entry.currentNotch());
             buffer.writeDouble(entry.createTargetSpeedBlocksPerSecond());
             buffer.writeDouble(entry.atoTargetSpeedBlocksPerSecond());
             buffer.writeDouble(entry.measuredAccelerationBlocksPerSecondSquared());
@@ -60,8 +58,6 @@ public final class TrainStatusHudPacket {
                     buffer.readUUID(),
                     buffer.readDouble(),
                     buffer.readEnum(Notch.class),
-                    buffer.readEnum(Notch.class),
-                    buffer.readBoolean(),
                     buffer.readDouble(),
                     buffer.readDouble(),
                     buffer.readDouble(),

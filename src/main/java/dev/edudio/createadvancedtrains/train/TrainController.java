@@ -1,5 +1,10 @@
 package dev.edudio.createadvancedtrains.train;
 
+import static dev.edudio.createadvancedtrains.constants.UnitConstants.TICKS_PER_SECOND;
+import static dev.edudio.createadvancedtrains.constants.UnitConstants.TICKS_PER_SECOND_SQUARED;
+
+import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
@@ -7,12 +12,14 @@ import javax.annotation.Nonnull;
 import com.simibubi.create.content.trains.entity.Train;
 
 import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
+import dev.edudio.createadvancedtrains.control.AtoControlResult;
 import dev.edudio.createadvancedtrains.control.AtoController;
-import dev.edudio.createadvancedtrains.control.AtoTargetSpeedDecision;
 import dev.edudio.createadvancedtrains.control.braking.BrakingCurve;
 import dev.edudio.createadvancedtrains.control.braking.BrakingCurveFailure;
 import dev.edudio.createadvancedtrains.control.braking.BrakingCurveInput;
 import dev.edudio.createadvancedtrains.control.braking.BrakingCurveResult;
+import dev.edudio.createadvancedtrains.control.speed.NativeTargetZeroClassification;
+import dev.edudio.createadvancedtrains.control.speed.TargetSpeedResolver;
 import dev.edudio.createadvancedtrains.speed.SpeedLimitSource;
 import dev.edudio.createadvancedtrains.train.error.CatCalculationErrorCode;
 import dev.edudio.createadvancedtrains.train.error.CatCalculationErrorSnapshot;
@@ -21,6 +28,7 @@ import dev.edudio.createadvancedtrains.train.error.CatErrorRecoveryResult;
 import dev.edudio.createadvancedtrains.train.error.CatErrorRecoveryValidation;
 import dev.edudio.createadvancedtrains.train.query.CreateTrainQueryUtil;
 import dev.edudio.createadvancedtrains.train.query.NavigationStopState;
+import dev.edudio.createadvancedtrains.train.query.NavigationTravelDirection;
 import dev.edudio.createadvancedtrains.train.query.NormalizedNavigationStop;
 
 public class TrainController {
@@ -37,6 +45,9 @@ public class TrainController {
 
     private double createTargetSpeed;
     private double atoTargetSpeed;
+    private Optional<AtoControlResult> lastAtoControlResult;
+    private BrakingCurveResult lastBrakingCurveResult;
+    private NativeTargetZeroClassification lastNativeZeroClassification;
 
     public TrainController(Train train) {
         if (train == null) {
@@ -57,6 +68,9 @@ public class TrainController {
         this.createTargetSpeed = train.targetSpeed;
 
         this.atoTargetSpeed = train.targetSpeed;
+        this.lastAtoControlResult = Optional.empty();
+        this.lastBrakingCurveResult = BrakingCurveResult.noForwardStopTarget();
+        this.lastNativeZeroClassification = NativeTargetZeroClassification.NOT_ZERO;
 
         refreshSharedState(train);
         updateState(train);
@@ -90,6 +104,18 @@ public class TrainController {
         return atoController;
     }
 
+    public Optional<AtoControlResult> getLastAtoControlResult() {
+        return lastAtoControlResult;
+    }
+
+    public BrakingCurveResult getLastBrakingCurveResult() {
+        return lastBrakingCurveResult;
+    }
+
+    public NativeTargetZeroClassification getLastNativeZeroClassification() {
+        return lastNativeZeroClassification;
+    }
+
     public TrainOperationalFlags getOperationalFlags() {
         return flagDeterminer.currentFlags();
     }
@@ -102,67 +128,131 @@ public class TrainController {
         return calculationErrorState.snapshot();
     }
 
-    public void applyAtoTargetSpeed(Train train, boolean isTargetSpeedCalculated) {
-
+    public float applyAtoControl(
+            Train train,
+            float originalAccelerationMod,
+            long serverTick) {
         refreshSharedState(train);
         atoController.observeOperationalState(
                 flagDeterminer.currentFlags(),
                 calculationErrorState.snapshot());
 
-        /*
-         * CATによる列車制御全体が無効なら、
-         * CreateのtargetSpeedには介入しない。
-         */
-        if (!AdvancedTrainsConfig.CONTROL_ENABLED.get()) {
+        createTargetSpeed = train.targetSpeed;
+        lastBrakingCurveResult = BrakingCurveResult.noForwardStopTarget();
+        boolean hasGlobalStationDestination = hasGlobalStationDestination(train);
+        lastNativeZeroClassification = TargetSpeedResolver.classifyNativeZero(
+                createTargetSpeed * TICKS_PER_SECOND,
+                normalizedNavigationStop.state(),
+                hasGlobalStationDestination,
+                train.navigation != null && train.navigation.waitingForSignal != null,
+                train.manualTick);
+
+        if (!AdvancedTrainsConfig.CONTROL_ENABLED.get()
+                || !AdvancedTrainsConfig.ATO_ENABLED.get()) {
+            atoController.suspendNotchResponse();
+            atoTargetSpeed = train.targetSpeed;
+            lastAtoControlResult = Optional.empty();
             updateState(train);
-            return;
+            return originalAccelerationMod;
         }
 
-        /*
-         * ATOが無効なら、
-         * CreateのtargetSpeedには介入しない。
-         */
-        if (!AdvancedTrainsConfig.ATO_ENABLED.get()) {
+        TrainOperationalFlags flags = flagDeterminer.currentFlags();
+        if (calculationErrorState.isActive() || flags.atDestinationOrArrivalPending()) {
+            atoController.observeOperationalState(flags, calculationErrorState.snapshot());
+            atoController.suspendNotchResponse();
+            atoTargetSpeed = train.targetSpeed;
+            lastAtoControlResult = Optional.of(AtoControlResult.passThrough(
+                    train.targetSpeed,
+                    originalAccelerationMod,
+                    atoController.getOperatingState(),
+                    true));
             updateState(train);
-            return;
+            return originalAccelerationMod;
         }
 
-        /*
-         * CATが介入する前のCreateのtargetSpeedを保存する。
-         */
-        if (isTargetSpeedCalculated == true) {
-            createTargetSpeed = train.targetSpeed;
-        }
-
-        if (!Double.isFinite(createTargetSpeed)) {
+        if (!Double.isFinite(createTargetSpeed)
+                || !Double.isFinite(train.speed)
+                || !Float.isFinite(originalAccelerationMod)
+                || originalAccelerationMod < 0.0f) {
             calculationErrorState.latch(
                     CatCalculationErrorCode.NON_FINITE_INPUT,
-                    "Create target speed is not finite");
+                    "Create speed, target speed, or acceleration modifier is invalid");
+            return suspendCurrentCall(train, originalAccelerationMod);
         }
 
-        /*
-         * ATOによる最終目標速度を計算する。
-         */
-        AtoTargetSpeedDecision decision = atoController.evaluateTargetSpeed(
-                createTargetSpeed,
-                flagDeterminer.currentFlags(),
-                calculationErrorState.snapshot());
-
-        if (!decision.emitsTargetSpeedIntent()) {
-            // Suppression deliberately leaves Create's current target untouched.
-            // A concrete coasting target is outside the approved Phase 5B scope.
-            atoTargetSpeed = train.targetSpeed;
-            updateState(train);
-            return;
+        double currentSpeedBlocksPerSecond = Math.abs(train.speed) * TICKS_PER_SECOND;
+        double baseAccelerationBlocksPerSecondSquared = Math.abs(train.acceleration())
+                * TICKS_PER_SECOND_SQUARED;
+        double createSpeedCeilingBlocksPerSecond = Math.abs(train.maxSpeed()) * TICKS_PER_SECOND;
+        if (!Double.isFinite(baseAccelerationBlocksPerSecondSquared)
+                || baseAccelerationBlocksPerSecondSquared <= 0.0) {
+            calculationErrorState.latch(
+                    CatCalculationErrorCode.INVALID_BASE_ACCELERATION,
+                    "Create base acceleration is not finite and positive");
+            return suspendCurrentCall(train, originalAccelerationMod);
         }
-        atoTargetSpeed = decision.targetSpeed().getAsDouble();
+        if (!Double.isFinite(createSpeedCeilingBlocksPerSecond)
+                || createSpeedCeilingBlocksPerSecond < 0.0) {
+            calculationErrorState.latch(
+                    CatCalculationErrorCode.INVALID_BRAKING_CURVE_INPUT,
+                    "Create maxSpeed ceiling is invalid");
+            return suspendCurrentCall(train, originalAccelerationMod);
+        }
 
-        /*
-         * Createへ目標速度を返す。
-         */
-        train.targetSpeed = atoTargetSpeed;
+        lastBrakingCurveResult = evaluateBrakingCandidate(
+                currentSpeedBlocksPerSecond,
+                baseAccelerationBlocksPerSecondSquared,
+                createSpeedCeilingBlocksPerSecond);
+        OptionalDouble diagnosticBrakingCurveLimit = lastBrakingCurveResult.isCalculationError()
+                ? OptionalDouble.empty()
+                : lastBrakingCurveResult.maximumPermittedSpeedBlocksPerSecond();
+        if (calculationErrorState.isActive()) {
+            return suspendCurrentCall(train, originalAccelerationMod);
+        }
+        OptionalDouble controlBrakingCurveLimit = hasGlobalStationDestination
+                ? OptionalDouble.empty()
+                : diagnosticBrakingCurveLimit;
+
+        OptionalDouble catSpeedLimit = enabledCatSpeedLimit();
+        double directionSign = resolveDirectionSign(train, normalizedNavigationStop);
+        TargetSpeedResolver.Input resolverInput = new TargetSpeedResolver.Input(
+                createTargetSpeed * TICKS_PER_SECOND,
+                createSpeedCeilingBlocksPerSecond,
+                catSpeedLimit,
+                diagnosticBrakingCurveLimit,
+                directionSign,
+                normalizedNavigationStop.state(),
+                hasGlobalStationDestination,
+                train.navigation != null && train.navigation.waitingForSignal != null,
+                train.manualTick);
+
+        AtoControlResult result;
+        try {
+            result = atoController.control(new AtoController.Input(
+                    serverTick,
+                    createTargetSpeed,
+                    originalAccelerationMod,
+                    train.speed,
+                    currentSpeedBlocksPerSecond,
+                    baseAccelerationBlocksPerSecondSquared,
+                    controlBrakingCurveLimit,
+                    resolverInput,
+                    flags,
+                    calculationErrorState.snapshot(),
+                    AdvancedTrainsConfig.NOTCH_ENABLED.get()));
+        } catch (IllegalArgumentException exception) {
+            calculationErrorState.latch(
+                    CatCalculationErrorCode.INVALID_PROFILE,
+                    "Phase 6 control calculation failed: " + exception.getMessage());
+            return suspendCurrentCall(train, originalAccelerationMod);
+        }
+
+        train.targetSpeed = result.finalTargetSpeedBlocksPerTick();
+        atoTargetSpeed = train.targetSpeed;
+        lastAtoControlResult = Optional.of(result);
 
         updateState(train);
+        return result.accelerationMod();
     }
 
     public void update(Train train) {
@@ -171,6 +261,70 @@ public class TrainController {
                 flagDeterminer.currentFlags(),
                 calculationErrorState.snapshot());
         updateState(train);
+    }
+
+    private BrakingCurveResult evaluateBrakingCandidate(
+            double currentSpeedBlocksPerSecond,
+            double baseAccelerationBlocksPerSecondSquared,
+            double createSpeedCeilingBlocksPerSecond) {
+        if (!AdvancedTrainsConfig.BRAKING_ENABLED.get()
+                || normalizedNavigationStop.state() != NavigationStopState.AHEAD) {
+            return BrakingCurveResult.noForwardStopTarget();
+        }
+
+        BrakingCurveResult result = evaluateBrakingCurve(new BrakingCurveInput(
+                normalizedNavigationStop.forwardDistanceBlocks().orElseThrow(),
+                currentSpeedBlocksPerSecond,
+                atoController.currentEffectiveAcceleration(),
+                baseAccelerationBlocksPerSecondSquared,
+                createSpeedCeilingBlocksPerSecond));
+        return result;
+    }
+
+    private OptionalDouble enabledCatSpeedLimit() {
+        if (!AdvancedTrainsConfig.SPEED_LIMIT_ENABLED.get()) {
+            return OptionalDouble.empty();
+        }
+        double limit = atoController.getSpeedLimitController().getEffectiveLimit();
+        return Double.isFinite(limit) ? OptionalDouble.of(limit) : OptionalDouble.empty();
+    }
+
+    private static boolean hasGlobalStationDestination(Train train) {
+        // Create 6.0.8 declares Navigation.destination as GlobalStation.
+        return train.navigation != null && train.navigation.destination != null;
+    }
+
+    private float suspendCurrentCall(Train train, float originalAccelerationMod) {
+        atoController.observeOperationalState(
+                flagDeterminer.currentFlags(),
+                calculationErrorState.snapshot());
+        atoController.suspendNotchResponse();
+        atoTargetSpeed = train.targetSpeed;
+        lastAtoControlResult = Optional.of(AtoControlResult.passThrough(
+                train.targetSpeed,
+                originalAccelerationMod,
+                atoController.getOperatingState(),
+                true));
+        updateState(train);
+        return originalAccelerationMod;
+    }
+
+    private static double resolveDirectionSign(
+            Train train,
+            NormalizedNavigationStop navigationStop) {
+        if (train.targetSpeed != 0.0) {
+            return Math.signum(train.targetSpeed);
+        }
+        if (navigationStop.direction() == NavigationTravelDirection.FORWARD) {
+            return 1.0;
+        }
+        if (navigationStop.direction() == NavigationTravelDirection.BACKWARD) {
+            return -1.0;
+        }
+        if (train.speed != 0.0) {
+            return Math.signum(train.speed);
+        }
+        return 1.0;
     }
 
     /**

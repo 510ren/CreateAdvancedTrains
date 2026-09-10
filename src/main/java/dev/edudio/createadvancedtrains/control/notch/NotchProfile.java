@@ -6,13 +6,16 @@ import java.util.Objects;
 import java.util.OptionalDouble;
 
 /**
- * Speed-dependent service-brake profile expressed in CAT units.
+ * Product P/N/B profile expressed in CAT units. The Phase 5A factory remains
+ * an isolated service-brake-only measurement profile.
  */
 public final class NotchProfile {
 
     private static final double MIN_PROFILE_SPEED_BLOCKS_PER_SECOND = 0.0;
     private static final double MAX_PROFILE_SPEED_BLOCKS_PER_SECOND = 160.0;
     private static final double PHASE_5B_DELTA = 1.0 / 5.0;
+    private static final double PHASE_6_POWER_DELTA = 1.0 / 5.0;
+    private static final double PHASE_6_NEUTRAL_MULTIPLIER = 1.0 / 6.0;
 
     private final Map<Notch, LinearTable> multiplierTables;
     private final DeltaFunction deltaFunction;
@@ -69,13 +72,15 @@ public final class NotchProfile {
             throw new IllegalArgumentException("baseAccelerationBlocksPerSecondSquared must be positive");
         }
 
-        if (notch == Notch.COAST) {
-            return 0.0;
+        Objects.requireNonNull(notch, "notch");
+        if (notch.isPower()) {
+            return baseAccelerationBlocksPerSecondSquared
+                    * (1.0 + (powerLevel(notch) - 3) * PHASE_6_POWER_DELTA);
         }
-
-        return -brakingMagnitude(
-                notch,
-                currentSpeedBlocksPerSecond,
+        if (notch.isNeutral()) {
+            return -baseAccelerationBlocksPerSecondSquared * PHASE_6_NEUTRAL_MULTIPLIER;
+        }
+        return -brakingMagnitude(notch, currentSpeedBlocksPerSecond,
                 baseAccelerationBlocksPerSecondSquared);
     }
 
@@ -94,8 +99,8 @@ public final class NotchProfile {
             throw new IllegalArgumentException("baseAccelerationBlocksPerSecondSquared must be positive");
         }
 
-        if (notch == Notch.COAST) {
-            return 0.0;
+        if (!notch.isServiceBrake()) {
+            throw new IllegalArgumentException("Not a service-brake notch: " + notch);
         }
 
         return baseAccelerationBlocksPerSecondSquared
@@ -105,8 +110,9 @@ public final class NotchProfile {
     public double multiplier(Notch notch, double currentSpeedBlocksPerSecond) {
         requireFinite(currentSpeedBlocksPerSecond, "currentSpeedBlocksPerSecond");
 
-        if (notch == Notch.COAST) {
-            return 0.0;
+        Objects.requireNonNull(notch, "notch");
+        if (!notch.isServiceBrake()) {
+            throw new IllegalArgumentException("Not a service-brake notch: " + notch);
         }
 
         double speed = Math.abs(currentSpeedBlocksPerSecond);
@@ -171,7 +177,19 @@ public final class NotchProfile {
             case B5 -> 5;
             case B6 -> 6;
             case B7 -> 7;
-            case COAST -> throw new IllegalArgumentException("COAST has no service-brake level");
+            case P1, P2, P3, P4, P5, N ->
+                throw new IllegalArgumentException(notch + " has no service-brake level");
+        };
+    }
+
+    private static int powerLevel(Notch notch) {
+        return switch (notch) {
+            case P1 -> 1;
+            case P2 -> 2;
+            case P3 -> 3;
+            case P4 -> 4;
+            case P5 -> 5;
+            default -> throw new IllegalArgumentException(notch + " has no power level");
         };
     }
 

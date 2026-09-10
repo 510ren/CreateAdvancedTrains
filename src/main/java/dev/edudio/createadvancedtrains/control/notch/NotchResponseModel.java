@@ -9,14 +9,14 @@ public final class NotchResponseModel {
 
     public static final int TRANSITION_TICKS = 10;
 
-    private Notch commandedNotch = Notch.COAST;
+    private Notch commandedNotch = Notch.N;
     private Notch appliedNotch;
     private double transitionStartAcceleration;
     private double effectiveAcceleration;
     private int nextTransitionElapsedTicks = TRANSITION_TICKS;
 
     public NotchResponseModel() {
-        this(Notch.COAST);
+        this(Notch.N);
     }
 
     public NotchResponseModel(Notch lastCompletedNotch) {
@@ -63,6 +63,22 @@ public final class NotchResponseModel {
     }
 
     /**
+     * Discards every pre-suspension command and restarts the next transition
+     * from zero effective acceleration.
+     */
+    public void reset() {
+        commandedNotch = Notch.N;
+        appliedNotch = Notch.N;
+        transitionStartAcceleration = 0.0;
+        effectiveAcceleration = 0.0;
+        nextTransitionElapsedTicks = TRANSITION_TICKS;
+    }
+
+    public double effectiveAcceleration() {
+        return effectiveAcceleration;
+    }
+
+    /**
      * Stateless form used by response-aware prediction. Tick 0 returns aStart;
      * tick 10 and later return the current target.
      */
@@ -85,10 +101,10 @@ public final class NotchResponseModel {
         return Math.min(transitionElapsedTicks / (double) TRANSITION_TICKS, 1.0);
     }
 
-    public static Response coastResponse() {
+    public static Response neutralResponse() {
         return new Response(
-                Notch.COAST,
-                Notch.COAST,
+                Notch.N,
+                Notch.N,
                 0,
                 0.0,
                 0.0,

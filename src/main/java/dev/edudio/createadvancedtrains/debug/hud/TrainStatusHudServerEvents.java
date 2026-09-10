@@ -17,10 +17,13 @@ import com.simibubi.create.content.trains.GlobalRailwayManager;
 import com.simibubi.create.content.trains.entity.Train;
 
 import dev.edudio.createadvancedtrains.CreateAdvancedTrains;
+import dev.edudio.createadvancedtrains.control.notch.Notch;
 import dev.edudio.createadvancedtrains.debug.hud.TrainTargetSpeedTracker.TargetSpeeds;
 import dev.edudio.createadvancedtrains.debug.notchtest.Phase5ANotchTestManager;
 import dev.edudio.createadvancedtrains.debug.notchtest.Phase5ANotchTestManager.NotchStatus;
 import dev.edudio.createadvancedtrains.network.ModNetwork;
+import dev.edudio.createadvancedtrains.train.TrainController;
+import dev.edudio.createadvancedtrains.train.TrainControllerManager;
 import dev.edudio.createadvancedtrains.train.query.CreateTrainQueryUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -39,7 +42,7 @@ import net.minecraftforge.network.PacketDistributor;
 @Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TrainStatusHudServerEvents {
 
-    private static final int SYNC_INTERVAL_TICKS = 20;
+    private static final int SYNC_INTERVAL_TICKS = 4;
     private static final Map<UUID, Double> PREVIOUS_SPEEDS = new HashMap<>();
     private static final Map<UUID, Double> MEASURED_ACCELERATIONS = new HashMap<>();
 
@@ -127,14 +130,27 @@ public final class TrainStatusHudServerEvents {
         return new TrainStatusHudEntry(
                 train.id,
                 toBlocksPerSecond(train.speed),
-                notchStatus.commandedNotch(),
-                notchStatus.appliedNotch(),
-                notchStatus.controlApplied(),
+                currentNotch(train, notchStatus),
                 toBlocksPerSecond(createTargetSpeed),
                 toBlocksPerSecond(atoTargetSpeed),
                 MEASURED_ACCELERATIONS.getOrDefault(train.id, Double.NaN),
                 toBlocksPerSecondSquared(Math.abs(train.acceleration())),
                 CreateTrainQueryUtil.queryNextStopDistance(train));
+    }
+
+    private static Notch currentNotch(Train train, NotchStatus phase5AStatus) {
+        if (phase5AStatus.controlApplied()) {
+            return phase5AStatus.commandedNotch();
+        }
+
+        TrainController controller = TrainControllerManager.INSTANCE.get(train.id);
+        if (controller == null) {
+            return Notch.N;
+        }
+        return controller.getLastAtoControlResult()
+                .flatMap(result -> result.notchSelection())
+                .map(selection -> selection.requestedNotch())
+                .orElse(Notch.N);
     }
 
     private static double toBlocksPerSecond(double blocksPerTick) {

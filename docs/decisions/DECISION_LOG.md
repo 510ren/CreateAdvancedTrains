@@ -228,3 +228,82 @@
   信号・ATC/ATS・EB・安全ロックアウト、Phase 9をマスコン・独立HUD・独立操作、Phase 10を
   統合走行試験に基づく調整として分割する。
 - **正本:** 各Phaseの目的、対象、非対象、開始条件、受入条件は`docs/PHASE_ROADMAP.md`を正本とする。
+
+## 2026-09-10 — Phase 6のCreate上限、P/N/B、ATO統括
+
+- **決定:** Phase 6の`u_ceiling`はCAT独自設定を追加せず、制御呼出時の
+  `abs(Train.maxSpeed()) × 20` blocks/sを用いる。燃料状態で変化するため毎呼出で再読出しする。
+- **決定:** P1〜P5はP3を`baseAcceleration`の基準とする等間隔Profileとし、倍率を
+  `0.6, 0.8, 1.0, 1.2, 1.4`とする。実車の絶対性能値は固定移植せず、Createのユーザー設定へ
+  比率で追従する。
+- **決定:** Nは0加速度の速度維持ではなく、走行抵抗相当の惰行減速とする。Phase 6の初期値は
+  `-baseAcceleration / 6`であり、Phase 10の実走行データで調整する。
+- **決定:** `V_safe = V × 0.95`、初期ヒステリシス`H = 0.5 blocks/s`を使い、10 tick応答込みの
+  予測速度と段階的ノッチ遷移でP/N/Bの往復切替を防ぐ。Bの予測上限は`V_safe`と有効な
+  BrakingCurve最大許容速度の最小値とする。通常はB4/B5を選び、不足時だけB6/B7を許可する。
+- **決定:** Create境界では加速度修飾を非負に保ち、実効加減速度の符号で同一呼出のtarget方向を
+  決める。P/N/B要求の切替で実効加減速度がゼロを跨ぐまで、target方向を早期反転しない。N定常時は
+  `targetSpeed = 0`と`accelerationMod = 1/6`を当該呼出だけに適用する。
+- **決定:** ATOControllerは通常CAT制御を統括するが、制約統合、ノッチ選択、応答の計算は
+  TargetSpeedResolver等の専用クラスへ委譲する。既存の一回の`approachTargetSpeed()`を利用し、
+  CATは追加呼出しをしない。
+- **決定:** Phase 6ではCreateの目的地停止をBrakingCurveへ段階的に移管するが、Create信号停止と
+  近駅補正は後続PhaseのCAT機能が完成するまで安全候補として維持する。Create標準手動入力は
+  Phase 9の独自マスコン操作へ移管する。
+- **制約:** Phase 5A測定治具を製品版制御へ流用しない。`Train.speed`、fuel、throttle、manualTick、
+  Navigation destinationをCATが直接変更しない。
+- **決定:** CAT適格性判定と独自マスコン統合はPhase 9まで実装しない。Phase 6は既存の
+  `CONTROL_ENABLED`および`ATO_ENABLED`による有効化範囲を維持する。
+- **決定:** 10 tick応答は列車UUIDごとにserver tick内で最大一回だけ進める。同tickの後続
+  `approachTargetSpeed()`呼出はキャッシュ済みの実効加減速度を使い、より低いnative安全候補が
+  現れた場合だけ当該呼出のfinal targetを安全側へ下げる。
+- **決定:** 到着待ち、計算エラー、Navigationオーバーランでは、native targetとCreate元の
+  `accelerationMod`を維持し、ノッチ応答を`SUSPENDED`とする。復帰後は古いノッチ状態を再開せず、
+  実効加減速度0から新しい10 tick遷移を始める。
+- **決定:** native target 0は、Createの信号待ち、Navigation目的地、Create標準手動入力、
+  判定不能の順に分類する。目的地0だけは有効なBrakingCurve候補で置換できるが、それ以外と
+  BrakingCurve不能時の0はCreate由来の安全候補として維持する。
+- **決定:** Bを一段弱めるかは一段弱い候補の予測速度で判定する。`C = min(V_safe, BrakingCurve上限)`、
+  `H = 0.5 blocks/s`として、`vPred(B(n-1)) <= C + H`で弱める。B4からは
+  `vPred(N) <= C + H`のときだけNへ移る。Phase 6の自動B選択はB4〜B7に限定する。
+
+## 2026-09-10 — CAT対象判定の組立時保存方針
+
+- **決定:** CAT対象判定はCarriage Entityを毎tick走査して決めず、列車組立時または編成構成変更時に
+  確定し、Train UUIDをキーとするCAT専用ワールド保存データへ保存する。読み込み範囲外でEntityが
+  存在しない場合も、保存済み判定を使いCAT対象を誤って無効化しない。
+- **決定:** 判定状態は少なくとも`CAT_ONLY`、`CREATE_ONLY`、`MIXED_CONTROLS`、
+  `NO_VALID_CONTROLS`、`UNRESOLVED`を区別する。混在時はCreateを優先しCATを無効にする。
+- **制約:** 独自マスコンをCreate組立要件の代替操作装置として統合する詳細、保存データの実装、HUD、
+  独自入力はPhase 9で仕様化・実装する。Phase 6はこれらを先取りして実装しない。
+
+## 2026-09-11 — Phase 6の駅停止をBrakingCurveから分離
+
+- **決定:** Phase 6では、`GlobalStation`を目的地とする駅停止をBrakingCurveの速度候補で完遂しない。
+  BrakingCurveは診断・安全監視用に計算してよいが、駅目的地についてはTargetSpeedResolverの最終速度候補から除外し、
+  Create Navigation由来のnative targetを保持する。
+- **理由:** Phase 5Bの共通安全余裕`M = 10 blocks`を駅までの残距離から直接引くと、駅手前で
+  BrakingCurveが`u_max = 0`を返す。Resolverが最小値を採る既決則により、Createが要求する走行targetを
+  上書きして列車が駅へ到着できなくなることを、Phase 6実走行ログで確認したため。
+- **結果:** 駅位置±0.5 blocksの定位置停車、通常制動からの引継ぎ、TASC区間の低速制御はPhase 7の責務とする。
+  この決定は、駅以外の安全保護対象に対するBrakingCurveの将来統合規則を変更しない。
+
+## 2026-09-11 — TASCのクリープ到達条件
+
+- **決定:** TASCは、停止位置までの正規化済み残距離が`1.0 blocks`に達するまでに、進行方向速度を
+  `0.4 blocks/s`以下へ落とす。この条件は、停止位置±0.5 blocks・`v < 0.01 blocks/s`の最終停止判定へ
+  入る前の必須条件とする。
+- **理由:** BrakingCurveの共通安全余裕で駅手前に停止するのでなく、TASCが低速クリープから最終位置を
+  補正するための明確な到達目標が必要であるため。
+
+## 2026-09-11 — TASC無効時の駅停止
+
+- **決定:** TASCは、自然な低速減速、クリープ、定位置停車を担当するCATの最終駅停止機能とする。
+  TASC設定が無効な場合、CATはこれらの補正を行わず、Create標準のNavigation駅停止を維持する。
+- **制約:** 無効化はNavigationや目的地を止めるものではない。また、Phase 6のBrakingCurveが駅目的地に
+  対してtarget 0を保持してCreateの到着処理を阻害してはならない。設定キー、既定値、UIはPhase 7で決める。
+
+## 2026-09-11 — Sol実装時のGradle build実行方針
+
+- **決定:** SolはJavaソースの静的確認を必須とするが、Gradle buildはユーザーが明示的に要求した場合だけ実行する。
+- **理由:** 実装ごとのbuild待機時間を通常手順へ含めず、必要な節目でユーザーが選択できるようにするため。
