@@ -29,7 +29,7 @@ LINE / TEMPORARY / SIGNAL / STATION / ATC / ATS / TEST
 - 制限値の削除・未設定は正の無限大として扱う。
 - `features.speed_limit = false` の場合、ATOはSpeedLimitControllerを通さない。
 
-## 要照合
+## Phase 6への接続
 
-現行の `TrainController` は生成時に`TEST = 20.0 blocks/s`を登録している。これは通常の
-試験上限なのか一時コードなのかを、次の速度制限作業前に確認する必要がある。
+`SpeedLimitController`はPhase 6のTargetSpeedResolverへ速度制約を返す。`TEST`は検証コマンドでのみ
+設定される値であり、列車生成時に20 blocks/sを自動登録してはならない。

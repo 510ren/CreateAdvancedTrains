@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import dev.edudio.createadvancedtrains.CreateAdvancedTrains;
 import dev.edudio.createadvancedtrains.debug.hud.TrainStatusHudEntry;
+import dev.edudio.createadvancedtrains.train.query.StopTargetDistance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -98,7 +99,13 @@ public final class TrainStatusHudOverlay {
                 notch,
                 number(entry.createTargetSpeedBlocksPerSecond()),
                 number(entry.atoTargetSpeedBlocksPerSecond()),
-                number(entry.distanceToDestinationBlocks()));
+                distance(entry.stopTargetDistance()));
+    }
+
+    private static String distance(StopTargetDistance distance) {
+        return distance.distanceBlocks().isPresent()
+                ? number(distance.distanceBlocks().getAsDouble())
+                : "--";
     }
 
     private static String number(double value) {

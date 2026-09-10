@@ -147,10 +147,6 @@ public final class Phase5ANotchTestManager {
         if (!sessionActive
                 || currentServerTick == Long.MIN_VALUE
                 || !holdStopTargetUntilStop) {
-            SendMessageToClient
-                    .send("[CAT : Phase5ANotchTestManager]: TargetSpeedの固定は無効になりました（sessionActive=" + sessionActive
-                            + ", currentServerTick=" + currentServerTick + ", holdStopTargetUntilStop="
-                            + holdStopTargetUntilStop + "）");
             return StopTargetHoldResult.inactive();
         }
 

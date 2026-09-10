@@ -46,6 +46,16 @@ public class TrainControllerManager {
         }
     }
 
+    public void refreshSharedState(Train train) {
+        getOrCreate(train).update(train);
+    }
+
+    public void refreshAllSharedState(Iterable<Train> trains) {
+        for (Train train : trains) {
+            refreshSharedState(train);
+        }
+    }
+
     public void removeMissing(Iterable<Train> trains) {
         Map<UUID, Boolean> existingTrains = new HashMap<>();
 

@@ -47,6 +47,10 @@ Server側の単一ユーティリティ（名称候補: `CreateTrainQueryUtil`�
 Create 6.0.8の手動探索API・進行方向・距離の符号・副作用は、実装前に実ソースで確認する。安全な
 読み取りだけで手動探索を再現できない場合、Solは状態変更を伴う代替案を実装せず、根拠と選択肢を報告する。
 
+現在の単一停車対象距離が手動運転時に未取得となる問題は、ユーザー承認によりPhase 5では非阻害とする。
+Phase 9ではこの問い合わせを拡張または別の読み取り専用問い合わせとして設計し、到達可能な近傍駅を
+おおむね4駅まで独立HUDへ提供する。単一destinationの欠損を数値0で埋めてはならない。
+
 ## 列車単位の状態
 
 `TrainControllerManager`は `Map<UUID, TrainController>` を保持する。`TrainController`は
@@ -74,3 +78,8 @@ BrakingCurveは最大許容速度、TASCは停止位置と残距離、NotchContr
 
 物理制御、列車状態、制約計算はServer側の責務である。Client側はHUD、GUI、入力、
 Debug表示を担当し、物理値の決定・変更を行わない。
+
+Phase 9のCAT独立運転では、Clientの設定可能なCAT専用前進/後進キーが操作意図だけをServerへ渡す。
+Serverは列車単位の操作権限と安全制約を確認して`TrainController`へ反映する。CAT独立操作が有効な
+当該列車の入力経路では、従来の`W`/`S`前後進操作を無効化し、二重の運転指令を許可しない。これは
+CAT以外を含むゲーム全体のキーを無効化する要件ではない。詳細は`docs/design/DRIVING_MODE.md`を正本とする。

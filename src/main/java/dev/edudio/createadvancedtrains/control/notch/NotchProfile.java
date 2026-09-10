@@ -2,6 +2,8 @@ package dev.edudio.createadvancedtrains.control.notch;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.OptionalDouble;
 
 /**
  * Speed-dependent service-brake profile expressed in CAT units.
@@ -10,11 +12,16 @@ public final class NotchProfile {
 
     private static final double MIN_PROFILE_SPEED_BLOCKS_PER_SECOND = 0.0;
     private static final double MAX_PROFILE_SPEED_BLOCKS_PER_SECOND = 160.0;
+    private static final double PHASE_5B_DELTA = 1.0 / 5.0;
 
     private final Map<Notch, LinearTable> multiplierTables;
+    private final DeltaFunction deltaFunction;
 
-    private NotchProfile(Map<Notch, LinearTable> multiplierTables) {
+    private NotchProfile(
+            Map<Notch, LinearTable> multiplierTables,
+            DeltaFunction deltaFunction) {
         this.multiplierTables = new EnumMap<>(multiplierTables);
+        this.deltaFunction = deltaFunction;
     }
 
     public static NotchProfile phase5ATemporaryProfile() {
@@ -26,7 +33,26 @@ public final class NotchProfile {
         tables.put(Notch.B5, constantMultiplier(3.0));
         tables.put(Notch.B6, constantMultiplier(3.5));
         tables.put(Notch.B7, constantMultiplier(4.0));
-        return new NotchProfile(tables);
+        return new NotchProfile(tables, null);
+    }
+
+    /**
+     * Returns the approved Phase 5B product profile. The Phase 5A measurement
+     * profile deliberately remains a separate factory.
+     */
+    public static NotchProfile phase5BProductionProfile() {
+        return b4CenteredProfile(speedBlocksPerSecond -> PHASE_5B_DELTA);
+    }
+
+    /**
+     * Creates the B4-centred product profile using a speed-dependent delta
+     * boundary. Phase 5B supplies a constant function; Phase 10 may replace the
+     * function without changing callers or the B4 invariant.
+     */
+    public static NotchProfile b4CenteredProfile(DeltaFunction deltaFunction) {
+        return new NotchProfile(
+                new EnumMap<>(Notch.class),
+                Objects.requireNonNull(deltaFunction, "deltaFunction"));
     }
 
     /**
@@ -47,13 +73,33 @@ public final class NotchProfile {
             return 0.0;
         }
 
-        LinearTable table = multiplierTables.get(notch);
-        if (table == null) {
-            throw new IllegalArgumentException("No profile table for notch " + notch);
+        return -brakingMagnitude(
+                notch,
+                currentSpeedBlocksPerSecond,
+                baseAccelerationBlocksPerSecondSquared);
+    }
+
+    /**
+     * Returns the positive service-brake magnitude in blocks/s^2.
+     */
+    public double brakingMagnitude(
+            Notch notch,
+            double currentSpeedBlocksPerSecond,
+            double baseAccelerationBlocksPerSecondSquared) {
+        Objects.requireNonNull(notch, "notch");
+        requireFinite(currentSpeedBlocksPerSecond, "currentSpeedBlocksPerSecond");
+        requireFinite(baseAccelerationBlocksPerSecondSquared, "baseAccelerationBlocksPerSecondSquared");
+
+        if (baseAccelerationBlocksPerSecondSquared <= 0.0) {
+            throw new IllegalArgumentException("baseAccelerationBlocksPerSecondSquared must be positive");
         }
 
-        double speed = Math.abs(currentSpeedBlocksPerSecond);
-        return -baseAccelerationBlocksPerSecondSquared * table.interpolate(speed);
+        if (notch == Notch.COAST) {
+            return 0.0;
+        }
+
+        return baseAccelerationBlocksPerSecondSquared
+                * multiplier(notch, currentSpeedBlocksPerSecond);
     }
 
     public double multiplier(Notch notch, double currentSpeedBlocksPerSecond) {
@@ -63,11 +109,42 @@ public final class NotchProfile {
             return 0.0;
         }
 
+        double speed = Math.abs(currentSpeedBlocksPerSecond);
+        if (deltaFunction != null) {
+            double delta = delta(speed);
+            return 1.0 + (serviceBrakeLevel(notch) - 4) * delta;
+        }
+
         LinearTable table = multiplierTables.get(notch);
         if (table == null) {
             throw new IllegalArgumentException("No profile table for notch " + notch);
         }
-        return table.interpolate(Math.abs(currentSpeedBlocksPerSecond));
+        return table.interpolate(speed);
+    }
+
+    /**
+     * Returns delta(u) for a B4-centred product profile.
+     */
+    public double delta(double currentSpeedBlocksPerSecond) {
+        requireFinite(currentSpeedBlocksPerSecond, "currentSpeedBlocksPerSecond");
+        if (deltaFunction == null) {
+            throw new IllegalStateException("This profile does not use a B4-centred delta function");
+        }
+
+        double delta = deltaFunction.valueAt(Math.abs(currentSpeedBlocksPerSecond));
+        requireFinite(delta, "delta");
+        return delta;
+    }
+
+    public OptionalDouble configuredDelta(double currentSpeedBlocksPerSecond) {
+        if (deltaFunction == null) {
+            return OptionalDouble.empty();
+        }
+        return OptionalDouble.of(delta(currentSpeedBlocksPerSecond));
+    }
+
+    public boolean isB4Centered() {
+        return deltaFunction != null;
     }
 
     private static LinearTable constantMultiplier(double multiplier) {
@@ -83,6 +160,24 @@ public final class NotchProfile {
         if (!Double.isFinite(value)) {
             throw new IllegalArgumentException(name + " must be finite");
         }
+    }
+
+    private static int serviceBrakeLevel(Notch notch) {
+        return switch (notch) {
+            case B1 -> 1;
+            case B2 -> 2;
+            case B3 -> 3;
+            case B4 -> 4;
+            case B5 -> 5;
+            case B6 -> 6;
+            case B7 -> 7;
+            case COAST -> throw new IllegalArgumentException("COAST has no service-brake level");
+        };
+    }
+
+    @FunctionalInterface
+    public interface DeltaFunction {
+        double valueAt(double speedBlocksPerSecond);
     }
 
     /**

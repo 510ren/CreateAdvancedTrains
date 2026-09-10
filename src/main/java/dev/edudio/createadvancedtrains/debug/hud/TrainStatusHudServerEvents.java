@@ -21,6 +21,7 @@ import dev.edudio.createadvancedtrains.debug.hud.TrainTargetSpeedTracker.TargetS
 import dev.edudio.createadvancedtrains.debug.notchtest.Phase5ANotchTestManager;
 import dev.edudio.createadvancedtrains.debug.notchtest.Phase5ANotchTestManager.NotchStatus;
 import dev.edudio.createadvancedtrains.network.ModNetwork;
+import dev.edudio.createadvancedtrains.train.query.CreateTrainQueryUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -133,7 +134,7 @@ public final class TrainStatusHudServerEvents {
                 toBlocksPerSecond(atoTargetSpeed),
                 MEASURED_ACCELERATIONS.getOrDefault(train.id, Double.NaN),
                 toBlocksPerSecondSquared(Math.abs(train.acceleration())),
-                train.navigation.distanceToDestination);
+                CreateTrainQueryUtil.queryNextStopDistance(train));
     }
 
     private static double toBlocksPerSecond(double blocksPerTick) {

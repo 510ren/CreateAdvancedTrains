@@ -4,11 +4,11 @@
 
 | 項目 | 必要な決定・根拠 |
 | --- | --- |
-| B1〜B7 | `docs/design/NOTCH.md`のPhase 5A暫定倍率・試験手順で実測し、その結果からB7曲線、最終倍率、個別補正の有無を決める。 |
-| EB | 性能、速度依存表、常用制動からの切替条件、復旧条件 |
-| 制動距離 | 応答時間・速度依存減速度・安全余裕を含む計算方法 |
-| 逆算 | 残距離から最大許容速度を求める数値探索方法 |
-| 安全余裕 | 距離余裕・減速度安全係数の速度別試験値 |
+| B1〜B7 | B4は全速度で`baseAcceleration`とし、隣接ノッチ倍率差はPhase 5Bでは定数`δ_0 = 1/5`とする。速度依存の`δ(u)`補正はPhase 10で扱う。 |
+| EB | 性能Profileと実際の発動・復旧実装は後続フェーズ。Phase 5BではB7不足・予測過走量の返却だけを実装する。 |
+| 制動距離 | Phase 5Bの式・10 tick応答・停止閾値・最大反復回数は確定。Phase 10で速度依存補正を調整する。 |
+| 逆算 | Phase 5Bは呼出側`u_ceiling`を引数として受ける二分探索。速度依存補正後の探索方法はPhase 10で再評価する。 |
+| 安全余裕 | Phase 5Bは`M = 10 blocks`、`κ = 1.0`。速度依存の調整はPhase 10で行う。 |
 
 ## Create Navigation調査
 
@@ -17,17 +17,28 @@
 - `Navigation.distanceToDestination`の符号・単位・destinationなし時の値
 - Create標準の駅近傍速度補正の正確な条件とtick順序
 
-## 次回Sol実装前提：手動運転の停車対象距離照会
+## Phase 5B実装を製品接続する前の決定
 
-- Navigationが有効なら`Navigation.distanceToDestination`を符号付きblocksの正本として返し、
-  手動運転などでdestinationがないときだけ、Create 6.0.8の手動運転と同じ次の到達可能
-  GlobalStation探索から距離を導出する、単一の読み取り専用ユーティリティを実装する。
+| 項目 | 現状 | 必要な決定 |
+| --- | --- | --- |
+| BrakingCurveの`u_ceiling`供給元 | Server ConfigにCAT `maxSpeed`キーはない。製品版TargetSpeedResolver・自動ノッチ選択も未実装のため、現時点では未接続でよい。 | 後続の統合制御Phaseで、CAT `maxSpeed`を設定化するか、Createの上限を採用するかを明示決定する。 |
+| CAT中立ノッチN | Nは`targetSpeed = 0`と、同じtickにノッチ制御が`accelerationMod = 0`を返す組合せとする。 | 製品版NotchController実装時に、N中の外部Create target更新との優先順位・解除条件を決める。 |
+| Navigation負距離の「脱線相当」 | CATエラーラッチとレンチ復旧待ちまで実装。Create `Train.crash()`は禁止境界と衝突するため未使用。 | Create物理脱線ではないCAT独自の安全ロックアウトイベントを用意できるか、Forge/CATのイベント境界を調査して決める。 |
+
+## Phase 5で完了扱い：手動運転の停車対象距離照会
+
+実装仕様と完了条件は`docs/technical/CREATE_NAVIGATION.md`の「次回Sol実装仕様」を正本とする。
+本節はSolがCreate 6.0.8実ソースで確認すべき未解決の技術事項を示す。
+
+- Navigationが有効なら`Navigation.distanceToDestination`を符号付きblocksの正本として返す。
+- ユーザーの手動確認では、手動運転時の距離が正しく取得できない。Phase 5の制動設計では非阻害として
+  ユーザー承認により完了扱いとし、解決はPhase 9へ繰り越す。
 - このユーティリティは、停車に向けた減速かどうか、進行方向、停車対象の利用可否などのCreate関連判定も
   一元化する。HUD、BrakingCurve、TASC、各ControllerがCreate内部値や比較式を独自に読むことを禁止する。
 - 未取得距離を0で表してはならない。取得元とunavailableを区別できる結果を返し、HUDは未取得値を
   `--`等で表示する。
-- SolはCreate 6.0.8の手動運転側で使用するstation探索、進行方向、距離計算、API副作用を実ソースで
-  検証する。探索が状態を変更する場合は、実装せずに代替案を報告する。
+- Phase 9では、単一の停車対象探索の再実装だけを前提にせず、到達可能な近傍駅をおおむね4駅まで
+  取得して独立HUDへ表示する要件として再定義する。探索・分岐・並べ順・件数はその時点で決定する。
 
 ## 計測
 

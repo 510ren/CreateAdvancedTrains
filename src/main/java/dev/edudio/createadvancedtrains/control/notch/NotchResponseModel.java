@@ -36,9 +36,11 @@ public final class NotchResponseModel {
         }
 
         int evaluatedElapsedTicks = Math.min(nextTransitionElapsedTicks, TRANSITION_TICKS);
-        double progress = evaluatedElapsedTicks / (double) TRANSITION_TICKS;
-        effectiveAcceleration = transitionStartAcceleration
-                + (targetAcceleration - transitionStartAcceleration) * progress;
+        double progress = transitionProgress(evaluatedElapsedTicks);
+        effectiveAcceleration = effectiveAccelerationAt(
+                transitionStartAcceleration,
+                targetAcceleration,
+                evaluatedElapsedTicks);
 
         if (evaluatedElapsedTicks >= TRANSITION_TICKS) {
             appliedNotch = commandedNotch;
@@ -58,6 +60,29 @@ public final class NotchResponseModel {
         }
 
         return response;
+    }
+
+    /**
+     * Stateless form used by response-aware prediction. Tick 0 returns aStart;
+     * tick 10 and later return the current target.
+     */
+    public static double effectiveAccelerationAt(
+            double startAcceleration,
+            double targetAcceleration,
+            int transitionElapsedTicks) {
+        if (!Double.isFinite(startAcceleration) || !Double.isFinite(targetAcceleration)) {
+            throw new IllegalArgumentException("Acceleration values must be finite");
+        }
+        return startAcceleration
+                + (targetAcceleration - startAcceleration)
+                        * transitionProgress(transitionElapsedTicks);
+    }
+
+    public static double transitionProgress(int transitionElapsedTicks) {
+        if (transitionElapsedTicks < 0) {
+            throw new IllegalArgumentException("transitionElapsedTicks must not be negative");
+        }
+        return Math.min(transitionElapsedTicks / (double) TRANSITION_TICKS, 1.0);
     }
 
     public static Response coastResponse() {

@@ -6,6 +6,9 @@ import java.util.function.Supplier;
 
 import dev.edudio.createadvancedtrains.control.notch.Notch;
 import dev.edudio.createadvancedtrains.debug.hud.client.TrainStatusHudClientState;
+import dev.edudio.createadvancedtrains.train.query.StopTargetDistance;
+import dev.edudio.createadvancedtrains.train.query.StopTargetDistance.Source;
+import dev.edudio.createadvancedtrains.train.query.StopTargetDistance.UnavailableReason;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
@@ -35,7 +38,13 @@ public final class TrainStatusHudPacket {
             buffer.writeDouble(entry.atoTargetSpeedBlocksPerSecond());
             buffer.writeDouble(entry.measuredAccelerationBlocksPerSecondSquared());
             buffer.writeDouble(entry.createBaseAccelerationBlocksPerSecondSquared());
-            buffer.writeDouble(entry.distanceToDestinationBlocks());
+            StopTargetDistance stopTargetDistance = entry.stopTargetDistance();
+            buffer.writeBoolean(stopTargetDistance.isAvailable());
+            if (stopTargetDistance.isAvailable()) {
+                buffer.writeDouble(stopTargetDistance.distanceBlocks().getAsDouble());
+            }
+            buffer.writeEnum(stopTargetDistance.source());
+            buffer.writeEnum(stopTargetDistance.unavailableReason());
         }
     }
 
@@ -57,9 +66,19 @@ public final class TrainStatusHudPacket {
                     buffer.readDouble(),
                     buffer.readDouble(),
                     buffer.readDouble(),
-                    buffer.readDouble()));
+                    decodeStopTargetDistance(buffer)));
         }
         return new TrainStatusHudPacket(entries);
+    }
+
+    private static StopTargetDistance decodeStopTargetDistance(FriendlyByteBuf buffer) {
+        boolean available = buffer.readBoolean();
+        double distanceBlocks = available ? buffer.readDouble() : Double.NaN;
+        Source source = buffer.readEnum(Source.class);
+        UnavailableReason reason = buffer.readEnum(UnavailableReason.class);
+        return available
+                ? StopTargetDistance.available(distanceBlocks, source)
+                : StopTargetDistance.unavailable(reason);
     }
 
     public static void handle(
