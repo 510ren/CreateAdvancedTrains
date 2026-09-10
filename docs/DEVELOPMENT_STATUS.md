@@ -30,12 +30,14 @@
 - schemaVersion 4の停止目標保持B7試験では、連続10 server tickの応答後、定常-4.0 blocks/s²を
   339 tick連続で確認した。初回ラッチから停止までの距離は約605.400 blocksである。固定Bノッチの
   継続性能測定は可能になった。後続の`RELEASEDあり.log`で、保持解除は一sampleの`RELEASED`の後に
-  `INACTIVE`へ遷移することを確認し、観測性の不備も解消した。B1〜B7の反復測定へ進める。
-- Phase 5Aの試験ノッチJava実装は作業ツリーに存在するが、設計受入は未完了である。
-  160 blocks/s要求はCreate Navigationが基準加速度だけで再計算する標準制動距離に由来することを確認した。
-  停止目標保持を採用し、連続したB7減速要求で10 server tick応答と継続性能を確認した。次は
-  `RELEASED`状態ログの修正後、B1〜B7の反復測定を行う。BrakingCurve、EB、TASC、製品版自動ノッチの
-  Java実装は引き続き未開始である。
+  `INACTIVE`へ遷移することを確認し、観測性の不備も解消した。
+- `docs/reference/logs/09-10_1/`でB1〜B7を各3回、計21走行測定した。B2〜B7は全反復で10 tick後に
+  Profile目標の定常減速度（-1.5〜-4.0 blocks/s²）へ到達し、実測値も一致した。B1も定常-1.0 blocks/s²と
+  応答は確認できたが、停止点残距離0.22 blocks・速度6.92 blocks/sからCreateの強制停止補正を受けるため、
+  自然停止距離・停車精度には使用しない。詳細は`docs/research/EXPERIMENTS.md`第21節を正本とする。
+- Phase 5Aの試験ノッチJava実装と測定治具は、暫定Profileを指定どおりに適用・観測できる状態まで受入済みである。
+  ただし測定した値は試験用入力の再現確認であり、最終ゲーム内Profile・速度依存表・制動数学を確定したものではない。
+  BrakingCurve、EB、TASC、製品版自動ノッチのJava実装は引き続き未開始である。
 - BrakingCurve、EB、TASC、製品版自動ノッチのJava実装は未開始であり、ユーザーの明示承認と
   Create 6.0.8実ソースによる境界確認が必要である。
 - 最終B1〜B7性能、EB、実測後の速度依存減速度表、安全余裕、制動距離逆算、低速域制御は未確定。
