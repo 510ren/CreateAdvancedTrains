@@ -17,12 +17,17 @@ import dev.edudio.createadvancedtrains.train.query.StopTargetDistance.Unavailabl
  */
 public final class CreateTrainQueryUtil {
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private CreateTrainQueryUtil() {
     }
 
     /**
      * Normalizes only Create's active Navigation destination. It never uses the
      * manual-station fallback whose signed-distance convention differs.
+     * @param train 対象となるCreate列車。
+     * @return 処理によって得られた結果。
      */
     public static NormalizedNavigationStop queryNormalizedNavigationStop(Train train) {
         if (train == null || train.navigation == null) {
@@ -84,6 +89,8 @@ public final class CreateTrainQueryUtil {
     /**
      * Returns the signed distance in blocks to the next stop target without
      * starting navigation or mutating any Create train or graph state.
+     * @param train 対象となるCreate列車。
+     * @return 処理によって得られた結果。
      */
     public static StopTargetDistance queryNextStopDistance(Train train) {
         if (train == null || train.navigation == null) {
@@ -138,6 +145,11 @@ public final class CreateTrainQueryUtil {
         return StopTargetDistance.available(resolvedDistance, Source.MANUAL_CREATE_EQUIVALENT);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力を評価し、{@code resolveManualDirection}が示す解決結果を返します。
+     * @param train 対象となるCreate列車。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     private static Boolean resolveManualDirection(Train train) {
         if (!train.doubleEnded) {
             return true;

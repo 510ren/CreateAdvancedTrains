@@ -11,6 +11,9 @@ public class CreateAdvancedTrains {
 
     public static final String MOD_ID = "create_advanced_trains";
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     public CreateAdvancedTrains() {
         ModLoadingContext.get().registerConfig(
                 ModConfig.Type.SERVER,

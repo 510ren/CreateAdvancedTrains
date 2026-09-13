@@ -16,9 +16,15 @@ public final class ModNetwork {
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals);
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private ModNetwork() {
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の処理内容から推定すると、{@code register}に対応する処理を実行します。
+     */
     public static void register() {
         int messageId = 0;
 

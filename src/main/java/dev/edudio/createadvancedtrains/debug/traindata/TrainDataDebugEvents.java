@@ -16,9 +16,16 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TrainDataDebugEvents {
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private TrainDataDebugEvents() {
     }
 
+    /**
+     * ServerTickイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
@@ -30,6 +37,10 @@ public final class TrainDataDebugEvents {
         }
     }
 
+    /**
+     * LevelUnloadイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
         if (!(event.getLevel() instanceof ServerLevel level)) {
@@ -41,6 +52,10 @@ public final class TrainDataDebugEvents {
         }
     }
 
+    /**
+     * ServerStoppingイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
         TrainDataDebugger.INSTANCE.onServerStopping();

@@ -33,6 +33,9 @@ public final class AtoController {
     private NotchSelection cachedSelection;
     private double cachedEffectiveAcceleration;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     public AtoController() {
         NotchProfile profile = NotchProfile.phase5BProductionProfile();
         speedLimitController = new SpeedLimitController();
@@ -43,19 +46,37 @@ public final class AtoController {
         lastAdvancedServerTick = Long.MIN_VALUE;
     }
 
+    /**
+     * 現在のSpeedLimitControllerを返します。
+     * @return 処理によって得られた結果。
+     */
     public SpeedLimitController getSpeedLimitController() {
         return speedLimitController;
     }
 
+    /**
+     * 現在のOperatingStateを返します。
+     * @return 処理によって得られた結果。
+     */
     public AtoOperatingState getOperatingState() {
         return operatingState;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在保持している{@code current effective acceleration}を返します。
+     * @return 処理または計算によって得られた数値。
+     */
     public double currentEffectiveAcceleration() {
         return notchController.effectiveAcceleration();
     }
 
-    /** Compatibility boundary for pre-Phase-6 target-only callers. */
+    /**
+     * Compatibility boundary for pre-Phase-6 target-only callers.
+     * @param createTargetSpeed Createが設定した目標速度。
+     * @param operationalFlags 仕様書に個別説明がないため、現在の処理内容から推定した、{@code operationalFlags}として使用される入力値。
+     * @param calculationError 仕様書に個別説明がないため、現在の処理内容から推定した、{@code calculationError}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     public AtoTargetSpeedDecision evaluateTargetSpeed(
             double createTargetSpeed,
             TrainOperationalFlags operationalFlags,
@@ -67,6 +88,11 @@ public final class AtoController {
         return AtoTargetSpeedDecision.target(calculateTargetSpeed(createTargetSpeed));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code control}としてまとめられている処理を実行します。
+     * @param input 計算または判定に使用する入力値。
+     * @return 処理によって得られた結果。
+     */
     public AtoControlResult control(Input input) {
         Objects.requireNonNull(input, "input");
         AtoOperatingState observedState = observeOperationalState(
@@ -137,6 +163,7 @@ public final class AtoController {
                 input.currentSpeedBlocksPerTick(),
                 input.baseAccelerationBlocksPerSecondSquared(),
                 cachedEffectiveAcceleration);
+
         return new AtoControlResult(
                 notchControl.finalTargetSpeedBlocksPerTick(),
                 notchControl.accelerationMod(),
@@ -149,6 +176,9 @@ public final class AtoController {
                 Optional.of(notchControl));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code suspendNotchResponse}としてまとめられている処理を実行します。
+     */
     public void suspendNotchResponse() {
         notchController.suspend();
         cachedResolution = null;
@@ -157,6 +187,12 @@ public final class AtoController {
         lastAdvancedServerTick = Long.MIN_VALUE;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在値を{@code observeOperationalState}が示す観測状態へ記録します。
+     * @param operationalFlags 仕様書に個別説明がないため、現在の処理内容から推定した、{@code operationalFlags}として使用される入力値。
+     * @param calculationError 仕様書に個別説明がないため、現在の処理内容から推定した、{@code calculationError}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     public AtoOperatingState observeOperationalState(
             TrainOperationalFlags operationalFlags,
             CatCalculationErrorSnapshot calculationError) {
@@ -172,7 +208,11 @@ public final class AtoController {
         return operatingState;
     }
 
-    /** Preserved for callers that only need the pre-Phase-6 limit calculation. */
+    /**
+     * Preserved for callers that only need the pre-Phase-6 limit calculation.
+     * @param createTargetSpeed Createが設定した目標速度。
+     * @return 処理または計算によって得られた数値。
+     */
     public double calculateTargetSpeed(double createTargetSpeed) {
         if (!AdvancedTrainsConfig.SPEED_LIMIT_ENABLED.get()) {
             return createTargetSpeed;
@@ -180,6 +220,20 @@ public final class AtoController {
         return speedLimitController.apply(createTargetSpeed);
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param serverTick 処理対象となるserver tick。
+     * @param nativeTargetSpeedBlocksPerTick 仕様書に個別説明がないため、{@code nativeTargetSpeedBlocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @param originalAccelerationMod CATが変更する前のCreate加速度倍率。
+     * @param currentSpeedBlocksPerTick 仕様書に個別説明がないため、{@code currentSpeedBlocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @param baseAccelerationBlocksPerSecondSquared Create基本加速度の大きさ。単位はblocks/s^2。
+     * @param brakingCurveLimitBlocksPerSecond 仕様書に個別説明がないため、{@code brakingCurveLimitBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param resolverInput 仕様書に個別説明がないため、現在の処理内容から推定した、{@code resolverInput}として使用される入力値。
+     * @param operationalFlags 仕様書に個別説明がないため、現在の処理内容から推定した、{@code operationalFlags}として使用される入力値。
+     * @param calculationError 仕様書に個別説明がないため、現在の処理内容から推定した、{@code calculationError}として使用される入力値。
+     * @param notchControlEnabled 仕様書に個別説明がないため、現在の処理内容から推定した、{@code notchControlEnabled}として使用される入力値。
+     */
     public record Input(
             long serverTick,
             double nativeTargetSpeedBlocksPerTick,

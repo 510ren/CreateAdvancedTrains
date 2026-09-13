@@ -15,6 +15,10 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ChangeSpeedLimitCommands {
+    /**
+     * RegisterCommandsイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
@@ -28,6 +32,11 @@ public class ChangeSpeedLimitCommands {
                                                         .executes(ChangeSpeedLimitCommands::executeSet))))));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の処理内容から推定すると、{@code executeSet}に対応する処理を実行します。
+     * @param ctx 仕様書に個別説明がないため処理内容から推定した、{@code ctx}に対応する入力値。
+     * @return 処理または計算によって得られた数値。
+     */
     private static int executeSet(CommandContext<CommandSourceStack> ctx) {
         double value = DoubleArgumentType.getDouble(ctx, "value");
 

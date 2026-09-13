@@ -46,9 +46,16 @@ public final class TrainStatusHudServerEvents {
     private static final Map<UUID, Double> PREVIOUS_SPEEDS = new HashMap<>();
     private static final Map<UUID, Double> MEASURED_ACCELERATIONS = new HashMap<>();
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private TrainStatusHudServerEvents() {
     }
 
+    /**
+     * ServerTickイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
@@ -89,6 +96,10 @@ public final class TrainStatusHudServerEvents {
                 new TrainStatusHudPacket(entries));
     }
 
+    /**
+     * LevelUnloadイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
         if (event.getLevel() instanceof ServerLevel level
@@ -97,11 +108,19 @@ public final class TrainStatusHudServerEvents {
         }
     }
 
+    /**
+     * ServerStoppingイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
         clearState();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code updateMeasuredAcceleration}が対象とする保持状態を最新の入力で更新します。
+     * @param train 対象となるCreate列車。
+     */
     private static void updateMeasuredAcceleration(Train train) {
         double currentSpeed = train.speed;
         Double previousSpeed = PREVIOUS_SPEEDS.put(train.id, currentSpeed);
@@ -117,6 +136,11 @@ public final class TrainStatusHudServerEvents {
         MEASURED_ACCELERATIONS.put(train.id, measuredAcceleration);
     }
 
+    /**
+     * 現在状態を読み取り専用スナップショットとして取得します。
+     * @param train 対象となるCreate列車。
+     * @return 処理によって得られた結果。
+     */
     private static TrainStatusHudEntry capture(Train train) {
         TargetSpeeds observedTargets = TrainTargetSpeedTracker.INSTANCE.get(train.id);
         double createTargetSpeed = observedTargets == null
@@ -138,6 +162,12 @@ public final class TrainStatusHudServerEvents {
                 CreateTrainQueryUtil.queryNextStopDistance(train));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在保持している{@code current notch}を返します。
+     * @param train 対象となるCreate列車。
+     * @param phase5AStatus 仕様書に個別説明がないため、{@code phase5AStatus}が示す現在または判定後の状態。
+     * @return 処理によって得られた結果。
+     */
     private static Notch currentNotch(Train train, NotchStatus phase5AStatus) {
         if (phase5AStatus.controlApplied()) {
             return phase5AStatus.commandedNotch();
@@ -153,14 +183,27 @@ public final class TrainStatusHudServerEvents {
                 .orElse(Notch.N);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値を{@code toBlocksPerSecond}が示す単位または表現へ変換します。
+     * @param blocksPerTick 仕様書に個別説明がないため、{@code blocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @return 処理または計算によって得られた数値。
+     */
     private static double toBlocksPerSecond(double blocksPerTick) {
         return blocksPerTick * TICKS_PER_SECOND;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値を{@code toBlocksPerSecondSquared}が示す単位または表現へ変換します。
+     * @param blocksPerTickSquared 仕様書に個別説明がないため、{@code blocksPerTickSquared}が示すCreate境界の加速度。単位はblocks/tick^2。
+     * @return 処理または計算によって得られた数値。
+     */
     private static double toBlocksPerSecondSquared(double blocksPerTickSquared) {
         return blocksPerTickSquared * TICKS_PER_SECOND_SQUARED;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code clearState}としてまとめられている処理を実行します。
+     */
     private static void clearState() {
         PREVIOUS_SPEEDS.clear();
         MEASURED_ACCELERATIONS.clear();

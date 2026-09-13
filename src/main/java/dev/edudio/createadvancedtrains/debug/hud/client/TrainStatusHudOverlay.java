@@ -29,9 +29,16 @@ public final class TrainStatusHudOverlay {
     private static final int TEXT_COLOR = 0xFFFFFF;
     private static final int HEADING_COLOR = 0x80D8FF;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private TrainStatusHudOverlay() {
     }
 
+    /**
+     * RenderGuiイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onRenderGui(RenderGuiEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -76,11 +83,20 @@ public final class TrainStatusHudOverlay {
         }
     }
 
+    /**
+     * ClientLogoutイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
         TrainStatusHudClientState.clear();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値を{@code format}が示す形式へ整えます。
+     * @param entry 仕様書に個別説明がないため、現在の処理内容から推定した、{@code entry}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private static String format(TrainStatusHudEntry entry) {
         return String.format(
                 Locale.ROOT,
@@ -95,12 +111,22 @@ public final class TrainStatusHudOverlay {
                 distance(entry.stopTargetDistance()));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code distance}としてまとめられている処理を実行します。
+     * @param distance 仕様書に個別説明がないため、{@code distance}が示す距離または位置。単位は呼出元の境界定義に従います。
+     * @return 処理によって得られた結果。
+     */
     private static String distance(StopTargetDistance distance) {
         return distance.distanceBlocks().isPresent()
                 ? number(distance.distanceBlocks().getAsDouble())
                 : "--";
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code number}としてまとめられている処理を実行します。
+     * @param value 処理対象の値。
+     * @return 処理によって得られた結果。
+     */
     private static String number(double value) {
         return Double.isFinite(value)
                 ? String.format(Locale.ROOT, "%+.3f", value)

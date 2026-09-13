@@ -20,6 +20,11 @@ public final class NotchProfile {
     private final Map<Notch, LinearTable> multiplierTables;
     private final DeltaFunction deltaFunction;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param multiplierTables 仕様書に個別説明がないため、現在の処理内容から推定した、{@code multiplierTables}として使用される入力値。
+     * @param deltaFunction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code deltaFunction}として使用される入力値。
+     */
     private NotchProfile(
             Map<Notch, LinearTable> multiplierTables,
             DeltaFunction deltaFunction) {
@@ -27,6 +32,10 @@ public final class NotchProfile {
         this.deltaFunction = deltaFunction;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code phase5ATemporaryProfile}としてまとめられている処理を実行します。
+     * @return 処理によって得られた結果。
+     */
     public static NotchProfile phase5ATemporaryProfile() {
         EnumMap<Notch, LinearTable> tables = new EnumMap<>(Notch.class);
         tables.put(Notch.B1, constantMultiplier(1.0));
@@ -42,6 +51,7 @@ public final class NotchProfile {
     /**
      * Returns the approved Phase 5B product profile. The Phase 5A measurement
      * profile deliberately remains a separate factory.
+     * @return 処理によって得られた結果。
      */
     public static NotchProfile phase5BProductionProfile() {
         return b4CenteredProfile(speedBlocksPerSecond -> PHASE_5B_DELTA);
@@ -51,6 +61,8 @@ public final class NotchProfile {
      * Creates the B4-centred product profile using a speed-dependent delta
      * boundary. Phase 5B supplies a constant function; Phase 10 may replace the
      * function without changing callers or the B4 invariant.
+     * @param deltaFunction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code deltaFunction}として使用される入力値。
+     * @return 処理によって得られた結果。
      */
     public static NotchProfile b4CenteredProfile(DeltaFunction deltaFunction) {
         return new NotchProfile(
@@ -60,6 +72,10 @@ public final class NotchProfile {
 
     /**
      * Returns the target acceleration in blocks/s^2. Service braking is negative.
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @param baseAccelerationBlocksPerSecondSquared Create基本加速度の大きさ。単位はblocks/s^2。
+     * @return 処理または計算によって得られた数値。
      */
     public double targetAcceleration(
             Notch notch,
@@ -86,6 +102,10 @@ public final class NotchProfile {
 
     /**
      * Returns the positive service-brake magnitude in blocks/s^2.
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @param baseAccelerationBlocksPerSecondSquared Create基本加速度の大きさ。単位はblocks/s^2。
+     * @return 処理または計算によって得られた数値。
      */
     public double brakingMagnitude(
             Notch notch,
@@ -107,6 +127,12 @@ public final class NotchProfile {
                 * multiplier(notch, currentSpeedBlocksPerSecond);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code multiplier}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @return 処理または計算によって得られた数値。
+     */
     public double multiplier(Notch notch, double currentSpeedBlocksPerSecond) {
         requireFinite(currentSpeedBlocksPerSecond, "currentSpeedBlocksPerSecond");
 
@@ -130,6 +156,8 @@ public final class NotchProfile {
 
     /**
      * Returns delta(u) for a B4-centred product profile.
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @return 処理または計算によって得られた数値。
      */
     public double delta(double currentSpeedBlocksPerSecond) {
         requireFinite(currentSpeedBlocksPerSecond, "currentSpeedBlocksPerSecond");
@@ -142,6 +170,11 @@ public final class NotchProfile {
         return delta;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code configuredDelta}としてまとめられている処理を実行します。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @return 結果が存在する場合はその値、存在しない場合は空のOptional。
+     */
     public OptionalDouble configuredDelta(double currentSpeedBlocksPerSecond) {
         if (deltaFunction == null) {
             return OptionalDouble.empty();
@@ -149,10 +182,19 @@ public final class NotchProfile {
         return OptionalDouble.of(delta(currentSpeedBlocksPerSecond));
     }
 
+    /**
+     * B4Centeredに関する条件を判定します。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     public boolean isB4Centered() {
         return deltaFunction != null;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code constantMultiplier}としてまとめられている処理を実行します。
+     * @param multiplier 仕様書に個別説明がないため、現在の処理内容から推定した、{@code multiplier}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private static LinearTable constantMultiplier(double multiplier) {
         return new LinearTable(
                 new double[] {
@@ -162,12 +204,22 @@ public final class NotchProfile {
                 new double[] { multiplier, multiplier });
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code requireFinite}が示す入力条件を検証します。
+     * @param value 処理対象の値。
+     * @param name 対象を識別する名前。
+     */
     private static void requireFinite(double value, String name) {
         if (!Double.isFinite(value)) {
             throw new IllegalArgumentException(name + " must be finite");
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code serviceBrakeLevel}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理または計算によって得られた数値。
+     */
     private static int serviceBrakeLevel(Notch notch) {
         return switch (notch) {
             case B1 -> 1;
@@ -182,6 +234,11 @@ public final class NotchProfile {
         };
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code powerLevel}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理または計算によって得られた数値。
+     */
     private static int powerLevel(Notch notch) {
         return switch (notch) {
             case P1 -> 1;
@@ -195,6 +252,11 @@ public final class NotchProfile {
 
     @FunctionalInterface
     public interface DeltaFunction {
+        /**
+         * 仕様書に独立した関数契約がないため、現在の実装で{@code valueAt}としてまとめられている処理を実行します。
+         * @param speedBlocksPerSecond 仕様書に個別説明がないため、{@code speedBlocksPerSecond}が示す速度。単位はblocks/s。
+         * @return 処理または計算によって得られた数値。
+         */
         double valueAt(double speedBlocksPerSecond);
     }
 
@@ -206,6 +268,11 @@ public final class NotchProfile {
         private final double[] speeds;
         private final double[] values;
 
+        /**
+         * このクラスのインスタンスを初期化します。
+         * @param speeds 仕様書に個別説明がないため、{@code speeds}が示す速度値。単位は呼出元の境界定義に従います。
+         * @param values 仕様書に個別説明がないため、現在の処理内容から推定した、{@code values}として使用される入力値。
+         */
         private LinearTable(double[] speeds, double[] values) {
             if (speeds.length != values.length || speeds.length < 2) {
                 throw new IllegalArgumentException("A profile table needs at least two matching points");
@@ -223,6 +290,11 @@ public final class NotchProfile {
             }
         }
 
+        /**
+         * 仕様書に独立した関数契約がないため、現在の実装で{@code interpolate}としてまとめられている処理を実行します。
+         * @param speed 仕様書に個別説明がないため、{@code speed}が示す速度値。単位は呼出元の境界定義に従います。
+         * @return 処理または計算によって得られた数値。
+         */
         private double interpolate(double speed) {
             if (speed <= speeds[0]) {
                 return values[0];

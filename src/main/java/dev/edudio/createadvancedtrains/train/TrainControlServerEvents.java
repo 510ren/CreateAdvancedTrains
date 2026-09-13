@@ -20,9 +20,16 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = CreateAdvancedTrains.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TrainControlServerEvents {
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private TrainControlServerEvents() {
     }
 
+    /**
+     * ServerTickStartイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onServerTickStart(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START) {
@@ -43,6 +50,10 @@ public final class TrainControlServerEvents {
         TrainControllerManager.INSTANCE.removeMissing(railwayManager.trains.values());
     }
 
+    /**
+     * LevelUnloadイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
         if (event.getLevel() instanceof ServerLevel level
@@ -51,6 +62,10 @@ public final class TrainControlServerEvents {
         }
     }
 
+    /**
+     * ServerStoppingイベントを処理します。
+     * @param event Forgeから通知されたイベント。
+     */
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
         TrainControllerManager.INSTANCE.clear();

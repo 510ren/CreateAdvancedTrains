@@ -31,6 +31,12 @@ public final class BrakingCurve {
     private final SpeedDependentFactor performanceCorrection;
     private final SpeedDependentFactor safetyMargin;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param profile 仕様書に個別説明がないため、{@code profile}が示すノッチまたは制動特性。
+     * @param performanceCorrection 仕様書に個別説明がないため、現在の処理内容から推定した、{@code performanceCorrection}として使用される入力値。
+     * @param safetyMargin 仕様書に個別説明がないため、現在の処理内容から推定した、{@code safetyMargin}として使用される入力値。
+     */
     public BrakingCurve(
             NotchProfile profile,
             SpeedDependentFactor performanceCorrection,
@@ -40,6 +46,10 @@ public final class BrakingCurve {
         this.safetyMargin = Objects.requireNonNull(safetyMargin, "safetyMargin");
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code phase5B}としてまとめられている処理を実行します。
+     * @return 処理によって得られた結果。
+     */
     public static BrakingCurve phase5B() {
         return new BrakingCurve(
                 NotchProfile.phase5BProductionProfile(),
@@ -47,16 +57,33 @@ public final class BrakingCurve {
                 speedBlocksPerSecond -> PHASE_5B_SAFETY_MARGIN_BLOCKS);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code kappa}としてまとめられている処理を実行します。
+     * @param speedBlocksPerSecond 仕様書に個別説明がないため、{@code speedBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @return 処理または計算によって得られた数値。
+     */
     public double kappa(double speedBlocksPerSecond) {
         requireFinite(speedBlocksPerSecond, "speedBlocksPerSecond");
         return performanceCorrection.valueAt(Math.abs(speedBlocksPerSecond));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code safetyMarginBlocks}としてまとめられている処理を実行します。
+     * @param speedBlocksPerSecond 仕様書に個別説明がないため、{@code speedBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @return 処理または計算によって得られた数値。
+     */
     public double safetyMarginBlocks(double speedBlocksPerSecond) {
         requireFinite(speedBlocksPerSecond, "speedBlocksPerSecond");
         return safetyMargin.valueAt(Math.abs(speedBlocksPerSecond));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値から{@code predictStoppingDistance}が示す予測結果を計算します。
+     * @param initialSpeedBlocksPerSecond 仕様書に個別説明がないため、{@code initialSpeedBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param transitionStartAccelerationBlocksPerSecondSquared 仕様書に個別説明がないため、{@code transitionStartAccelerationBlocksPerSecondSquared}が示す加速度。単位はblocks/s^2。
+     * @param baseAccelerationBlocksPerSecondSquared Create基本加速度の大きさ。単位はblocks/s^2。
+     * @return 処理によって得られた結果。
+     */
     public StoppingDistancePrediction predictStoppingDistance(
             double initialSpeedBlocksPerSecond,
             double transitionStartAccelerationBlocksPerSecondSquared,
@@ -126,6 +153,11 @@ public final class BrakingCurve {
                 maximumTicks);
     }
 
+    /**
+     * 入力値に基づいて計算結果を返します。
+     * @param input 計算または判定に使用する入力値。
+     * @return 処理によって得られた結果。
+     */
     public BrakingCurveResult calculate(BrakingCurveInput input) {
         Objects.requireNonNull(input, "input");
 
@@ -200,6 +232,15 @@ public final class BrakingCurve {
                 predictedOvershoot);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code successfulResult}が示す状態の結果オブジェクトを生成します。
+     * @param status 仕様書に個別説明がないため、{@code status}が示す現在または判定後の状態。
+     * @param maximumPermittedSpeed 仕様書に個別説明がないため、{@code maximumPermittedSpeed}が示す速度値。単位は呼出元の境界定義に従います。
+     * @param predictedDistance 仕様書に個別説明がないため、{@code predictedDistance}が示す距離または位置。単位は呼出元の境界定義に従います。
+     * @param usableDistance 仕様書に個別説明がないため、{@code usableDistance}が示す距離または位置。単位は呼出元の境界定義に従います。
+     * @param predictedOvershoot 仕様書に個別説明がないため、現在の処理内容から推定した、{@code predictedOvershoot}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private BrakingCurveResult successfulResult(
             BrakingCurveStatus status,
             double maximumPermittedSpeed,
@@ -215,6 +256,11 @@ public final class BrakingCurve {
                 BrakingCurveFailure.NONE);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code validateCurveInput}が示す入力条件を検証します。
+     * @param input 計算または判定に使用する入力値。
+     * @return 処理によって得られた結果。
+     */
     private BrakingCurveFailure validateCurveInput(BrakingCurveInput input) {
         if (!Double.isFinite(input.forwardRemainingDistanceBlocks())
                 || !Double.isFinite(input.currentSpeedBlocksPerSecond())
@@ -239,6 +285,13 @@ public final class BrakingCurve {
         return BrakingCurveFailure.NONE;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code validatePredictionInputs}が示す入力条件を検証します。
+     * @param speed 仕様書に個別説明がないため、{@code speed}が示す速度値。単位は呼出元の境界定義に従います。
+     * @param startAcceleration 仕様書に個別説明がないため、{@code startAcceleration}が示す加速度または加速度倍率。単位は呼出元の境界定義に従います。
+     * @param baseAcceleration 仕様書に個別説明がないため、{@code baseAcceleration}が示す加速度または加速度倍率。単位は呼出元の境界定義に従います。
+     * @return 処理によって得られた結果。
+     */
     private BrakingCurveFailure validatePredictionInputs(
             double speed,
             double startAcceleration,
@@ -257,6 +310,12 @@ public final class BrakingCurve {
         return BrakingCurveFailure.NONE;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code sampleProfile}としてまとめられている処理を実行します。
+     * @param speed 仕様書に個別説明がないため、{@code speed}が示す速度値。単位は呼出元の境界定義に従います。
+     * @param baseAcceleration 仕様書に個別説明がないため、{@code baseAcceleration}が示す加速度または加速度倍率。単位は呼出元の境界定義に従います。
+     * @return 処理によって得られた結果。
+     */
     private ProfileSample sampleProfile(double speed, double baseAcceleration) {
         try {
             OptionalDouble configuredDelta = profile.configuredDelta(speed);
@@ -289,6 +348,11 @@ public final class BrakingCurve {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code floorPositiveToFourDecimals}としてまとめられている処理を実行します。
+     * @param value 処理対象の値。
+     * @return 処理または計算によって得られた数値。
+     */
     private static long floorPositiveToFourDecimals(double value) {
         return BigDecimal.valueOf(value)
                 .movePointRight(INTERNAL_SCALE)
@@ -296,6 +360,11 @@ public final class BrakingCurve {
                 .longValueExact();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code roundInternal}としてまとめられている処理を実行します。
+     * @param value 処理対象の値。
+     * @return 処理または計算によって得られた数値。
+     */
     private static double roundInternal(double value) {
         if (!Double.isFinite(value)) {
             return value;
@@ -308,14 +377,29 @@ public final class BrakingCurve {
         return Math.copySign(roundedMagnitude / SPEED_SCALE, value);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code requireFinite}が示す入力条件を検証します。
+     * @param value 処理対象の値。
+     * @param name 対象を識別する名前。
+     */
     private static void requireFinite(double value, String name) {
         if (!Double.isFinite(value)) {
             throw new IllegalArgumentException(name + " must be finite");
         }
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param valid 仕様書に個別説明がないため、{@code valid}が示す対象識別子。
+     * @param b7Magnitude 仕様書に個別説明がないため、現在の処理内容から推定した、{@code b7Magnitude}として使用される入力値。
+     * @param kappa 仕様書に個別説明がないため、現在の処理内容から推定した、{@code kappa}として使用される入力値。
+     */
     private record ProfileSample(boolean valid, double b7Magnitude, double kappa) {
 
+        /**
+         * 仕様書に独立した関数契約がないため、{@code invalid}が示す状態の結果オブジェクトを生成します。
+         * @return 処理によって得られた結果。
+         */
         private static ProfileSample invalid() {
             return new ProfileSample(false, 0.0, 0.0);
         }

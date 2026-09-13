@@ -16,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(Train.class)
 public abstract class TrainMixin {
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code createAdvancedTrains$applyTrainControl}が示す新しい値または資源を生成します。
+     * @param accelerationMod Createへ渡される加速度倍率。
+     * @return 処理または計算によって得られた数値。
+     */
     @ModifyVariable(method = "approachTargetSpeed", at = @At("HEAD"), argsOnly = true, ordinal = 0, remap = false)
     private float createAdvancedTrains$applyTrainControl(float accelerationMod) {
         Train train = (Train) (Object) this;

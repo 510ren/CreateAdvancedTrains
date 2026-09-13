@@ -39,6 +39,13 @@ final class NotchTestLogWriter {
     private boolean closed;
     private int samplesSinceFlush;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param trainId 対象列車を識別するUUID。
+     * @param testSessionId 仕様書に個別説明がないため、{@code testSessionId}が示す対象識別子。
+     * @param path 処理対象のファイルパス。
+     * @param writer 出力先のログライター。
+     */
     private NotchTestLogWriter(
             UUID trainId,
             UUID testSessionId,
@@ -50,6 +57,16 @@ final class NotchTestLogWriter {
         this.writer = writer;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code open}としてまとめられている処理を実行します。
+     * @param outputDirectory ログファイルを作成する出力ディレクトリ。
+     * @param trainId 対象列車を識別するUUID。
+     * @param testSessionId 仕様書に個別説明がないため、{@code testSessionId}が示す対象識別子。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+     * @param holdStopTargetUntilStop 仕様書に個別説明がないため、{@code holdStopTargetUntilStop}が示す条件の有効・無効を表す値。
+     * @return 処理によって得られた結果。
+     */
     static NotchTestLogWriter open(
             Path outputDirectory,
             UUID trainId,
@@ -77,10 +94,19 @@ final class NotchTestLogWriter {
         return logWriter;
     }
 
+    /**
+     * 現在のPathを返します。
+     * @return 処理によって得られた結果。
+     */
     Path getPath() {
         return path;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSample}が示すデータを出力先へ書き込みます。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     boolean writeSample(NotchTestSnapshot snapshot) {
         if (closed) {
             return false;
@@ -213,6 +239,11 @@ final class NotchTestLogWriter {
         }
     }
 
+    /**
+     * 保持している出力資源を閉じます。
+     * @param reason 処理を行う理由を表す文字列。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     boolean close(String reason) {
         if (closed) {
             return true;
@@ -238,6 +269,12 @@ final class NotchTestLogWriter {
         return succeeded;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSessionStart}が示すデータを出力先へ書き込みます。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+     * @param holdStopTargetUntilStop 仕様書に個別説明がないため、{@code holdStopTargetUntilStop}が示す条件の有効・無効を表す値。
+     */
     private void writeSessionStart(
             Instant sessionStartedAtUtc,
             Notch fixedNotch,
@@ -277,6 +314,11 @@ final class NotchTestLogWriter {
         writer.flush();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code baseRecord}としてまとめられている処理を実行します。
+     * @param recordType 仕様書に個別説明がないため、現在の処理内容から推定した、{@code recordType}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private JsonObject baseRecord(String recordType) {
         JsonObject record = new JsonObject();
         record.addProperty("schemaVersion", SCHEMA_VERSION);
@@ -286,11 +328,19 @@ final class NotchTestLogWriter {
         return record;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeLine}が示すデータを出力先へ書き込みます。
+     * @param record 仕様書に個別説明がないため、現在の処理内容から推定した、{@code record}として使用される入力値。
+     */
     private void writeLine(JsonObject record) throws IOException {
         writer.write(GSON.toJson(record));
         writer.newLine();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code closeAfterWriteFailure}が対象とする資源を終了処理して閉じます。
+     * @param exception 記録または処理対象の例外。
+     */
     private void closeAfterWriteFailure(Exception exception) {
         try {
             JsonObject record = baseRecord("error");
@@ -311,6 +361,13 @@ final class NotchTestLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code createUniquePath}が示す新しい値または資源を生成します。
+     * @param outputDirectory ログファイルを作成する出力ディレクトリ。
+     * @param trainId 対象列車を識別するUUID。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private static Path createUniquePath(
             Path outputDirectory,
             UUID trainId,
@@ -329,6 +386,12 @@ final class NotchTestLogWriter {
         return candidate;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableNumber}としてまとめられている処理を実行します。
+     * @param record 仕様書に個別説明がないため、現在の処理内容から推定した、{@code record}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableNumber(JsonObject record, String name, Number value) {
         if (value == null) {
             record.add(name, JsonNull.INSTANCE);
@@ -337,6 +400,12 @@ final class NotchTestLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableString}としてまとめられている処理を実行します。
+     * @param record 仕様書に個別説明がないため、現在の処理内容から推定した、{@code record}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableString(JsonObject record, String name, String value) {
         if (value == null) {
             record.add(name, JsonNull.INSTANCE);
@@ -345,6 +414,11 @@ final class NotchTestLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code conciseMessage}としてまとめられている処理を実行します。
+     * @param exception 記録または処理対象の例外。
+     * @return 処理によって得られた結果。
+     */
     private static String conciseMessage(Exception exception) {
         String message = exception.getMessage();
         return message == null || message.isBlank()

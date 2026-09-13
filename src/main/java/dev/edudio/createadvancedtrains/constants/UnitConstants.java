@@ -9,6 +9,9 @@ public final class UnitConstants {
     public static final double TICKS_PER_SECOND_SQUARED =
             TICKS_PER_SECOND * TICKS_PER_SECOND;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private UnitConstants() {
     }
 }

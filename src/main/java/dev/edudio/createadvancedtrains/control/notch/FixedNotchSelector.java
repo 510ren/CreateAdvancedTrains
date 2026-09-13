@@ -9,6 +9,10 @@ public final class FixedNotchSelector {
 
     private final Notch fixedNotch;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+     */
     public FixedNotchSelector(Notch fixedNotch) {
         this.fixedNotch = Objects.requireNonNull(fixedNotch, "fixedNotch");
         if (!fixedNotch.isServiceBrake()) {
@@ -16,6 +20,10 @@ public final class FixedNotchSelector {
         }
     }
 
+    /**
+     * 現在状態と予測値から使用するノッチを選択します。
+     * @return 処理によって得られた結果。
+     */
     public Notch select() {
         return fixedNotch;
     }

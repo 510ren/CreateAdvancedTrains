@@ -1,5 +1,6 @@
 package dev.edudio.createadvancedtrains.control.braking;
 
+/** BrakingCurve計算が成立しなかった理由を分類します。 */
 public enum BrakingCurveFailure {
     NONE,
     NON_FINITE_INPUT,

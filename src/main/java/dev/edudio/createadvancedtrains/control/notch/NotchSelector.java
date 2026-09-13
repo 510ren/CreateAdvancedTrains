@@ -20,10 +20,19 @@ public final class NotchSelector {
 
     private final NotchProfile profile;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param profile 仕様書に個別説明がないため、{@code profile}が示すノッチまたは制動特性。
+     */
     public NotchSelector(NotchProfile profile) {
         this.profile = Objects.requireNonNull(profile, "profile");
     }
 
+    /**
+     * 現在状態と予測値から使用するノッチを選択します。
+     * @param input 計算または判定に使用する入力値。
+     * @return 処理によって得られた結果。
+     */
     public NotchSelection select(Input input) {
         validate(input);
 
@@ -35,8 +44,7 @@ public final class NotchSelector {
                 : safeSpeed;
         boolean brakingDemand = input.currentSpeedBlocksPerSecond() > upper
                 || input.brakingCurveLimitBlocksPerSecond().isPresent()
-                        && input.currentSpeedBlocksPerSecond()
-                                > input.brakingCurveLimitBlocksPerSecond().getAsDouble();
+                        && input.currentSpeedBlocksPerSecond() > input.brakingCurveLimitBlocksPerSecond().getAsDouble();
 
         Optional<Notch> current = input.currentRequestedNotch();
         if (current.isPresent() && current.get().isServiceBrake()) {
@@ -86,8 +94,16 @@ public final class NotchSelector {
         return selection(input, Notch.N, safeSpeed);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力条件から{@code selectFromBrake}が示す候補を選択します。
+     * @param input 計算または判定に使用する入力値。
+     * @param current 仕様書に個別説明がないため、現在の処理内容から推定した、{@code current}として使用される入力値。
+     * @param brakeLimit 仕様書に個別説明がないため、{@code brakeLimit}が示す上限値。
+     * @return 処理によって得られた結果。
+     */
     private NotchSelection selectFromBrake(Input input, Notch current, double brakeLimit) {
         double currentPrediction = predict(input, current);
+
         if (currentPrediction > brakeLimit + HYSTERESIS_BLOCKS_PER_SECOND) {
             if (current == Notch.B7) {
                 return new NotchSelection(Notch.B7, true, currentPrediction, brakeLimit);
@@ -104,10 +120,23 @@ public final class NotchSelector {
         return new NotchSelection(current, false, currentPrediction, brakeLimit);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力条件から{@code selection}が示す候補を選択します。
+     * @param input 計算または判定に使用する入力値。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @param limit 仕様書に個別説明がないため、{@code limit}が示す上限値。
+     * @return 処理によって得られた結果。
+     */
     private NotchSelection selection(Input input, Notch notch, double limit) {
         return new NotchSelection(notch, false, predict(input, notch), limit);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値から{@code predict}が示す予測結果を計算します。
+     * @param input 計算または判定に使用する入力値。
+     * @param candidate 仕様書に個別説明がないため、{@code candidate}が示す条件の有効・無効を表す値。
+     * @return 処理または計算によって得られた数値。
+     */
     private double predict(Input input, Notch candidate) {
         double target = profile.targetAcceleration(
                 candidate,
@@ -124,6 +153,11 @@ public final class NotchSelector {
         return speed;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code strongerPower}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理によって得られた結果。
+     */
     private static Notch strongerPower(Notch notch) {
         return switch (notch) {
             case P1 -> Notch.P2;
@@ -134,6 +168,11 @@ public final class NotchSelector {
         };
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code weakerPowerOrNeutral}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理によって得られた結果。
+     */
     private static Notch weakerPowerOrNeutral(Notch notch) {
         return switch (notch) {
             case P5 -> Notch.P4;
@@ -145,6 +184,11 @@ public final class NotchSelector {
         };
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code strongerBrake}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理によって得られた結果。
+     */
     private static Notch strongerBrake(Notch notch) {
         return switch (notch) {
             case B4 -> Notch.B5;
@@ -154,6 +198,11 @@ public final class NotchSelector {
         };
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code weakerBrakeOrNeutral}としてまとめられている処理を実行します。
+     * @param notch 仕様書に個別説明がないため、{@code notch}が示すノッチ状態またはノッチ候補。
+     * @return 処理によって得られた結果。
+     */
     private static Notch weakerBrakeOrNeutral(Notch notch) {
         return switch (notch) {
             case B7 -> Notch.B6;
@@ -164,6 +213,10 @@ public final class NotchSelector {
         };
     }
 
+    /**
+     * 入力値が処理可能な条件を満たすか検証します。
+     * @param input 計算または判定に使用する入力値。
+     */
     private static void validate(Input input) {
         Objects.requireNonNull(input, "input");
         Objects.requireNonNull(input.currentRequestedNotch(), "currentRequestedNotch");
@@ -183,12 +236,26 @@ public final class NotchSelector {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code requireFiniteNonNegative}が示す入力条件を検証します。
+     * @param value 処理対象の値。
+     * @param name 対象を識別する名前。
+     */
     private static void requireFiniteNonNegative(double value, String name) {
         if (!Double.isFinite(value) || value < 0.0) {
             throw new IllegalArgumentException(name + " must be finite and non-negative");
         }
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param currentSpeedBlocksPerSecond 現在速度の大きさ。単位はblocks/s。
+     * @param resolvedSpeedLimitBlocksPerSecond 仕様書に個別説明がないため、{@code resolvedSpeedLimitBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param brakingCurveLimitBlocksPerSecond 仕様書に個別説明がないため、{@code brakingCurveLimitBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param currentRequestedNotch 仕様書に個別説明がないため、{@code currentRequestedNotch}が示すノッチ状態またはノッチ候補。
+     * @param currentEffectiveAccelerationBlocksPerSecondSquared 仕様書に個別説明がないため、{@code currentEffectiveAccelerationBlocksPerSecondSquared}が示す加速度。単位はblocks/s^2。
+     * @param baseAccelerationBlocksPerSecondSquared Create基本加速度の大きさ。単位はblocks/s^2。
+     */
     public record Input(
             double currentSpeedBlocksPerSecond,
             double resolvedSpeedLimitBlocksPerSecond,

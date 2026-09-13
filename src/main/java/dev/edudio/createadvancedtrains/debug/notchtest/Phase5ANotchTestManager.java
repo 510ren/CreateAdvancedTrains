@@ -57,9 +57,16 @@ public final class Phase5ANotchTestManager {
     private String lastRejectedConfiguration;
     private String lastIgnoredConfiguration;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private Phase5ANotchTestManager() {
     }
 
+    /**
+     * ServerTickStartイベントを処理します。
+     * @param server 処理対象のMinecraftサーバー。
+     */
     public void onServerTickStart(MinecraftServer server) {
         if (!AdvancedTrainsConfig.PHASE5A_NOTCH_TEST_ENABLED.get()) {
             lastRejectedConfiguration = null;
@@ -108,6 +115,10 @@ public final class Phase5ANotchTestManager {
         }
     }
 
+    /**
+     * ServerTickEndイベントを処理します。
+     * @param server 処理対象のMinecraftサーバー。
+     */
     public void onServerTickEnd(MinecraftServer server) {
         if (!sessionActive) {
             return;
@@ -140,6 +151,9 @@ public final class Phase5ANotchTestManager {
     /**
      * Applies the optional Phase 5A stop-target fixture at the existing Create
      * boundary.
+     * @param train 対象となるCreate列車。
+     * @param nativeTargetSpeedBlocksPerTick 仕様書に個別説明がないため、{@code nativeTargetSpeedBlocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @return 処理によって得られた結果。
      */
     public StopTargetHoldResult applyStopTargetHold(
             Train train,
@@ -179,6 +193,12 @@ public final class Phase5ANotchTestManager {
     /**
      * Returns the acceleration modifier that Create should use for this call.
      * No Train field is assigned here.
+     * @param train 対象となるCreate列車。
+     * @param preCatTargetSpeedBlocksPerTick 仕様書に個別説明がないため、{@code preCatTargetSpeedBlocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @param finalTargetSpeedBlocksPerTick 仕様書に個別説明がないため、{@code finalTargetSpeedBlocksPerTick}が示すCreate境界の速度。単位はblocks/tick。
+     * @param originalAccelerationMod CATが変更する前のCreate加速度倍率。
+     * @param stopTargetHold 仕様書に個別説明がないため、現在の処理内容から推定した、{@code stopTargetHold}として使用される入力値。
+     * @return 処理または計算によって得られた数値。
      */
     public float modifyAccelerationMod(
             Train train,
@@ -250,12 +270,18 @@ public final class Phase5ANotchTestManager {
         return modifiedAcceleration;
     }
 
+    /**
+     * OverworldUnloadイベントを処理します。
+     */
     public void onOverworldUnload() {
         if (sessionActive) {
             endSession("level_unload");
         }
     }
 
+    /**
+     * ServerStoppingイベントを処理します。
+     */
     public void onServerStopping() {
         if (sessionActive) {
             endSession("server_stopping");
@@ -264,6 +290,8 @@ public final class Phase5ANotchTestManager {
 
     /**
      * Returns a read-only notch view for diagnostics without creating test state.
+     * @param trainId 対象列車を識別するUUID。
+     * @return 処理によって得られた結果。
      */
     public NotchStatus getNotchStatus(UUID trainId) {
         if (!sessionActive || selector == null) {
@@ -282,6 +310,11 @@ public final class Phase5ANotchTestManager {
                 state.controlAppliedThisTick());
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code startSession}が示す処理区間を開始または準備します。
+     * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+     * @param holdStopTargetUntilStop 仕様書に個別説明がないため、{@code holdStopTargetUntilStop}が示す条件の有効・無効を表す値。
+     */
     private void startSession(Notch fixedNotch, boolean holdStopTargetUntilStop) {
         sessionActive = true;
         testSessionId = UUID.randomUUID();
@@ -303,6 +336,10 @@ public final class Phase5ANotchTestManager {
                         + ", fixedNotch=" + fixedNotch + ", holdStopTargetUntilStop=" + holdStopTargetUntilStop + "）");
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code endSession}が示す処理区間を終了します。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private void endSession(String reason) {
         for (NotchTestLogWriter writer : writers.values()) {
             if (!writer.close(reason)) {
@@ -329,6 +366,10 @@ public final class Phase5ANotchTestManager {
         lastIgnoredConfiguration = null;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSample}が示すデータを出力先へ書き込みます。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     */
     private void writeSample(NotchTestSnapshot snapshot) {
         UUID trainId = snapshot.trainId();
         if (failedTrainIds.contains(trainId)) {
@@ -366,6 +407,10 @@ public final class Phase5ANotchTestManager {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code removeMissingTrains}が示す対象を保持状態から削除します。
+     * @param currentTrainIds 仕様書に個別説明がないため、{@code currentTrainIds}が示す対象識別子。
+     */
     private void removeMissingTrains(Set<UUID> currentTrainIds) {
         trainStates.keySet().removeIf(trainId -> !currentTrainIds.contains(trainId));
         stopTargetHolds.keySet().removeIf(trainId -> !currentTrainIds.contains(trainId));
@@ -387,6 +432,11 @@ public final class Phase5ANotchTestManager {
         failedTrainIds.removeIf(trainId -> !currentTrainIds.contains(trainId));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code updateStopTargetHoldReleaseAtTickEnd}が対象とする保持状態を最新の入力で更新します。
+     * @param train 対象となるCreate列車。
+     * @param serverTick 処理対象となるserver tick。
+     */
     private void updateStopTargetHoldReleaseAtTickEnd(Train train, long serverTick) {
         StopTargetHoldLatch latch = stopTargetHolds.get(train.id);
         if (latch == null) {
@@ -403,6 +453,10 @@ public final class Phase5ANotchTestManager {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code readConfiguration}が示す値を現在状態から読み取ります。
+     * @return 処理によって得られた結果。
+     */
     private Configuration readConfiguration() {
         String mode = normalize(AdvancedTrainsConfig.PHASE5A_NOTCH_TEST_SELECTION_MODE.get());
         if (!FIXED_FOR_TEST.equals(mode)) {
@@ -421,6 +475,10 @@ public final class Phase5ANotchTestManager {
                 AdvancedTrainsConfig.PHASE5A_NOTCH_TEST_HOLD_STOP_TARGET_UNTIL_STOP.get());
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code warnRejectedConfiguration}としてまとめられている処理を実行します。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private void warnRejectedConfiguration(String reason) {
         if (reason.equals(lastRejectedConfiguration)) {
             return;
@@ -432,6 +490,10 @@ public final class Phase5ANotchTestManager {
                 reason);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code warnIgnoredConfiguration}としてまとめられている処理を実行します。
+     * @param configuredNotch 仕様書に個別説明がないため、{@code configuredNotch}が示すノッチ状態またはノッチ候補。
+     */
     private void warnIgnoredConfiguration(Notch configuredNotch) {
         String message = "fixed_notch=" + configuredNotch;
         if (message.equals(lastIgnoredConfiguration)) {
@@ -446,6 +508,12 @@ public final class Phase5ANotchTestManager {
                 message);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code brakingDemandFailure}としてまとめられている処理を実行します。
+     * @param speed 仕様書に個別説明がないため、{@code speed}が示す速度値。単位は呼出元の境界定義に従います。
+     * @param targetSpeed 仕様書に個別説明がないため、{@code targetSpeed}が示す速度値。単位は呼出元の境界定義に従います。
+     * @return 処理によって得られた結果。
+     */
     private static String brakingDemandFailure(double speed, double targetSpeed) {
         if (!Double.isFinite(speed) || !Double.isFinite(targetSpeed)) {
             return "speed_or_target_non_finite";
@@ -465,10 +533,19 @@ public final class Phase5ANotchTestManager {
         return null;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力値を{@code normalize}が示す形式へ整えます。
+     * @param value 処理対象の値。
+     * @return 処理によって得られた結果。
+     */
     private static String normalize(String value) {
         return value == null ? "null" : value.trim().toUpperCase(Locale.ROOT);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code outputDirectory}としてまとめられている処理を実行します。
+     * @return 処理によって得られた結果。
+     */
     private static Path outputDirectory() {
         return FMLPaths.GAMEDIR.get()
                 .resolve("logs")
@@ -476,26 +553,54 @@ public final class Phase5ANotchTestManager {
                 .resolve("notch_test");
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param valid 仕様書に個別説明がないため、{@code valid}が示す対象識別子。
+     * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+     * @param holdStopTargetUntilStop 仕様書に個別説明がないため、{@code holdStopTargetUntilStop}が示す条件の有効・無効を表す値。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private record Configuration(
             boolean valid,
             Notch fixedNotch,
             boolean holdStopTargetUntilStop,
             String reason) {
 
+        /**
+         * 仕様書に独立した関数契約がないため、{@code valid}が示す状態の結果オブジェクトを生成します。
+         * @param fixedNotch 仕様書に個別説明がないため、{@code fixedNotch}が示すノッチ状態またはノッチ候補。
+         * @param holdStopTargetUntilStop 仕様書に個別説明がないため、{@code holdStopTargetUntilStop}が示す条件の有効・無効を表す値。
+         * @return 処理によって得られた結果。
+         */
         private static Configuration valid(Notch fixedNotch, boolean holdStopTargetUntilStop) {
             return new Configuration(true, fixedNotch, holdStopTargetUntilStop, null);
         }
 
+        /**
+         * 仕様書に独立した関数契約がないため、{@code invalid}が示す状態の結果オブジェクトを生成します。
+         * @param reason 処理を行う理由を表す文字列。
+         * @return 処理によって得られた結果。
+         */
         private static Configuration invalid(String reason) {
             return new Configuration(false, null, false, reason);
         }
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param commandedNotch 仕様書に個別説明がないため、{@code commandedNotch}が示すノッチ状態またはノッチ候補。
+     * @param appliedNotch 仕様書に個別説明がないため、{@code appliedNotch}が示すノッチ状態またはノッチ候補。
+     * @param controlApplied 仕様書に個別説明がないため、{@code controlApplied}が示す条件の有効・無効を表す値。
+     */
     public record NotchStatus(
             Notch commandedNotch,
             Notch appliedNotch,
             boolean controlApplied) {
 
+        /**
+         * 仕様書に独立した関数契約がないため、{@code inactive}が示す状態の結果オブジェクトを生成します。
+         * @return 処理によって得られた結果。
+         */
         private static NotchStatus inactive() {
             return new NotchStatus(Notch.N, Notch.N, false);
         }

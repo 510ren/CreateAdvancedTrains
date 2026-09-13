@@ -22,10 +22,19 @@ public final class TrainStatusHudPacket {
 
     private final List<TrainStatusHudEntry> entries;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param entries 仕様書に個別説明がないため、現在の処理内容から推定した、{@code entries}として使用される入力値。
+     */
     public TrainStatusHudPacket(List<TrainStatusHudEntry> entries) {
         this.entries = List.copyOf(entries);
     }
 
+    /**
+     * 値をネットワーク送信用にエンコードします。
+     * @param packet 仕様書に個別説明がないため、現在の処理内容から推定した、{@code packet}として使用される入力値。
+     * @param buffer シリアライズまたはデシリアライズに使用するネットワークバッファ。
+     */
     public static void encode(TrainStatusHudPacket packet, FriendlyByteBuf buffer) {
         buffer.writeVarInt(packet.entries.size());
         for (TrainStatusHudEntry entry : packet.entries) {
@@ -46,6 +55,11 @@ public final class TrainStatusHudPacket {
         }
     }
 
+    /**
+     * ネットワーク値をデコードします。
+     * @param buffer シリアライズまたはデシリアライズに使用するネットワークバッファ。
+     * @return 処理によって得られた結果。
+     */
     public static TrainStatusHudPacket decode(FriendlyByteBuf buffer) {
         int entryCount = buffer.readVarInt();
         if (entryCount < 0 || entryCount > MAX_TRAINS_PER_PACKET) {
@@ -67,6 +81,11 @@ public final class TrainStatusHudPacket {
         return new TrainStatusHudPacket(entries);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、入力表現を解析し、{@code decodeStopTargetDistance}が示す値へ変換します。
+     * @param buffer シリアライズまたはデシリアライズに使用するネットワークバッファ。
+     * @return 処理によって得られた結果。
+     */
     private static StopTargetDistance decodeStopTargetDistance(FriendlyByteBuf buffer) {
         boolean available = buffer.readBoolean();
         double distanceBlocks = available ? buffer.readDouble() : Double.NaN;
@@ -77,6 +96,11 @@ public final class TrainStatusHudPacket {
                 : StopTargetDistance.unavailable(reason);
     }
 
+    /**
+     * 受信した処理要求を適用します。
+     * @param packet 仕様書に個別説明がないため、現在の処理内容から推定した、{@code packet}として使用される入力値。
+     * @param contextSupplier 受信処理コンテキストを供給する関数。
+     */
     public static void handle(
             TrainStatusHudPacket packet,
             Supplier<NetworkEvent.Context> contextSupplier) {

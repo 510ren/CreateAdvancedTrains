@@ -1,5 +1,6 @@
 package dev.edudio.createadvancedtrains.train.error;
 
+/** CAT制御を停止させる計算・入力・Navigationエラーを分類します。 */
 public enum CatCalculationErrorCode {
     NON_FINITE_INPUT,
     UNKNOWN_UNITS,

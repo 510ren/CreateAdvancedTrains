@@ -125,6 +125,9 @@ public final class AdvancedTrainsConfig {
         SPEC = builder.build();
     }
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private AdvancedTrainsConfig() {
     }
 }

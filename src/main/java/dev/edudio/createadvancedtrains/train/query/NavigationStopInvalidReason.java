@@ -1,5 +1,6 @@
 package dev.edudio.createadvancedtrains.train.query;
 
+/** Navigation停止対象を正規化できなかった理由を分類します。 */
 public enum NavigationStopInvalidReason {
     NONE,
     NAVIGATION_UNAVAILABLE,

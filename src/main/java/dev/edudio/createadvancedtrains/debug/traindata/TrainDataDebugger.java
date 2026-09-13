@@ -40,9 +40,16 @@ public final class TrainDataDebugger {
     private Instant sessionStartedAtUtc;
     private String sessionDimension;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     */
     private TrainDataDebugger() {
     }
 
+    /**
+     * ServerTickStartイベントを処理します。
+     * @param server 処理対象のMinecraftサーバー。
+     */
     public void onServerTickStart(MinecraftServer server) {
         if (!AdvancedTrainsConfig.TRAIN_DATA_DEBUG_ENABLED.get()) {
             if (sessionActive) {
@@ -53,6 +60,10 @@ public final class TrainDataDebugger {
         ensureSession(server);
     }
 
+    /**
+     * ServerTickイベントを処理します。
+     * @param server 処理対象のMinecraftサーバー。
+     */
     public void onServerTick(MinecraftServer server) {
         if (!AdvancedTrainsConfig.TRAIN_DATA_DEBUG_ENABLED.get()) {
             if (sessionActive) {
@@ -90,18 +101,34 @@ public final class TrainDataDebugger {
         }
     }
 
+    /**
+     * OverworldUnloadイベントを処理します。
+     */
     public void onOverworldUnload() {
         if (sessionActive) {
             endSession("level_unload");
         }
     }
 
+    /**
+     * ServerStoppingイベントを処理します。
+     */
     public void onServerStopping() {
         if (sessionActive) {
             endSession("server_stopping");
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在値を{@code recordApproachCall}が示す観測状態へ記録します。
+     * @param train 対象となるCreate列車。
+     * @param controller 仕様書に個別説明がないため、{@code controller}が示す条件の有効・無効を表す値。
+     * @param serverTick 処理対象となるserver tick。
+     * @param nativeTargetBlocksPerTick Create由来の目標速度。単位はblocks/tick。
+     * @param finalTargetBlocksPerTick CAT処理後の最終目標速度。単位はblocks/tick。
+     * @param originalAccelerationMod CATが変更する前のCreate加速度倍率。
+     * @param returnedAccelerationMod 最終的にCreateへ返す加速度倍率。
+     */
     public void recordApproachCall(
             Train train,
             TrainController controller,
@@ -154,6 +181,12 @@ public final class TrainDataDebugger {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSample}が示すデータを出力先へ書き込みます。
+     * @param train 対象となるCreate列車。
+     * @param serverTick 処理対象となるserver tick。
+     * @param levelGameTime 仕様書に個別説明がないため、現在の処理内容から推定した、{@code levelGameTime}として使用される入力値。
+     */
     private void writeSample(
             Train train,
             long serverTick,
@@ -191,6 +224,10 @@ public final class TrainDataDebugger {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code closeMissingTrainWriters}が対象とする資源を終了処理して閉じます。
+     * @param currentTrainIds 仕様書に個別説明がないため、{@code currentTrainIds}が示す対象識別子。
+     */
     private void closeMissingTrainWriters(Set<UUID> currentTrainIds) {
         Iterator<Map.Entry<UUID, TrainDataLogWriter>> iterator = writers.entrySet().iterator();
 
@@ -204,6 +241,10 @@ public final class TrainDataDebugger {
         approachCallCounters.keySet().removeIf(trainId -> !currentTrainIds.contains(trainId));
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code ensureSession}が示す処理区間を開始または準備します。
+     * @param server 処理対象のMinecraftサーバー。
+     */
     private void ensureSession(MinecraftServer server) {
         if (sessionActive) {
             return;
@@ -215,6 +256,11 @@ public final class TrainDataDebugger {
         approachCallCounters.clear();
     }
 
+    /**
+     * 現在のOrOpenWriterを返します。
+     * @param trainId 対象列車を識別するUUID。
+     * @return 処理によって得られた結果。
+     */
     private TrainDataLogWriter getOrOpenWriter(UUID trainId) {
         TrainDataLogWriter writer = writers.get(trainId);
         if (writer != null) {
@@ -235,6 +281,12 @@ public final class TrainDataDebugger {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code failTrainLogging}としてまとめられている処理を実行します。
+     * @param trainId 対象列車を識別するUUID。
+     * @param action 仕様書に個別説明がないため、現在の処理内容から推定した、{@code action}として使用される入力値。
+     * @param exception 記録または処理対象の例外。
+     */
     private void failTrainLogging(UUID trainId, String action, Exception exception) {
         failedTrainIds.add(trainId);
         LOGGER.warn(
@@ -244,6 +296,10 @@ public final class TrainDataDebugger {
                 exception);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code endSession}が示す処理区間を終了します。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private void endSession(String reason) {
         closeAllWriters(reason);
         failedTrainIds.clear();
@@ -253,6 +309,10 @@ public final class TrainDataDebugger {
         sessionActive = false;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code closeAllWriters}が対象とする資源を終了処理して閉じます。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private void closeAllWriters(String reason) {
         for (TrainDataLogWriter writer : writers.values()) {
             closeWriter(writer, reason);
@@ -260,6 +320,11 @@ public final class TrainDataDebugger {
         writers.clear();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code closeWriter}が対象とする資源を終了処理して閉じます。
+     * @param writer 出力先のログライター。
+     * @param reason 処理を行う理由を表す文字列。
+     */
     private void closeWriter(
             TrainDataLogWriter writer,
             String reason) {
@@ -271,6 +336,10 @@ public final class TrainDataDebugger {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code outputDirectory}としてまとめられている処理を実行します。
+     * @return 処理によって得られた結果。
+     */
     private static Path outputDirectory() {
         return FMLPaths.GAMEDIR.get()
                 .resolve("logs")
@@ -278,6 +347,11 @@ public final class TrainDataDebugger {
                 .resolve("train_data");
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * @param serverTick 処理対象となるserver tick。
+     * @param callCount 仕様書に個別説明がないため、現在の処理内容から推定した、{@code callCount}として使用される入力値。
+     */
     private record CallCounter(long serverTick, int callCount) {
     }
 }

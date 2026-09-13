@@ -47,6 +47,12 @@ final class TrainDataLogWriter {
     private int recordsSinceFlush;
     private boolean closed;
 
+    /**
+     * このクラスのインスタンスを初期化します。
+     * @param trainId 対象列車を識別するUUID。
+     * @param path 処理対象のファイルパス。
+     * @param writer 出力先のログライター。
+     */
     private TrainDataLogWriter(
             UUID trainId,
             Path path,
@@ -56,6 +62,15 @@ final class TrainDataLogWriter {
         this.writer = writer;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code open}としてまとめられている処理を実行します。
+     * @param outputDirectory ログファイルを作成する出力ディレクトリ。
+     * @param trainId 対象列車を識別するUUID。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @param dimension 仕様書に個別説明がないため、現在の処理内容から推定した、{@code dimension}として使用される入力値。
+     * @param sampleIntervalTicks 仕様書に個別説明がないため、{@code sampleIntervalTicks}が示すtick数またはserver tick値。
+     * @return 処理によって得られた結果。
+     */
     public static TrainDataLogWriter open(
             Path outputDirectory,
             UUID trainId,
@@ -85,10 +100,19 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 現在のPathを返します。
+     * @return 処理によって得られた結果。
+     */
     public Path getPath() {
         return path;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSample}が示すデータを出力先へ書き込みます。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     public boolean writeSample(TrainDataSnapshot snapshot) {
         if (closed) {
             return false;
@@ -135,6 +159,11 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeApproachCall}が示すデータを出力先へ書き込みます。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     public boolean writeApproachCall(ApproachCallSnapshot snapshot) {
         if (closed) {
             return false;
@@ -219,6 +248,11 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 保持している出力資源を閉じます。
+     * @param reason 処理を行う理由を表す文字列。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     public boolean close(String reason) {
         if (closed) {
             return true;
@@ -244,6 +278,12 @@ final class TrainDataLogWriter {
         return succeeded;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeSessionStart}が示すデータを出力先へ書き込みます。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @param dimension 仕様書に個別説明がないため、現在の処理内容から推定した、{@code dimension}として使用される入力値。
+     * @param sampleIntervalTicks 仕様書に個別説明がないため、{@code sampleIntervalTicks}が示すtick数またはserver tick値。
+     */
     private void writeSessionStart(
             Instant sessionStartedAtUtc,
             String dimension,
@@ -265,6 +305,11 @@ final class TrainDataLogWriter {
         writer.flush();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code baseRecord}としてまとめられている処理を実行します。
+     * @param recordType 仕様書に個別説明がないため、現在の処理内容から推定した、{@code recordType}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private JsonObject baseRecord(String recordType) {
         JsonObject record = new JsonObject();
         record.addProperty("schemaVersion", SCHEMA_VERSION);
@@ -273,6 +318,11 @@ final class TrainDataLogWriter {
         return record;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code navigation}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject navigation(NavigationSnapshot snapshot) {
         JsonObject navigation = new JsonObject();
         navigation.addProperty("leadingPointReference", snapshot.leadingPointReference());
@@ -292,6 +342,11 @@ final class TrainDataLogWriter {
         return navigation;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code leadingTravellingPoint}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject leadingTravellingPoint(LeadingTravellingPointSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -305,6 +360,11 @@ final class TrainDataLogWriter {
         return leadingTravellingPoint;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code destination}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject destination(DestinationSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -317,6 +377,11 @@ final class TrainDataLogWriter {
         return destination;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code railPosition}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject railPosition(RailPositionSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -332,6 +397,11 @@ final class TrainDataLogWriter {
         return railPosition;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code railEdgePoint}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject railEdgePoint(RailEdgePointSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -350,6 +420,11 @@ final class TrainDataLogWriter {
         return edgePoint;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code trackNodeLocation}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject trackNodeLocation(TrackNodeLocationSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -373,6 +448,11 @@ final class TrainDataLogWriter {
         return node;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code worldPosition}としてまとめられている処理を実行します。
+     * @param snapshot 記録または判定に使用する不変スナップショット。
+     * @return 処理によって得られた結果。
+     */
     private static JsonObject worldPosition(WorldPositionSnapshot snapshot) {
         if (snapshot == null) {
             return null;
@@ -386,6 +466,12 @@ final class TrainDataLogWriter {
         return position;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullable}としてまとめられている処理を実行します。
+     * @param parent 仕様書に個別説明がないため、現在の処理内容から推定した、{@code parent}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullable(
             JsonObject parent,
             String name,
@@ -393,6 +479,12 @@ final class TrainDataLogWriter {
         parent.add(name, value == null ? JsonNull.INSTANCE : value);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableString}としてまとめられている処理を実行します。
+     * @param parent 仕様書に個別説明がないため、現在の処理内容から推定した、{@code parent}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableString(
             JsonObject parent,
             String name,
@@ -404,6 +496,12 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableNumber}としてまとめられている処理を実行します。
+     * @param parent 仕様書に個別説明がないため、現在の処理内容から推定した、{@code parent}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableNumber(
             JsonObject parent,
             String name,
@@ -415,6 +513,12 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableInteger}としてまとめられている処理を実行します。
+     * @param parent 仕様書に個別説明がないため、現在の処理内容から推定した、{@code parent}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableInteger(
             JsonObject parent,
             String name,
@@ -426,6 +530,12 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code addNullableBoolean}としてまとめられている処理を実行します。
+     * @param parent 仕様書に個別説明がないため、現在の処理内容から推定した、{@code parent}として使用される入力値。
+     * @param name 対象を識別する名前。
+     * @param value 処理対象の値。
+     */
     private static void addNullableBoolean(
             JsonObject parent,
             String name,
@@ -437,6 +547,9 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code flushPeriodically}としてまとめられている処理を実行します。
+     */
     private void flushPeriodically() throws IOException {
         recordsSinceFlush++;
         if (recordsSinceFlush >= FLUSH_INTERVAL_RECORDS) {
@@ -445,11 +558,20 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeLine}が示すデータを出力先へ書き込みます。
+     * @param record 仕様書に個別説明がないため、現在の処理内容から推定した、{@code record}として使用される入力値。
+     */
     private void writeLine(JsonObject record) throws IOException {
         writer.write(GSON.toJson(record));
         writer.newLine();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeErrorAndClose}が示すデータを出力先へ書き込みます。
+     * @param operation 仕様書に個別説明がないため、現在の処理内容から推定した、{@code operation}として使用される入力値。
+     * @param exception 記録または処理対象の例外。
+     */
     private void writeErrorAndClose(
             String operation,
             Exception exception) {
@@ -457,6 +579,11 @@ final class TrainDataLogWriter {
         closeWriter();
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code writeErrorBeforeClose}が示すデータを出力先へ書き込みます。
+     * @param operation 仕様書に個別説明がないため、現在の処理内容から推定した、{@code operation}として使用される入力値。
+     * @param exception 記録または処理対象の例外。
+     */
     private void writeErrorBeforeClose(
             String operation,
             Exception exception) {
@@ -472,6 +599,10 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code closeWriter}が対象とする資源を終了処理して閉じます。
+     * @return 条件を満たす場合はtrue、それ以外はfalse。
+     */
     private boolean closeWriter() {
         if (closed) {
             return true;
@@ -487,6 +618,13 @@ final class TrainDataLogWriter {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code createUniquePath}が示す新しい値または資源を生成します。
+     * @param outputDirectory ログファイルを作成する出力ディレクトリ。
+     * @param trainId 対象列車を識別するUUID。
+     * @param sessionStartedAtUtc 仕様書に個別説明がないため、現在の処理内容から推定した、{@code sessionStartedAtUtc}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     private static Path createUniquePath(
             Path outputDirectory,
             UUID trainId,
@@ -507,6 +645,11 @@ final class TrainDataLogWriter {
         return candidate;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code conciseMessage}としてまとめられている処理を実行します。
+     * @param exception 記録または処理対象の例外。
+     * @return 処理によって得られた結果。
+     */
     private static String conciseMessage(Exception exception) {
         String message = exception.getMessage();
         return message == null || message.isBlank()

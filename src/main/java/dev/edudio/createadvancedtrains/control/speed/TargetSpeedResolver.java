@@ -11,6 +11,12 @@ import dev.edudio.createadvancedtrains.train.query.NavigationStopState;
 /** Pure Phase 6 integration of independent speed ceilings in CAT units. */
 public final class TargetSpeedResolver {
 
+    /**
+     * 入力された速度候補を統合し、最終目標速度と診断情報を返します。
+     * 
+     * @param input 計算または判定に使用する入力値。
+     * @return 処理によって得られた結果。
+     */
     public TargetSpeedResolution resolve(Input input) {
         validate(input);
 
@@ -73,6 +79,13 @@ public final class TargetSpeedResolver {
                 diagnostic);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code brakingCurveCandidate}としてまとめられている処理を実行します。
+     * 
+     * @param value                       処理対象の値。
+     * @param hasGlobalStationDestination 仕様書に個別説明がないため、{@code hasGlobalStationDestination}が示す条件の有効・無効を表す値。
+     * @return 処理によって得られた結果。
+     */
     private static TargetSpeedCandidate brakingCurveCandidate(
             OptionalDouble value,
             boolean hasGlobalStationDestination) {
@@ -83,13 +96,16 @@ public final class TargetSpeedResolver {
                     false,
                     "No usable BrakingCurve candidate");
         }
-        if (hasGlobalStationDestination) {
-            return new TargetSpeedCandidate(
-                    TargetSpeedCandidateSource.BRAKING_CURVE,
-                    value,
-                    false,
-                    "Diagnostic only for GlobalStation destination");
-        }
+        // TODO
+        /*
+         * if (hasGlobalStationDestination) {
+         * return new TargetSpeedCandidate(
+         * TargetSpeedCandidateSource.BRAKING_CURVE,
+         * value,
+         * false,
+         * "Diagnostic only for GlobalStation destination");
+         * }
+         */
         return new TargetSpeedCandidate(
                 TargetSpeedCandidateSource.BRAKING_CURVE,
                 value,
@@ -97,6 +113,14 @@ public final class TargetSpeedResolver {
                 "Valid candidate");
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code optionalCandidate}としてまとめられている処理を実行します。
+     * 
+     * @param source           速度制限などの値の供給元。
+     * @param value            処理対象の値。
+     * @param absentDiagnostic 仕様書に個別説明がないため、{@code absentDiagnostic}が示す理由または診断情報。
+     * @return 処理によって得られた結果。
+     */
     private static TargetSpeedCandidate optionalCandidate(
             TargetSpeedCandidateSource source,
             OptionalDouble value,
@@ -106,6 +130,17 @@ public final class TargetSpeedResolver {
                 : new TargetSpeedCandidate(source, OptionalDouble.empty(), false, absentDiagnostic);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code classifyNativeZero}としてまとめられている処理を実行します。
+     * 
+     * @param nativeTargetSpeedBlocksPerSecond Create由来の目標速度。単位はblocks/s。
+     * @param navigationStopState              仕様書に個別説明がないため、{@code navigationStopState}が示す現在または判定後の状態。
+     * @param hasNavigationDestination         仕様書に個別説明がないため、{@code hasNavigationDestination}が示す条件の有効・無効を表す値。
+     * @param waitingForSignal                 仕様書に個別説明がないため、{@code waitingForSignal}が示す条件の有効・無効を表す値。
+     * @param manualTick                       仕様書に個別説明がないため、{@code manualTick}が示すtick数またはserver
+     *                                         tick値。
+     * @return 処理によって得られた結果。
+     */
     public static NativeTargetZeroClassification classifyNativeZero(
             double nativeTargetSpeedBlocksPerSecond,
             NavigationStopState navigationStopState,
@@ -129,6 +164,12 @@ public final class TargetSpeedResolver {
         return NativeTargetZeroClassification.UNCLASSIFIED;
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、現在の実装で{@code nativeDiagnostic}としてまとめられている処理を実行します。
+     * 
+     * @param classification native target 0の分類。
+     * @return 処理によって得られた結果。
+     */
     private static String nativeDiagnostic(NativeTargetZeroClassification classification) {
         return switch (classification) {
             case NOT_ZERO -> "Non-zero Create native target";
@@ -139,6 +180,11 @@ public final class TargetSpeedResolver {
         };
     }
 
+    /**
+     * 入力値が処理可能な条件を満たすか検証します。
+     * 
+     * @param input 計算または判定に使用する入力値。
+     */
     private static void validate(Input input) {
         if (input == null) {
             throw new IllegalArgumentException("input must not be null");
@@ -157,6 +203,12 @@ public final class TargetSpeedResolver {
         Objects.requireNonNull(input.navigationStopState(), "navigationStopState");
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code validateOptional}が示す入力条件を検証します。
+     * 
+     * @param value 処理対象の値。
+     * @param name  対象を識別する名前。
+     */
     private static void validateOptional(OptionalDouble value, String name) {
         if (value == null) {
             throw new IllegalArgumentException(name + " must not be null");
@@ -166,12 +218,32 @@ public final class TargetSpeedResolver {
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code requireFinite}が示す入力条件を検証します。
+     * 
+     * @param value 処理対象の値。
+     * @param name  対象を識別する名前。
+     */
     private static void requireFinite(double value, String name) {
         if (!Double.isFinite(value)) {
             throw new IllegalArgumentException(name + " must be finite");
         }
     }
 
+    /**
+     * 仕様書に独立した型契約がないため、現在の利用箇所から推定した不変データを保持します。
+     * 
+     * @param nativeTargetSpeedBlocksPerSecond  Create由来の目標速度。単位はblocks/s。
+     * @param createSpeedCeilingBlocksPerSecond 仕様書に個別説明がないため、{@code createSpeedCeilingBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param catSpeedLimitBlocksPerSecond      仕様書に個別説明がないため、{@code catSpeedLimitBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param brakingCurveLimitBlocksPerSecond  仕様書に個別説明がないため、{@code brakingCurveLimitBlocksPerSecond}が示す速度。単位はblocks/s。
+     * @param directionSign                     仕様書に個別説明がないため、現在の処理内容から推定した、{@code directionSign}として使用される入力値。
+     * @param navigationStopState               仕様書に個別説明がないため、{@code navigationStopState}が示す現在または判定後の状態。
+     * @param hasGlobalStationDestination       仕様書に個別説明がないため、{@code hasGlobalStationDestination}が示す条件の有効・無効を表す値。
+     * @param waitingForSignal                  仕様書に個別説明がないため、{@code waitingForSignal}が示す条件の有効・無効を表す値。
+     * @param manualTick                        仕様書に個別説明がないため、{@code manualTick}が示すtick数またはserver
+     *                                          tick値。
+     */
     public record Input(
             double nativeTargetSpeedBlocksPerSecond,
             double createSpeedCeilingBlocksPerSecond,

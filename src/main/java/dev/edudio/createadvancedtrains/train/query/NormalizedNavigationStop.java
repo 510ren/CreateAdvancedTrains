@@ -6,6 +6,11 @@ import java.util.OptionalDouble;
 /**
  * Immutable, read-only Create Navigation observation in CAT public units.
  * Forward distance is present only for the AHEAD state.
+ * @param state 仕様書に個別説明がないため、{@code state}が示す現在または判定後の状態。
+ * @param direction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code direction}として使用される入力値。
+ * @param forwardDistanceBlocks 仕様書に個別説明がないため、{@code forwardDistanceBlocks}が示す距離または位置量。単位はblocks。
+ * @param observedCreateDistanceBlocks 仕様書に個別説明がないため、{@code observedCreateDistanceBlocks}が示す距離または位置量。単位はblocks。
+ * @param invalidReason 仕様書に個別説明がないため、{@code invalidReason}が示す理由または診断情報。
  */
 public record NormalizedNavigationStop(
         NavigationStopState state,
@@ -14,6 +19,14 @@ public record NormalizedNavigationStop(
         OptionalDouble observedCreateDistanceBlocks,
         NavigationStopInvalidReason invalidReason) {
 
+    /**
+     * 仕様書に独立したコンストラクタ契約がないため、現在の処理内容から推定してレコード構成値を検証し、初期化します。
+     * @param state 仕様書に個別説明がないため、{@code state}が示す現在または判定後の状態。
+     * @param direction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code direction}として使用される入力値。
+     * @param forwardDistanceBlocks 仕様書に個別説明がないため、{@code forwardDistanceBlocks}が示す距離または位置量。単位はblocks。
+     * @param observedCreateDistanceBlocks 仕様書に個別説明がないため、{@code observedCreateDistanceBlocks}が示す距離または位置量。単位はblocks。
+     * @param invalidReason 仕様書に個別説明がないため、{@code invalidReason}が示す理由または診断情報。
+     */
     public NormalizedNavigationStop {
         Objects.requireNonNull(state, "state");
         Objects.requireNonNull(direction, "direction");
@@ -39,6 +52,10 @@ public record NormalizedNavigationStop(
         }
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code noActiveDestination}が示す状態の結果オブジェクトを生成します。
+     * @return 処理によって得られた結果。
+     */
     public static NormalizedNavigationStop noActiveDestination() {
         return new NormalizedNavigationStop(
                 NavigationStopState.NO_ACTIVE_DESTINATION,
@@ -48,6 +65,12 @@ public record NormalizedNavigationStop(
                 NavigationStopInvalidReason.NONE);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code ahead}が示す状態の結果オブジェクトを生成します。
+     * @param distanceBlocks 仕様書に個別説明がないため、{@code distanceBlocks}が示す距離または位置量。単位はblocks。
+     * @param direction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code direction}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     public static NormalizedNavigationStop ahead(
             double distanceBlocks,
             NavigationTravelDirection direction) {
@@ -59,6 +82,11 @@ public record NormalizedNavigationStop(
                 NavigationStopInvalidReason.NONE);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code arrivalPending}が示す状態の結果オブジェクトを生成します。
+     * @param direction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code direction}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     public static NormalizedNavigationStop arrivalPending(NavigationTravelDirection direction) {
         return new NormalizedNavigationStop(
                 NavigationStopState.AT_DESTINATION_OR_ARRIVAL_PENDING,
@@ -68,6 +96,12 @@ public record NormalizedNavigationStop(
                 NavigationStopInvalidReason.NONE);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code pastDestination}が示す状態の結果オブジェクトを生成します。
+     * @param observedDistanceBlocks 仕様書に個別説明がないため、{@code observedDistanceBlocks}が示す距離または位置量。単位はblocks。
+     * @param direction 仕様書に個別説明がないため、現在の処理内容から推定した、{@code direction}として使用される入力値。
+     * @return 処理によって得られた結果。
+     */
     public static NormalizedNavigationStop pastDestination(
             double observedDistanceBlocks,
             NavigationTravelDirection direction) {
@@ -79,6 +113,11 @@ public record NormalizedNavigationStop(
                 NavigationStopInvalidReason.NONE);
     }
 
+    /**
+     * 仕様書に独立した関数契約がないため、{@code invalid}が示す状態の結果オブジェクトを生成します。
+     * @param reason 処理を行う理由を表す文字列。
+     * @return 処理によって得られた結果。
+     */
     public static NormalizedNavigationStop invalid(NavigationStopInvalidReason reason) {
         if (reason == NavigationStopInvalidReason.NONE) {
             throw new IllegalArgumentException("INVALID requires an invalid reason");
