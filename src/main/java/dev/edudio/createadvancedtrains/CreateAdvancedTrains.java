@@ -1,10 +1,10 @@
 package dev.edudio.createadvancedtrains;
 
-import dev.edudio.createadvancedtrains.config.AdvancedTrainsConfig;
-import dev.edudio.createadvancedtrains.network.ModNetwork;
-import net.minecraftforge.fml.ModLoadingContext;
+import dev.edudio.createadvancedtrains.registry.ModBlocks;
+import dev.edudio.createadvancedtrains.registry.ModCreativeModeTabs;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(CreateAdvancedTrains.MOD_ID)
 public class CreateAdvancedTrains {
@@ -15,10 +15,9 @@ public class CreateAdvancedTrains {
      * このクラスのインスタンスを初期化します。
      */
     public CreateAdvancedTrains() {
-        ModLoadingContext.get().registerConfig(
-                ModConfig.Type.SERVER,
-                AdvancedTrainsConfig.SPEC);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModNetwork.register();
+        ModBlocks.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
     }
 }

@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_railway_casing": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:railway_casing"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_railway_casing"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "create_advanced_trains:railway_casing_panel"
+    ]
+  },
+  "sends_telemetry_event": false
+}

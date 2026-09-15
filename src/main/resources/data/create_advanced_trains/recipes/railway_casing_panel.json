@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "create:railway_casing"
+    }
+  ],
+  "result": {
+    "item": "create_advanced_trains:railway_casing_panel",
+    "count": 4
+  }
+}

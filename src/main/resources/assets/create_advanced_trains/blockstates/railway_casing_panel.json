@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "create_advanced_trains:block/railway_casing_panel"
+    },
+    "facing=east": {
+      "model": "create_advanced_trains:block/railway_casing_panel",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "create_advanced_trains:block/railway_casing_panel",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "create_advanced_trains:block/railway_casing_panel",
+      "y": 270
+    }
+  }
+}
