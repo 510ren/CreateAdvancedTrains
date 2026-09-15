@@ -21,7 +21,10 @@ public final class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.create_advanced_trains"))
                     .withTabsBefore(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
                     .icon(() -> new ItemStack(ModBlocks.RAILWAY_CASING_PANEL_ITEM.get()))
-                    .displayItems((parameters, output) -> output.accept(ModBlocks.RAILWAY_CASING_PANEL_ITEM.get()))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModBlocks.RAILWAY_CASING_PANEL_ITEM.get());
+                        output.accept(ModBlocks.STAINLESS_STEEL_BODY_ITEM.get());
+                    })
                     .build());
 
     private ModCreativeModeTabs() {

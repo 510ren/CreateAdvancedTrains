@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "create_advanced_trains:block/stainless_steel_body"
+  }
+}
