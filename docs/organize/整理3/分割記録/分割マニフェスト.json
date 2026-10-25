@@ -1,0 +1,5818 @@
+{
+  "date": "2026-10-25",
+  "original_path": "docs/organize/整理3.md",
+  "original_bytes": 412625,
+  "original_sha256": "3b8d890584b90d72658894d22836a64f629056ba0e3f4ac525a8ddf8595b1681",
+  "snapshot": "docs/organize/整理3/分割記録/整理3_2026-10-25_分割前.md",
+  "units": [
+    {
+      "key": "preamble",
+      "title": "分割前の文書名と保存情報",
+      "dest": "common",
+      "start": 0,
+      "end": 213,
+      "line_start": 1,
+      "line_end": 4,
+      "changes": [
+        {
+          "start": 0,
+          "end": 2,
+          "before": "# ",
+          "after": "## ",
+          "kind": "heading_level"
+        }
+      ],
+      "source_sha256": "7541538e68254f3477993e403932a37ffd8a8edda6ecfe778d2c3382d7b3c348",
+      "output_sha256": "3e2381239b11659b21eabf5913a48b9b2eb22e1bea3c7ada39a6fdc2fa7fba2e",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1",
+      "title": "## 1. この文書の位置付けと再開方法",
+      "dest": "common",
+      "start": 213,
+      "end": 350,
+      "line_start": 5,
+      "line_end": 8,
+      "changes": [],
+      "source_sha256": "add76e5961075668820c6a02cc2187c270bef9789809e99f18963c74cc38aebf",
+      "output_sha256": "add76e5961075668820c6a02cc2187c270bef9789809e99f18963c74cc38aebf",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1-1",
+      "title": "### 1.1 読む順序",
+      "dest": "common",
+      "start": 350,
+      "end": 840,
+      "line_start": 9,
+      "line_end": 20,
+      "changes": [
+        {
+          "start": 22,
+          "end": 61,
+          "before": "[ドキュメント構成の参考.md](下書き・参考/ドキュメント構成の参考.md)",
+          "after": "[ドキュメント構成の参考.md](../下書き・参考/ドキュメント構成の参考.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 144,
+          "end": 164,
+          "before": "[整理2.md](整理2/整理2.md)",
+          "after": "[整理2.md](../整理2/整理2.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 193,
+          "end": 236,
+          "before": "[第2稿への解答と補足](整理2/%5B1%5D整理2で出た不足点の解答と補足.md)",
+          "after": "[第2稿への解答と補足](../整理2/[1]整理2で出た不足点の解答と補足.md)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "5cb5c067d6d74f268e2bd5232460725d19a20a2671620f8599a7b6c0a53b63c4",
+      "output_sha256": "c835eb01d120e604c48a339da015e7c4821e9053536cd0a0cbbf4eac19648888",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1-2",
+      "title": "### 1.2 状態の読み分け",
+      "dest": "common",
+      "start": 840,
+      "end": 1219,
+      "line_start": 21,
+      "line_end": 31,
+      "changes": [],
+      "source_sha256": "cf66cdaab20b393e3fc641b7ca9bde32bf5504d0b4a629167a88d52d1c3642ba",
+      "output_sha256": "cf66cdaab20b393e3fc641b7ca9bde32bf5504d0b4a629167a88d52d1c3642ba",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1-3",
+      "title": "### 1.3 今回の保存範囲と検証状態",
+      "dest": "common",
+      "start": 1219,
+      "end": 2747,
+      "line_start": 32,
+      "line_end": 48,
+      "changes": [
+        {
+          "start": 33,
+          "end": 46,
+          "before": "第11.23～11.28節",
+          "after": "[第11.23～11.28節](分割記録/節の対応表.md#s-11-23)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 88,
+          "end": 93,
+          "before": "第2.4節",
+          "after": "[第2.4節](列車構成とプロファイル.md#s-2-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 102,
+          "end": 109,
+          "before": "第13.13節",
+          "after": "[第13.13節](追加構想と文書整備.md#s-13-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 130,
+          "end": 137,
+          "before": "第14・15章",
+          "after": "[第14・15章](分割記録/節の対応表.md#s-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 288,
+          "end": 301,
+          "before": "第11.21～11.31節",
+          "after": "[第11.21～11.31節](分割記録/節の対応表.md#s-11-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 310,
+          "end": 323,
+          "before": "第13.14・13.15節",
+          "after": "[第13.14・13.15節](分割記録/節の対応表.md#s-13-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 480,
+          "end": 487,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 571,
+          "end": 578,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 585,
+          "end": 591,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 605,
+          "end": 611,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 617,
+          "end": 624,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 647,
+          "end": 654,
+          "before": "第13.18節",
+          "after": "[第13.18節](線路拡張と電力構想.md#s-13-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 660,
+          "end": 665,
+          "before": "第1.5節",
+          "after": "[第1.5節](共通方針と責任分担.md#s-1-5)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 740,
+          "end": 744,
+          "before": "第14章",
+          "after": "[第14章](分割記録/節の対応表.md#s-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1146,
+          "end": 1153,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1332,
+          "end": 1336,
+          "before": "第14章",
+          "after": "[第14章](分割記録/節の対応表.md#s-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1350,
+          "end": 1354,
+          "before": "第15章",
+          "after": "[第15章](分割記録/節の対応表.md#s-15)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1411,
+          "end": 1418,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c401a04f8efeac2cdc38e54527269286f090a4130e6ae531f17492e724f9ce9e",
+      "output_sha256": "9a505f99cc658396e80d6a1605c84ba24681a394b6f10b4702fccb812f948014",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1-4",
+      "title": "### 1.4 要求工学・AI分業方針の参照（決定）",
+      "dest": "common",
+      "start": 2747,
+      "end": 3179,
+      "line_start": 49,
+      "line_end": 56,
+      "changes": [
+        {
+          "start": 30,
+          "end": 101,
+          "before": "[CAT要求工学・AI分業・V&V運用方針](下書き・参考/CAT_REQUIREMENTS_ENGINEERING_WORKFLOW.md)",
+          "after": "[CAT要求工学・AI分業・V&V運用方針](../下書き・参考/CAT_REQUIREMENTS_ENGINEERING_WORKFLOW.md)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "0f3c4f1fa02aca474f0b1f6efa44275fedeaf1c88cbaf8a90cbb6b05c6e850bd",
+      "output_sha256": "ca516fa015c97d57385a0c09a7a92f539f9161ab6829603f3ff675a3d913fbcf",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-1-5",
+      "title": "### 1.5 今後の要件整理の進め方（2026-10-25承認）",
+      "dest": "common",
+      "start": 3179,
+      "end": 3722,
+      "line_start": 57,
+      "line_end": 65,
+      "changes": [],
+      "source_sha256": "6eeac1c0adc90eff62d7351e07953ba335e463cbb00d5d4438f9482cacc7bb73",
+      "output_sha256": "6eeac1c0adc90eff62d7351e07953ba335e463cbb00d5d4438f9482cacc7bb73",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-2",
+      "title": "## 2. 列車判定・Createとの境界",
+      "dest": "train",
+      "start": 3722,
+      "end": 3745,
+      "line_start": 66,
+      "line_end": 67,
+      "changes": [],
+      "source_sha256": "cd9eac35010ab788d59c1a76aca13c0f5bb0828d477ea671940009865a7ef00a",
+      "output_sha256": "cd9eac35010ab788d59c1a76aca13c0f5bb0828d477ea671940009865a7ef00a",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "u-2-1",
+      "title": "### 決定",
+      "dest": "train",
+      "start": 3745,
+      "end": 4009,
+      "line_start": 68,
+      "line_end": 74,
+      "changes": [],
+      "source_sha256": "fbb5040fba918775b18bd7be2f1cb9bbdd6e71b69dfe6df087d96dbd4280efc2",
+      "output_sha256": "fbb5040fba918775b18bd7be2f1cb9bbdd6e71b69dfe6df087d96dbd4280efc2",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "u-2-2",
+      "title": "### 要確認",
+      "dest": "train",
+      "start": 4009,
+      "end": 4340,
+      "line_start": 75,
+      "line_end": 82,
+      "changes": [
+        {
+          "start": 96,
+          "end": 110,
+          "before": "第2.1～2.4・11.9節",
+          "after": "[第2.1～2.4・11.9節](分割記録/節の対応表.md#s-2-1)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "4fbf6ec0ae7c13c364714ab32d2aa5652f6ae1e5555bccd0a0e9fc29b8ae15b4",
+      "output_sha256": "8747970a9d0bec6102b7304bf2e54e497f32eb5798e1a497e4bb52338b379b61",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-2-1",
+      "title": "### 2.1 主・副マスコンと列車方向（決定）",
+      "dest": "train",
+      "start": 4340,
+      "end": 4776,
+      "line_start": 83,
+      "line_end": 91,
+      "changes": [
+        {
+          "start": 323,
+          "end": 333,
+          "before": "第4.2・14.2節",
+          "after": "[第4.2・14.2節](分割記録/節の対応表.md#s-4-2)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 423,
+          "end": 430,
+          "before": "第11.10節",
+          "after": "[第11.10節](マスコン操作とHUD.md#s-11-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "43de7dc0af74f3618c4ee181e13331f7c92402e0bcadcefdd90364af6ad6e602",
+      "output_sha256": "4389b94d981a5a481cedebe6cf29db04218cd0251909b613b62d807a27bff242",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-2-2",
+      "title": "### 2.2 最外側マスコンと連結・分離（決定／一部旧案は再検討）",
+      "dest": "train",
+      "start": 4776,
+      "end": 5726,
+      "line_start": 92,
+      "line_end": 106,
+      "changes": [
+        {
+          "start": 124,
+          "end": 129,
+          "before": "第2.4節",
+          "after": "[第2.4節](列車構成とプロファイル.md#s-2-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8bafa7d08988040e32d1079242cf3b071003982cd6a7cb7818113b3d0f22f92a",
+      "output_sha256": "380ecae3e3762b9c6e4c407b41811cd58dc4560a078d6cbe1aead190801afeef",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-2-3",
+      "title": "### 2.3 Steam ’n’ Railsの利用者実機報告（CAT検証ではない）",
+      "dest": "train",
+      "start": 5726,
+      "end": 6138,
+      "line_start": 107,
+      "line_end": 114,
+      "changes": [],
+      "source_sha256": "cbf9be71d0809ba232f4e708647be5c9351f8250645bddf464b1a990066a8c4d",
+      "output_sha256": "cbf9be71d0809ba232f4e708647be5c9351f8250645bddf464b1a990066a8c4d",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-2-4",
+      "title": "### 2.4 CAT独自連結への変更（決定／詳細未決定）",
+      "dest": "train",
+      "start": 6138,
+      "end": 6532,
+      "line_start": 115,
+      "line_end": 122,
+      "changes": [
+        {
+          "start": 172,
+          "end": 177,
+          "before": "第2.3節",
+          "after": "[第2.3節](列車構成とプロファイル.md#s-2-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 184,
+          "end": 191,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 364,
+          "end": 371,
+          "before": "第11.28節",
+          "after": "[第11.28節](乗務員とドアと停車保持.md#s-11-28)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c546add82cd5b0cf0f70c18b87a8783e223588a2427603f1bc74ea543c37ac35",
+      "output_sha256": "b8b82280cc834b58567e73eb5d25eb664050b8e8d20d9cd89623370ada8fede1",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-3",
+      "title": "## 3. 機能の責任分担",
+      "dest": "common",
+      "start": 6532,
+      "end": 6547,
+      "line_start": 123,
+      "line_end": 124,
+      "changes": [],
+      "source_sha256": "7fc9566f61650c6e196bddc0c3955ca154f1f13f75686c5199d0d7a59ba9a827",
+      "output_sha256": "7fc9566f61650c6e196bddc0c3955ca154f1f13f75686c5199d0d7a59ba9a827",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "u-3-1",
+      "title": "### 決定",
+      "dest": "common",
+      "start": 6547,
+      "end": 7375,
+      "line_start": 125,
+      "line_end": 140,
+      "changes": [
+        {
+          "start": 470,
+          "end": 475,
+          "before": "第3.1節",
+          "after": "[第3.1節](信号と安全装置と進路.md#s-3-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 587,
+          "end": 592,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 759,
+          "end": 764,
+          "before": "第3.3節",
+          "after": "[第3.3節](信号と安全装置と進路.md#s-3-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "92dd19f9825ad720cffc60a0a752455e043f8940dc9c710ff3b9de0619d861fb",
+      "output_sha256": "f17e8cb1d862666df41dd36ca3885ca666e0fccdd535fd1fceedd703a6c36abd",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "u-3-2",
+      "title": "### 要確認",
+      "dest": "common",
+      "start": 7375,
+      "end": 7545,
+      "line_start": 141,
+      "line_end": 146,
+      "changes": [
+        {
+          "start": 78,
+          "end": 83,
+          "before": "第3.2節",
+          "after": "[第3.2節](共通方針と責任分担.md#s-3-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8d7eaf2e263ac25d4b95925b7d287363752048ea3ea59874f18df982432a0ba1",
+      "output_sha256": "618e529a38851777bfee6c3ce4a79ed3d1adc656e16e465702e7f6ea87f8b356",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-3-1",
+      "title": "### 3.1 列車単位の信号・安全システム選択（決定／詳細は未決定）",
+      "dest": "signal",
+      "start": 7545,
+      "end": 8239,
+      "line_start": 147,
+      "line_end": 160,
+      "changes": [
+        {
+          "start": 478,
+          "end": 483,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 511,
+          "end": 516,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 556,
+          "end": 561,
+          "before": "第3.3節",
+          "after": "[第3.3節](信号と安全装置と進路.md#s-3-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "4f44e89bcf00c48f308a9d58578d0324d211c863179e971397728011295367fe",
+      "output_sha256": "49a8672da10948842e8b324a55033a55a6e4061981dce5d51f627e7d43ac0b33",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-3-2",
+      "title": "### 3.2 INTEROSによる操縦指令の一元管理（決定）",
+      "dest": "common",
+      "start": 8239,
+      "end": 9213,
+      "line_start": 161,
+      "line_end": 174,
+      "changes": [
+        {
+          "start": 167,
+          "end": 172,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 539,
+          "end": 544,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 587,
+          "end": 594,
+          "before": "第11.13節",
+          "after": "[第11.13節](マスコン操作とHUD.md#s-11-13)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8e8815d191e2b3865492b36524921633ccfe557ec63a185795d8748e08e0bfd3",
+      "output_sha256": "b98161a40370257bc008bb1c459db74731298bf0c5ef660444e06fcae48eeeea",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-3-3",
+      "title": "### 3.3 安全方式・ON／OFFの設定管理（決定）",
+      "dest": "signal",
+      "start": 9213,
+      "end": 10324,
+      "line_start": 175,
+      "line_end": 189,
+      "changes": [
+        {
+          "start": 1051,
+          "end": 1056,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "2dec25e9127d1920bcbeb8670540fb2505448f274293d41de4a809646c815643",
+      "output_sha256": "8bd7ceafb68cef01461ccd4c8b92b1910b7e8d412edb89086f2e196b858fff1c",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-3-4",
+      "title": "### 3.4 保持の責任分担・ドア連動転動防止（最新決定）",
+      "dest": "doors",
+      "start": 10324,
+      "end": 11642,
+      "line_start": 190,
+      "line_end": 216,
+      "changes": [
+        {
+          "start": 191,
+          "end": 197,
+          "before": "第7.10節",
+          "after": "[第7.10節](ATOとTASC.md#s-7-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 812,
+          "end": 819,
+          "before": "第11.20節",
+          "after": "[第11.20節](乗務員とドアと停車保持.md#s-11-20)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "de463fbdefa7129782246b557d2188f001806a547d96c4488b2c6af09519dd1b",
+      "output_sha256": "486f3f8f24d965288fd59a16dd1dfac22ea87fc49a01c13684c94bcc73464c20",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-4",
+      "title": "## 4. 通常ノッチ・ATO・TASC・EBの加減速度移行",
+      "dest": "notch",
+      "start": 11642,
+      "end": 11674,
+      "line_start": 217,
+      "line_end": 218,
+      "changes": [],
+      "source_sha256": "29cc3586077d46150845e6fbcf9301ad4b6ca5b16a1a589ad8c2242e2b386c5d",
+      "output_sha256": "29cc3586077d46150845e6fbcf9301ad4b6ca5b16a1a589ad8c2242e2b386c5d",
+      "file": "docs/organize/整理3/加減速とノッチ.md"
+    },
+    {
+      "key": "u-4-1",
+      "title": "### 決定",
+      "dest": "notch",
+      "start": 11674,
+      "end": 12186,
+      "line_start": 219,
+      "line_end": 230,
+      "changes": [],
+      "source_sha256": "b2b1eeb3138418b717001d8bb06aaf699da2224c6c4bac778ddd1f49067c94de",
+      "output_sha256": "b2b1eeb3138418b717001d8bb06aaf699da2224c6c4bac778ddd1f49067c94de",
+      "file": "docs/organize/整理3/加減速とノッチ.md"
+    },
+    {
+      "key": "u-4-2",
+      "title": "### 要確認",
+      "dest": "notch",
+      "start": 12186,
+      "end": 12525,
+      "line_start": 231,
+      "line_end": 238,
+      "changes": [
+        {
+          "start": 25,
+          "end": 30,
+          "before": "第4.1節",
+          "after": "[第4.1節](加減速とノッチ.md#s-4-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 318,
+          "end": 325,
+          "before": "第11.10節",
+          "after": "[第11.10節](マスコン操作とHUD.md#s-11-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "a2f1c246a5d0156f30e864a742b793b8b281043152f9c318a67d6f0a6a5a023b",
+      "output_sha256": "71105bc665c93fc19f78d26f43f01fbd7f69057d226e4d23ce5ffabcc691cdf5",
+      "file": "docs/organize/整理3/加減速とノッチ.md"
+    },
+    {
+      "key": "s-4-1",
+      "title": "### 4.1 力行ノッチの速度依存加速度曲線（2026-09-25決定）",
+      "dest": "notch",
+      "start": 12525,
+      "end": 13905,
+      "line_start": 239,
+      "line_end": 257,
+      "changes": [
+        {
+          "start": 1060,
+          "end": 1063,
+          "before": "第4章",
+          "after": "[第4章](分割記録/節の対応表.md#s-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1205,
+          "end": 1211,
+          "before": "第11.8節",
+          "after": "[第11.8節](マスコン操作とHUD.md#s-11-8)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1344,
+          "end": 1350,
+          "before": "第12.9節",
+          "after": "[第12.9節](調査資料索引.md#s-12-9)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "66e49d408005bd4d1521a8cdad5eb359c3db6ebb2adf97bd0787d48955284444",
+      "output_sha256": "31bb9b3b9af017fada3831fcee69cf3f04502b73f0cbb10d293d07a6569a1210",
+      "file": "docs/organize/整理3/加減速とノッチ.md"
+    },
+    {
+      "key": "s-4-2",
+      "title": "### 4.2 反対側マスコンからの手動引継ぎ（旧操作を保存・要検討）",
+      "dest": "hud",
+      "start": 13905,
+      "end": 14840,
+      "line_start": 258,
+      "line_end": 269,
+      "changes": [
+        {
+          "start": 89,
+          "end": 95,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 113,
+          "end": 120,
+          "before": "第11.18節",
+          "after": "[第11.18節](マスコン操作とHUD.md#s-11-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 579,
+          "end": 584,
+          "before": "第7.1節",
+          "after": "[第7.1節](ATOとTASC.md#s-7-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 925,
+          "end": 931,
+          "before": "第14.2節",
+          "after": "[第14.2節](残課題と再開地点.md#s-14-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "3d9d154f1d52d0876bb3cd65b7bfb16c725d5dd38e0e00af9600ab1fbe84ea0c",
+      "output_sha256": "f6556d670c13fd1a204054aa55dc9e3e365150b2011f329cd0f498ffead8df6f",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-4-3",
+      "title": "### 4.3 プロファイルの最終常用段とEB（決定）",
+      "dest": "notch",
+      "start": 14840,
+      "end": 15299,
+      "line_start": 270,
+      "line_end": 278,
+      "changes": [
+        {
+          "start": 386,
+          "end": 389,
+          "before": "第4章",
+          "after": "[第4章](分割記録/節の対応表.md#s-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8338ca2a71bdf937f8d663dc3e5bf7cb71ccf1d13e977bc004a1341dde761f53",
+      "output_sha256": "c7bd52fe90b61a08ca6be74692e355ecaae216f275841db13a9e34d8eaa7c3c2",
+      "file": "docs/organize/整理3/加減速とノッチ.md"
+    },
+    {
+      "key": "s-5",
+      "title": "## 5. プロファイル・種別・等級",
+      "dest": "train",
+      "start": 15299,
+      "end": 15319,
+      "line_start": 279,
+      "line_end": 280,
+      "changes": [],
+      "source_sha256": "9e79047e065908f5a4763603ad07f1d8f524d456b128ab0a4b48cffc9d5d488d",
+      "output_sha256": "9e79047e065908f5a4763603ad07f1d8f524d456b128ab0a4b48cffc9d5d488d",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-5-1",
+      "title": "### 5.1 組立時の直接選択（決定）",
+      "dest": "train",
+      "start": 15319,
+      "end": 15689,
+      "line_start": 281,
+      "line_end": 287,
+      "changes": [],
+      "source_sha256": "5a0edd3ed01f77e8fe8d8212ef44afcb585ff821b667f4ad486c8799e5d56ee9",
+      "output_sha256": "5a0edd3ed01f77e8fe8d8212ef44afcb585ff821b667f4ad486c8799e5d56ee9",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-5-2",
+      "title": "### 5.2 列車への保存と再組立（決定）",
+      "dest": "train",
+      "start": 15689,
+      "end": 16098,
+      "line_start": 288,
+      "line_end": 295,
+      "changes": [
+        {
+          "start": 365,
+          "end": 370,
+          "before": "第3.3節",
+          "after": "[第3.3節](信号と安全装置と進路.md#s-3-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "752dd71e89083c44810f8d7e5b805d490a7a4cfe0580d4037ad6ae50a19e6a7a",
+      "output_sha256": "4ba8db6f92352d49aae3725b9db964c809730260c2aceca90386e1c7ec8cf8ac",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-5-3",
+      "title": "### 5.3 性能項目と台別ノッチの整合（決定／詳細未決定）",
+      "dest": "train",
+      "start": 16098,
+      "end": 16513,
+      "line_start": 296,
+      "line_end": 303,
+      "changes": [
+        {
+          "start": 359,
+          "end": 366,
+          "before": "第11.13節",
+          "after": "[第11.13節](マスコン操作とHUD.md#s-11-13)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "2524d47d52f08205f7db00adda1412c6f9c89ba0e53c4951c4cbd7b823a13cc0",
+      "output_sha256": "21c9e2fdfed74b06aaecb078080e4ee26c616ab3f62ededbf69cda700203d6fe",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-5-4",
+      "title": "### 5.4 種別・等級と独自プロファイル（決定／将来対応）",
+      "dest": "train",
+      "start": 16513,
+      "end": 16797,
+      "line_start": 304,
+      "line_end": 310,
+      "changes": [],
+      "source_sha256": "89b27ebb34432f7bfe8a20a73d73318b33b7e481a9b08ead63c2b15df9c45034",
+      "output_sha256": "89b27ebb34432f7bfe8a20a73d73318b33b7e481a9b08ead63c2b15df9c45034",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-5-5",
+      "title": "### 5.5 編成変更の残課題",
+      "dest": "train",
+      "start": 16797,
+      "end": 16920,
+      "line_start": 311,
+      "line_end": 315,
+      "changes": [],
+      "source_sha256": "dc93ea7b7197a40d83dcd64df395ff1d02b587cc94a72b81313675cca5d21a62",
+      "output_sha256": "dc93ea7b7197a40d83dcd64df395ff1d02b587cc94a72b81313675cca5d21a62",
+      "file": "docs/organize/整理3/列車構成とプロファイル.md"
+    },
+    {
+      "key": "s-6",
+      "title": "## 6. EBの発動・保持・解除",
+      "dest": "fault",
+      "start": 16920,
+      "end": 16939,
+      "line_start": 316,
+      "line_end": 317,
+      "changes": [],
+      "source_sha256": "3a20867a88ebe4cb6d356be16825b53822525723073939e4e2771cd33edc85d8",
+      "output_sha256": "3a20867a88ebe4cb6d356be16825b53822525723073939e4e2771cd33edc85d8",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-1",
+      "title": "### 6.1 通常EBと要復旧EB（決定）",
+      "dest": "fault",
+      "start": 16939,
+      "end": 17483,
+      "line_start": 318,
+      "line_end": 326,
+      "changes": [
+        {
+          "start": 349,
+          "end": 355,
+          "before": "第7.23節",
+          "after": "[第7.23節](ATOとTASC.md#s-7-23)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8ac6cec7c6611877af38a380d3d18d582faa3ea5b8066c911c93b327e7fb7d3c",
+      "output_sha256": "5e607a0cd9791bf0b1cddae620254571d7b2a12468437ef6513b599858b29f1e",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-2",
+      "title": "### 6.2 指定ノッチ・実効指令・複数原因（決定）",
+      "dest": "fault",
+      "start": 17483,
+      "end": 18079,
+      "line_start": 327,
+      "line_end": 335,
+      "changes": [
+        {
+          "start": 219,
+          "end": 224,
+          "before": "第6.4節",
+          "after": "[第6.4節](非常制御と故障復旧.md#s-6-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 497,
+          "end": 502,
+          "before": "第6.6節",
+          "after": "[第6.6節](非常制御と故障復旧.md#s-6-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "12b7a7091451b2f5da74ea55a568dc46c521c270ad5b2336010e13fbbaa5afd0",
+      "output_sha256": "711a045b83ef67558c33e45d2f706585bab64596483181a6e3410f632890dd98",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-3",
+      "title": "### 6.3 手動側の復旧と通常EBの終了（決定）",
+      "dest": "fault",
+      "start": 18079,
+      "end": 18511,
+      "line_start": 336,
+      "line_end": 343,
+      "changes": [
+        {
+          "start": 364,
+          "end": 370,
+          "before": "第7.19節",
+          "after": "[第7.19節](ATOとTASC.md#s-7-19)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "5eec70e8acd59f651fe98602f29f748addf3759e5c37b22f20a47a3cf1543a93",
+      "output_sha256": "0ce1f9edbb95567c7427d78757c0b3b110e9c2be82d9bab7a78446ae511aab1f",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-4",
+      "title": "### 6.4 ATO側の復旧と迂回防止（決定）",
+      "dest": "fault",
+      "start": 18511,
+      "end": 18933,
+      "line_start": 344,
+      "line_end": 351,
+      "changes": [
+        {
+          "start": 408,
+          "end": 414,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "432126334bf965bc0467f31be3bdda55596f7ded9d78e518ef791cc717f22ddd",
+      "output_sha256": "208c962bb73d59220521019c46e8ade436c983a3682dd3cf6e8ce375e6928670",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-5",
+      "title": "### 6.5 手動EB入力と表示（決定）",
+      "dest": "fault",
+      "start": 18933,
+      "end": 19341,
+      "line_start": 352,
+      "line_end": 359,
+      "changes": [
+        {
+          "start": 217,
+          "end": 223,
+          "before": "第7.22節",
+          "after": "[第7.22節](ATOとTASC.md#s-7-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 372,
+          "end": 379,
+          "before": "第11.14節",
+          "after": "[第11.14節](マスコン操作とHUD.md#s-11-14)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "54fda74aac15dd354bdf222d77ea2cc5b3b0dc4bba57e4add878db78b3ff2f46",
+      "output_sha256": "fbf0b19eb08f7a13af9356a64847ff26a7d6cb2e84cd9a4c04baeae2b3eb457d",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-6-6",
+      "title": "### 6.6 複数異常・復旧要求と処理中断（決定／厳密な同時処理は実現性確認）",
+      "dest": "fault",
+      "start": 19341,
+      "end": 20188,
+      "line_start": 360,
+      "line_end": 371,
+      "changes": [
+        {
+          "start": 761,
+          "end": 768,
+          "before": "第11.17節",
+          "after": "[第11.17節](非常制御と故障復旧.md#s-11-17)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "cac76ab3e09ade9cc8d0ed04da38dab2f0e8cf249001a48aeb56bf2be64111ff",
+      "output_sha256": "fe07557e68529affa933c73d317688cd53c4e6408631f85a99d0747f6d9bc85e",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "u-6-1",
+      "title": "### 残課題",
+      "dest": "fault",
+      "start": 20188,
+      "end": 20429,
+      "line_start": 372,
+      "line_end": 378,
+      "changes": [
+        {
+          "start": 59,
+          "end": 64,
+          "before": "第3.3節",
+          "after": "[第3.3節](信号と安全装置と進路.md#s-3-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "3e5064d37bc82765aaba3f221f3a0da86b9aa419b2319ce55eed869f76957e05",
+      "output_sha256": "79e2f28a686eb68deb3f1e4b458b5130bb145c63d6c6a6795d672e9828a7deab",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-7",
+      "title": "## 7. ATO・TASCと手動運転",
+      "dest": "auto",
+      "start": 20429,
+      "end": 20450,
+      "line_start": 379,
+      "line_end": 380,
+      "changes": [],
+      "source_sha256": "720e97f2c90022084c1accaf516d39e40f0c0ad97387163d33468511844e1291",
+      "output_sha256": "720e97f2c90022084c1accaf516d39e40f0c0ad97387163d33468511844e1291",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-1",
+      "title": "### 7.1 手動介入と安全装置の設定復元（決定）",
+      "dest": "auto",
+      "start": 20450,
+      "end": 21105,
+      "line_start": 381,
+      "line_end": 398,
+      "changes": [
+        {
+          "start": 40,
+          "end": 46,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 135,
+          "end": 146,
+          "before": "第7.20・7.21節",
+          "after": "[第7.20・7.21節](分割記録/節の対応表.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 155,
+          "end": 158,
+          "before": "第4章",
+          "after": "[第4章](分割記録/節の対応表.md#s-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 562,
+          "end": 567,
+          "before": "第3.3節",
+          "after": "[第3.3節](信号と安全装置と進路.md#s-3-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "19ef6389fd62591b1630651fec78e2621f0436930af8ce3e99a3c79612d9f816",
+      "output_sha256": "0e0630ec9b90d3be6c1894174b94c45021562546364e57e8cda7de03d7cbd54f",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-2",
+      "title": "### 7.2 ATOから手動への進路引継ぎ（決定）",
+      "dest": "auto",
+      "start": 21105,
+      "end": 21359,
+      "line_start": 399,
+      "line_end": 406,
+      "changes": [
+        {
+          "start": 206,
+          "end": 210,
+          "before": "第10章",
+          "after": "[第10章](分割記録/節の対応表.md#s-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "ed026b5059491266be208133dfb454b0939432b153fce09c2d1c29444c82d05e",
+      "output_sha256": "35dfa35a7700f898d31d139bf763e39a10e28e1a594316b419cb960b9ce6bee3",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-3",
+      "title": "### 7.3 手動からATOへの進路引継ぎ（決定）",
+      "dest": "auto",
+      "start": 21359,
+      "end": 21631,
+      "line_start": 407,
+      "line_end": 414,
+      "changes": [],
+      "source_sha256": "5a37e26322a9b462eb69d416d49f34a75a3c957f5795dd1da4ce4e0328227103",
+      "output_sha256": "5a37e26322a9b462eb69d416d49f34a75a3c957f5795dd1da4ce4e0328227103",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-4",
+      "title": "### 7.4 走行中のATO有効化（決定）",
+      "dest": "auto",
+      "start": 21631,
+      "end": 21916,
+      "line_start": 415,
+      "line_end": 422,
+      "changes": [
+        {
+          "start": 220,
+          "end": 226,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 265,
+          "end": 268,
+          "before": "第6章",
+          "after": "[第6章](分割記録/節の対応表.md#s-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d2d2b1d6cc0c6561220ec2c3b41f75d920894281d11e591f598d4ca385f07922",
+      "output_sha256": "773fd680496bc4ecfda899748a37609c0527f43daffb33a5c351f0235b647603",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "u-7-1",
+      "title": "### 要確認",
+      "dest": "auto",
+      "start": 21916,
+      "end": 22049,
+      "line_start": 423,
+      "line_end": 427,
+      "changes": [
+        {
+          "start": 52,
+          "end": 57,
+          "before": "第4.2節",
+          "after": "[第4.2節](マスコン操作とHUD.md#s-4-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d34fe1b07a46301b3ac23cb23833b80d482b2af8ed3143b53159a1fde1101106",
+      "output_sha256": "78e6d2f5be882c111b5d6fa59f651c08d77824c1e100d65b143d36c4bc5f30ca",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-5",
+      "title": "### 7.5 手動運転のTASC対象駅（決定）",
+      "dest": "auto",
+      "start": 22049,
+      "end": 22277,
+      "line_start": 428,
+      "line_end": 433,
+      "changes": [],
+      "source_sha256": "c21de4418a3ccbac1fbd4dc3f82e5ab610eccec5d34c3f3632c913d95e12f7ae",
+      "output_sha256": "c21de4418a3ccbac1fbd4dc3f82e5ab610eccec5d34c3f3632c913d95e12f7ae",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-6",
+      "title": "### 7.6 通常補助と継続する自動停止モード（決定）",
+      "dest": "auto",
+      "start": 22277,
+      "end": 23097,
+      "line_start": 434,
+      "line_end": 443,
+      "changes": [
+        {
+          "start": 474,
+          "end": 479,
+          "before": "第6.5節",
+          "after": "[第6.5節](非常制御と故障復旧.md#s-6-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "2a4ddf2cb0d1b5a2dff8e8bbc3193951fe020adf7a2f53a600ab42d0dbef33ba",
+      "output_sha256": "bf7d83db90b9c62665ccf51f895ba8eb166963004dee452fff2e79e74f9f70e9",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-7",
+      "title": "### 7.7 可変上下限による通常補助（決定）",
+      "dest": "auto",
+      "start": 23097,
+      "end": 23642,
+      "line_start": 444,
+      "line_end": 454,
+      "changes": [
+        {
+          "start": 481,
+          "end": 484,
+          "before": "第4章",
+          "after": "[第4章](分割記録/節の対応表.md#s-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "6731120708d0719b157d7c372b24366027e28000fbe664d6148232b377f326b5",
+      "output_sha256": "990161183be0cec8b4df8994041eca274ad82c3536ea63c8b286b6e33e981bd9",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-8",
+      "title": "### 7.8 TASCの無効化（決定）",
+      "dest": "auto",
+      "start": 23642,
+      "end": 24209,
+      "line_start": 455,
+      "line_end": 464,
+      "changes": [
+        {
+          "start": 160,
+          "end": 163,
+          "before": "第3章",
+          "after": "[第3章](分割記録/節の対応表.md#s-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 494,
+          "end": 497,
+          "before": "第6章",
+          "after": "[第6章](分割記録/節の対応表.md#s-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c5ad121cea0872e4e564787a12951b4c135420f92d04bf0273f057cc1e549c65",
+      "output_sha256": "008ef326fb42e7a8a4e4bf8d3ac5e9a74742282743164245f4751f66f4a7111f",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-9",
+      "title": "### 7.9 駅オーバーラン・EB超過限界・信号との関係（決定）",
+      "dest": "auto",
+      "start": 24209,
+      "end": 25028,
+      "line_start": 465,
+      "line_end": 477,
+      "changes": [
+        {
+          "start": 84,
+          "end": 89,
+          "before": "第3.1節",
+          "after": "[第3.1節](信号と安全装置と進路.md#s-3-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 589,
+          "end": 592,
+          "before": "第6章",
+          "after": "[第6章](分割記録/節の対応表.md#s-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "73a0136d92c982f60485e6b152e1a5b82d2ba7f96bf6fed7fd79fd568456d885",
+      "output_sha256": "a8fae4f750c36c579f98c062c8a23750489142c791a33f61fabbb4bc6c82e39c",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-10",
+      "title": "### 7.10 TASC停車成立・保持引継ぎ・ロック（最新決定）",
+      "dest": "auto",
+      "start": 25028,
+      "end": 25979,
+      "line_start": 478,
+      "line_end": 491,
+      "changes": [
+        {
+          "start": 727,
+          "end": 733,
+          "before": "第8.26節",
+          "after": "[第8.26節](時刻表と保存ダイヤ.md#s-8-26)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 785,
+          "end": 791,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 932,
+          "end": 939,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "42bb7f03b7fb404f145065e179e927ece63e97416a5939d7737ff48e12888b81",
+      "output_sha256": "5692f693f82bca6f93696baa3cbe9f8e94da499de1fbb5e125050d83e6a9d7c0",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-11",
+      "title": "### 7.11 オーバーラン後の後退修正（決定）",
+      "dest": "auto",
+      "start": 25979,
+      "end": 26673,
+      "line_start": 492,
+      "line_end": 505,
+      "changes": [
+        {
+          "start": 44,
+          "end": 47,
+          "before": "第6章",
+          "after": "[第6章](分割記録/節の対応表.md#s-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 317,
+          "end": 327,
+          "before": "第3.4・7.10節",
+          "after": "[第3.4・7.10節](分割記録/節の対応表.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 591,
+          "end": 596,
+          "before": "第7.9節",
+          "after": "[第7.9節](ATOとTASC.md#s-7-9)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 626,
+          "end": 632,
+          "before": "第7.13節",
+          "after": "[第7.13節](ATOとTASC.md#s-7-13)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c5db28d604056bbf5a4a31a7b788630c221ce61103c64c45ad2d83a20ab64e0c",
+      "output_sha256": "49eb2bb838003b5876ff6bb0771919ff52c2587180ac80ad2683f8de75336c3d",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-12",
+      "title": "### 7.12 手前停止からの再開（決定）",
+      "dest": "auto",
+      "start": 26673,
+      "end": 26904,
+      "line_start": 506,
+      "line_end": 512,
+      "changes": [
+        {
+          "start": 171,
+          "end": 174,
+          "before": "第6章",
+          "after": "[第6章](分割記録/節の対応表.md#s-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 219,
+          "end": 225,
+          "before": "第7.19節",
+          "after": "[第7.19節](ATOとTASC.md#s-7-19)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "4ab420a8df7389053bae53c6100fdbb517001c5c9ee8647cb442fa8ebd72d6ff",
+      "output_sha256": "6659f5a5a2327a17230f0c208f5f4d17c7effcb10f5a1724cd15be0dbb65b01e",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-13",
+      "title": "### 7.13 TASC対象駅の変更（決定）",
+      "dest": "auto",
+      "start": 26904,
+      "end": 27155,
+      "line_start": 513,
+      "line_end": 519,
+      "changes": [
+        {
+          "start": 186,
+          "end": 192,
+          "before": "第7.11節",
+          "after": "[第7.11節](ATOとTASC.md#s-7-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "75d4b892bd3888704a57518debad4699cfe8bc8a312a613719289c77389bb474",
+      "output_sha256": "de48c7862b77909e5001348df9045f1473afd1b97fd71b7584b3f41065149a03",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-14",
+      "title": "### 7.14 停止目標の共通化（決定）",
+      "dest": "auto",
+      "start": 27155,
+      "end": 27367,
+      "line_start": 520,
+      "line_end": 525,
+      "changes": [],
+      "source_sha256": "2a464b65ca3dd01d95604742ed76cf6271446e260412e67dcf4ea75da7dbc2cb",
+      "output_sha256": "2a464b65ca3dd01d95604742ed76cf6271446e260412e67dcf4ea75da7dbc2cb",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-15",
+      "title": "### 7.15 停止目標喪失とATOの再発車承認（決定）",
+      "dest": "auto",
+      "start": 27367,
+      "end": 27967,
+      "line_start": 526,
+      "line_end": 535,
+      "changes": [
+        {
+          "start": 182,
+          "end": 188,
+          "before": "第7.17節",
+          "after": "[第7.17節](ATOとTASC.md#s-7-17)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "76667718aa1519dd111981c147e9750270c98612bb574d6d1b95c5e1706798ec",
+      "output_sha256": "eacb462d6661d7d5a087d9c4e07349289a4da71df7ea729379910b30af0e6f0a",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-16",
+      "title": "### 7.16 ATO開始・復旧承認・無人運転（決定）",
+      "dest": "auto",
+      "start": 27967,
+      "end": 29235,
+      "line_start": 536,
+      "line_end": 550,
+      "changes": [
+        {
+          "start": 885,
+          "end": 891,
+          "before": "第11.4節",
+          "after": "[第11.4節](マスコン操作とHUD.md#s-11-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1054,
+          "end": 1060,
+          "before": "第8.21節",
+          "after": "[第8.21節](時刻表と保存ダイヤ.md#s-8-21)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "8aa1fc0b428dcbe6073eba45a57024cf265e8da275fdc7f736cd9f5c5e04c934",
+      "output_sha256": "be72c054ba0f68f29ca311d88d21d1f6b6d173c6b9a69b05e01bc829a9f0f00c",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-17",
+      "title": "### 7.17 予定外の後退退避・情報確認待ち（決定）",
+      "dest": "auto",
+      "start": 29235,
+      "end": 29658,
+      "line_start": 551,
+      "line_end": 558,
+      "changes": [
+        {
+          "start": 244,
+          "end": 249,
+          "before": "第8.8節",
+          "after": "[第8.8節](時刻表と保存ダイヤ.md#s-8-8)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 390,
+          "end": 396,
+          "before": "第8.15節",
+          "after": "[第8.15節](共通方針と責任分担.md#s-8-15)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9b619c886db26187a4ea6b24fb0e8fe4d34b3b9eae2eec1a3f2d6019f8f7b528",
+      "output_sha256": "8063513bbbb022a006620f3bd9847911beeb578ed3eb278b9b61fbbce6f56ee3",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-18",
+      "title": "### 7.18 TASCの情報不足・復旧（決定）",
+      "dest": "auto",
+      "start": 29658,
+      "end": 30327,
+      "line_start": 559,
+      "line_end": 566,
+      "changes": [
+        {
+          "start": 649,
+          "end": 655,
+          "before": "第7.11節",
+          "after": "[第7.11節](ATOとTASC.md#s-7-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "b639dec2fc71167a1505d3aea934f157eadf19c26ac70fb5e9180ac3656f6a43",
+      "output_sha256": "a07024be0229028940d3d4a8f7690a5c3df3538bc9cd14b8d223e417bf2f65cb",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-19",
+      "title": "### 7.19 TASC自動停止中のEBからの復帰（決定）",
+      "dest": "auto",
+      "start": 30327,
+      "end": 31053,
+      "line_start": 567,
+      "line_end": 577,
+      "changes": [
+        {
+          "start": 519,
+          "end": 525,
+          "before": "第7.11節",
+          "after": "[第7.11節](ATOとTASC.md#s-7-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 586,
+          "end": 591,
+          "before": "第7.6節",
+          "after": "[第7.6節](ATOとTASC.md#s-7-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 656,
+          "end": 661,
+          "before": "第7.8節",
+          "after": "[第7.8節](ATOとTASC.md#s-7-8)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 670,
+          "end": 680,
+          "before": "第3.4・7.10節",
+          "after": "[第3.4・7.10節](分割記録/節の対応表.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 692,
+          "end": 698,
+          "before": "第7.25節",
+          "after": "[第7.25節](非常制御と故障復旧.md#s-7-25)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "beda88a5ba46015f56d5cbcf3f27d303228baccf5d16fafcf1790df63c66c56e",
+      "output_sha256": "889bebaeafccfa23e84424751e10df513967363c993e5635d5248656dd9a5ed1",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "u-7-2",
+      "title": "### TASC・目標喪失の残課題",
+      "dest": "auto",
+      "start": 31053,
+      "end": 31534,
+      "line_start": 578,
+      "line_end": 587,
+      "changes": [
+        {
+          "start": 75,
+          "end": 81,
+          "before": "第7.13節",
+          "after": "[第7.13節](ATOとTASC.md#s-7-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 170,
+          "end": 180,
+          "before": "第7.8・7.18節",
+          "after": "[第7.8・7.18節](分割記録/節の対応表.md#s-7-8)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 246,
+          "end": 252,
+          "before": "第11.6節",
+          "after": "[第11.6節](マスコン操作とHUD.md#s-11-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 365,
+          "end": 371,
+          "before": "第7.26節",
+          "after": "[第7.26節](ATOとTASC.md#s-7-26)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e1bad5e210396356dd732ef4a899ed185d5c0337207b402a00b76dc6f52348a0",
+      "output_sha256": "a376652d4cd3c1fee875e554ff8b25cb4dcbd4179c301007a57b668348885a15",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-20",
+      "title": "### 7.20 ATOの指定ノッチ無視・開始解除（最新決定）",
+      "dest": "auto",
+      "start": 31534,
+      "end": 32370,
+      "line_start": 588,
+      "line_end": 599,
+      "changes": [
+        {
+          "start": 651,
+          "end": 656,
+          "before": "第7.1節",
+          "after": "[第7.1節](ATOとTASC.md#s-7-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 740,
+          "end": 747,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "3aafbed64d3d7afe19dcb476d5b0c32954e9554691a313f0747502256f8d0af8",
+      "output_sha256": "84eb4a336dff0a92d8c282843c07ebac9163ae1fb57c3b7b0ea76da365a9cb62",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-21",
+      "title": "### 7.21 実効ノッチ引継ぎキー（旧仕様を保存・要検討）",
+      "dest": "auto",
+      "start": 32370,
+      "end": 32942,
+      "line_start": 600,
+      "line_end": 609,
+      "changes": [
+        {
+          "start": 90,
+          "end": 96,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "0f2f915ad8e98e47468aad5936bde0203d03da61ea022cbf88e8e427fa31964b",
+      "output_sha256": "cd8eb5a0e0db5ebd9b8028d15cbffb657b1c7fd505dfd3f47ff10b19e0048dce",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-22",
+      "title": "### 7.22 ATO予定折返し・切替中のロック（決定）",
+      "dest": "auto",
+      "start": 32942,
+      "end": 33782,
+      "line_start": 610,
+      "line_end": 624,
+      "changes": [
+        {
+          "start": 533,
+          "end": 538,
+          "before": "第6.6節",
+          "after": "[第6.6節](非常制御と故障復旧.md#s-6-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 766,
+          "end": 771,
+          "before": "第3.2節",
+          "after": "[第3.2節](共通方針と責任分担.md#s-3-2)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 810,
+          "end": 817,
+          "before": "第11.15節",
+          "after": "[第11.15節](マスコン操作とHUD.md#s-11-15)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1f044726c0cd8cac7663bc34a5c796c97777c6d83aa5ff91db186e9d63d0353a",
+      "output_sha256": "a3483e52175b17e1cc983fb220c849c755fb077fca80e482e0617409d4470bd2",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-23",
+      "title": "### 7.23 停車保持と物理限界（役割分離後も維持）",
+      "dest": "auto",
+      "start": 33782,
+      "end": 34175,
+      "line_start": 625,
+      "line_end": 632,
+      "changes": [
+        {
+          "start": 32,
+          "end": 37,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "7de28e821590882b8b89e6fd682c480d2880b9a9ab998802bfdc4e9a3f7e6b87",
+      "output_sha256": "e4b5b07f93bab5c9289e0bebf4a263e75717b673935dde4d8425bde0e7df5f14",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-24",
+      "title": "### 7.24 ATOの運転性格（決定／数値未決定）",
+      "dest": "auto",
+      "start": 34175,
+      "end": 34974,
+      "line_start": 633,
+      "line_end": 645,
+      "changes": [],
+      "source_sha256": "754c6c2ce7af4c3bbcf4cee4268adf923c389e65b139cc926b149c77b4790349",
+      "output_sha256": "754c6c2ce7af4c3bbcf4cee4268adf923c389e65b139cc926b149c77b4790349",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-7-25",
+      "title": "### 7.25 駆動系故障による自動制御中断・復旧・再開（決定）",
+      "dest": "fault",
+      "start": 34974,
+      "end": 36761,
+      "line_start": 646,
+      "line_end": 681,
+      "changes": [
+        {
+          "start": 83,
+          "end": 90,
+          "before": "第11.11節",
+          "after": "[第11.11節](非常制御と故障復旧.md#s-11-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 497,
+          "end": 504,
+          "before": "第11.11節",
+          "after": "[第11.11節](非常制御と故障復旧.md#s-11-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1054,
+          "end": 1060,
+          "before": "第7.19節",
+          "after": "[第7.19節](ATOとTASC.md#s-7-19)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1322,
+          "end": 1327,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "24be54589d0c81fc1980a3d138012de23a1046af6414f0d40181a8fa3d89c1a3",
+      "output_sha256": "e1c1288a360500076201dc2e3cf81af6a3ddfe11533d31403f874305b83c3b92",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-7-26",
+      "title": "### 7.26 目標喪失後の再開承認の受付・失効（決定）",
+      "dest": "auto",
+      "start": 36761,
+      "end": 37476,
+      "line_start": 682,
+      "line_end": 693,
+      "changes": [],
+      "source_sha256": "44f66145c0f5381ac12c89cbacc413597489c70c557b252a95fac84c0dd66b93",
+      "output_sha256": "44f66145c0f5381ac12c89cbacc413597489c70c557b252a95fac84c0dd66b93",
+      "file": "docs/organize/整理3/ATOとTASC.md"
+    },
+    {
+      "key": "s-8",
+      "title": "## 8. ATOSの権限・制限速度・時刻表編集",
+      "dest": "atos",
+      "start": 37476,
+      "end": 37502,
+      "line_start": 694,
+      "line_end": 695,
+      "changes": [],
+      "source_sha256": "3e1e3d50a00e797eafb566f460c89b752b1b4e58f49394aac8d7ca426b1d2434",
+      "output_sha256": "3e1e3d50a00e797eafb566f460c89b752b1b4e58f49394aac8d7ca426b1d2434",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-1",
+      "title": "### 8.1 指令と車上判断（決定）",
+      "dest": "atos",
+      "start": 37502,
+      "end": 37764,
+      "line_start": 696,
+      "line_end": 703,
+      "changes": [
+        {
+          "start": 218,
+          "end": 232,
+          "before": "第7.15・8.6・8.7節",
+          "after": "[第7.15・8.6・8.7節](分割記録/節の対応表.md#s-7-15)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c2a841ce44fa5e441a18008152b85f48bec50c03e55832aa07b68d4d05610b83",
+      "output_sha256": "8c214544a23f950283981baf207693c53f4c520d8ec1d8329dff691c64e9937e",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-2",
+      "title": "### 8.2 手動運転での速度制限（決定）",
+      "dest": "atos",
+      "start": 37764,
+      "end": 38177,
+      "line_start": 704,
+      "line_end": 713,
+      "changes": [
+        {
+          "start": 221,
+          "end": 226,
+          "before": "第3.1節",
+          "after": "[第3.1節](信号と安全装置と進路.md#s-3-1)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "ae5656840c63bbaeb22e4e70e67b4ae96e7cdc3db1d713254d50c6b54a25608c",
+      "output_sha256": "380db34e0e8e0d6a9e99f94433ad455d84ba92892782f5547b540c9a3aeca2a5",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-3",
+      "title": "### 8.3 適用範囲と永続化（決定）",
+      "dest": "atos",
+      "start": 38177,
+      "end": 38373,
+      "line_start": 714,
+      "line_end": 720,
+      "changes": [],
+      "source_sha256": "463aa72fc7e0c180a0fda3e8160cfe6bb55ef91eb5698d23243df4f4c0cf9997",
+      "output_sha256": "463aa72fc7e0c180a0fda3e8160cfe6bb55ef91eb5698d23243df4f4c0cf9997",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-4",
+      "title": "### 8.4 列車からのATOS制限解除要求（決定）",
+      "dest": "atos",
+      "start": 38373,
+      "end": 38783,
+      "line_start": 721,
+      "line_end": 734,
+      "changes": [],
+      "source_sha256": "f9b027399c2ebad0603091b7a448ee7bd6eb07d0ac651e46dbd5048df4e1699d",
+      "output_sha256": "f9b027399c2ebad0603091b7a448ee7bd6eb07d0ac651e46dbd5048df4e1699d",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-5",
+      "title": "### 8.5 常時稼働と自動操作の範囲（決定）",
+      "dest": "atos",
+      "start": 38783,
+      "end": 39440,
+      "line_start": 735,
+      "line_end": 746,
+      "changes": [
+        {
+          "start": 259,
+          "end": 266,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 448,
+          "end": 453,
+          "before": "第8.3節",
+          "after": "[第8.3節](ATOSと遠隔操作と延発.md#s-8-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 630,
+          "end": 636,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c6c168064a6f8b3af2b5f36bd47e36dca89309bd07bd345c0def1f18f6717ff1",
+      "output_sha256": "2932d09f2b86c8de249eb783c8b2a99ab742c74ec07f25f0c118dc63d7a22e00",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-6",
+      "title": "### 8.6 基本的な遠隔時刻表編集（初期範囲として決定）",
+      "dest": "timetable",
+      "start": 39440,
+      "end": 39847,
+      "line_start": 747,
+      "line_end": 754,
+      "changes": [
+        {
+          "start": 284,
+          "end": 290,
+          "before": "第8.18節",
+          "after": "[第8.18節](時刻表と保存ダイヤ.md#s-8-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 363,
+          "end": 374,
+          "before": "第8.16～8.23節",
+          "after": "[第8.16～8.23節](分割記録/節の対応表.md#s-8-16)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "0a09ed1c00ca10e3c61dcd5310964428b58cc51d52b93fe19ed5806af3697d05",
+      "output_sha256": "76ee664215988d71c495cf85bb87a29d82485e7398254304614522dee2d447e9",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-7",
+      "title": "### 8.7 エラー中の時刻表変更と再開（決定）",
+      "dest": "timetable",
+      "start": 39847,
+      "end": 40228,
+      "line_start": 755,
+      "line_end": 762,
+      "changes": [
+        {
+          "start": 204,
+          "end": 210,
+          "before": "第7.16節",
+          "after": "[第7.16節](ATOとTASC.md#s-7-16)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "106a793dc7d8b10d4f62480fd1100fc436d064df0a603896b2a1cfbcfa16ee9f",
+      "output_sha256": "04a0f90c29fcd148f7951dc42ad47d4032454ca176b289b2698d3b7ad8e04657",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-8",
+      "title": "### 8.8 時刻表GUI・直接操作・方向設定命令（決定）",
+      "dest": "timetable",
+      "start": 40228,
+      "end": 40877,
+      "line_start": 763,
+      "line_end": 772,
+      "changes": [
+        {
+          "start": 297,
+          "end": 303,
+          "before": "第8.23節",
+          "after": "[第8.23節](時刻表と保存ダイヤ.md#s-8-23)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 583,
+          "end": 589,
+          "before": "第7.22節",
+          "after": "[第7.22節](ATOとTASC.md#s-7-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 593,
+          "end": 598,
+          "before": "第6.6節",
+          "after": "[第6.6節](非常制御と故障復旧.md#s-6-6)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 625,
+          "end": 631,
+          "before": "第8.24節",
+          "after": "[第8.24節](時刻表と保存ダイヤ.md#s-8-24)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "f8624743bb9e1645cc7b46347c2ad31d0e1038cd9219078ba4bdfac5f1f5f503",
+      "output_sha256": "be771a8584ed3048e687fd45a7992f94ae6d68c280c1e95d94c1b46ff373c74d",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-9",
+      "title": "### 8.9 待機時間・終了・繰返し（決定）",
+      "dest": "timetable",
+      "start": 40877,
+      "end": 41383,
+      "line_start": 773,
+      "line_end": 781,
+      "changes": [
+        {
+          "start": 112,
+          "end": 118,
+          "before": "第8.19節",
+          "after": "[第8.19節](時刻表と保存ダイヤ.md#s-8-19)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "6b735a496222921cdf30fd1830074d0337d2b66eddaf67fec26c282ce679c379",
+      "output_sha256": "1e83f2be3477abf33c684c7c7878a02d822ffa984a1ad914d155feb7ceebb1a7",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-10",
+      "title": "### 8.10 遠隔の変更予約と適用時点（決定）",
+      "dest": "timetable",
+      "start": 41383,
+      "end": 41994,
+      "line_start": 782,
+      "line_end": 791,
+      "changes": [],
+      "source_sha256": "14fe207ac7a8c604d79514b32034a1dc76500776df5405f45157a67ac55559eb",
+      "output_sha256": "14fe207ac7a8c604d79514b32034a1dc76500776df5405f45157a67ac55559eb",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-11",
+      "title": "### 8.11 予約の置換・取消・破棄（決定）",
+      "dest": "timetable",
+      "start": 41994,
+      "end": 42571,
+      "line_start": 792,
+      "line_end": 801,
+      "changes": [
+        {
+          "start": 217,
+          "end": 223,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "ef7c928fbba8a91b5b9c408523eedec19e2d3f9b4f9e8b24914a793562810180",
+      "output_sha256": "4afdd5b631a4724a02c2228614ced6f93e55f17a8a867957be17abccdbcbccd1",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-12",
+      "title": "### 8.12 終着時の時刻表切替（決定）",
+      "dest": "timetable",
+      "start": 42571,
+      "end": 43214,
+      "line_start": 802,
+      "line_end": 812,
+      "changes": [],
+      "source_sha256": "f7e3dfe1407b3a299219c2afedcfee781e4362808016f592befba6e973a840eb",
+      "output_sha256": "f7e3dfe1407b3a299219c2afedcfee781e4362808016f592befba6e973a840eb",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-13",
+      "title": "### 8.13 切替設定のフィルター・競合・一括更新（決定）",
+      "dest": "timetable",
+      "start": 43214,
+      "end": 43914,
+      "line_start": 813,
+      "line_end": 823,
+      "changes": [
+        {
+          "start": 683,
+          "end": 694,
+          "before": "第8.16・8.17節",
+          "after": "[第8.16・8.17節](分割記録/節の対応表.md#s-8-16)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "7f42dd9f0afa1d0647ebe36985949335a5d55932fa2b32f2941cdeaeee88e6f8",
+      "output_sha256": "2f66416a5730a985bd38f387bca230a00a53e4e1f75780524c88cfb22c9e9c6e",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-14",
+      "title": "### 8.14 不要予約の整理（将来機能、最初期には含めない）",
+      "dest": "timetable",
+      "start": 43914,
+      "end": 44308,
+      "line_start": 824,
+      "line_end": 831,
+      "changes": [],
+      "source_sha256": "e3fb38aa85149e983b80ed45947867a901e1a9354f40c4c71d8ed56a338dddc2",
+      "output_sha256": "e3fb38aa85149e983b80ed45947867a901e1a9354f40c4c71d8ed56a338dddc2",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-15",
+      "title": "### 8.15 INTEROSによる通知（決定）",
+      "dest": "common",
+      "start": 44308,
+      "end": 45018,
+      "line_start": 832,
+      "line_end": 843,
+      "changes": [],
+      "source_sha256": "e6f8af95a0ea9bb35b196326bb9d568191a4a2ec7b15a39992aaf87f1227d98a",
+      "output_sha256": "e6f8af95a0ea9bb35b196326bb9d568191a4a2ec7b15a39992aaf87f1227d98a",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-8-16",
+      "title": "### 8.16 ATOSの閲覧・操作権限（決定）",
+      "dest": "atos",
+      "start": 45018,
+      "end": 45620,
+      "line_start": 844,
+      "line_end": 853,
+      "changes": [
+        {
+          "start": 444,
+          "end": 450,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9046c5017524c2d796bff5e31e7d9394de6450dc7dc92dc0592ed5ec00436d31",
+      "output_sha256": "0bdfb672accbddceb3574225b3f8ee8cbe33dedef2af8e3aef9e21d821477912",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-8-17",
+      "title": "### 8.17 編集・予約の競合と差分確認（決定）",
+      "dest": "timetable",
+      "start": 45620,
+      "end": 46520,
+      "line_start": 854,
+      "line_end": 865,
+      "changes": [],
+      "source_sha256": "5df548e7088272a442ddeae27c0d3cd938f30c3ebb3a02b85567da28c3d3ed15",
+      "output_sha256": "5df548e7088272a442ddeae27c0d3cd938f30c3ebb3a02b85567da28c3d3ed15",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-18",
+      "title": "### 8.18 時刻表の対応範囲（決定／アドオン調査待ち）",
+      "dest": "timetable",
+      "start": 46520,
+      "end": 47065,
+      "line_start": 866,
+      "line_end": 873,
+      "changes": [
+        {
+          "start": 180,
+          "end": 186,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 387,
+          "end": 393,
+          "before": "第12.8節",
+          "after": "[第12.8節](調査資料索引.md#s-12-8)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "aec5ab9f07fe2a84c67e7b6687cbe92dad84cd1f865ed64a47b5a9c707539ea7",
+      "output_sha256": "57d0a85b76d0b195ec747c8dbc5e0783f926062663305c0c1eb0d414c1c7ee16",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-19",
+      "title": "### 8.19 時刻指定・標準待機条件（決定）",
+      "dest": "timetable",
+      "start": 47065,
+      "end": 47883,
+      "line_start": 874,
+      "line_end": 883,
+      "changes": [
+        {
+          "start": 482,
+          "end": 488,
+          "before": "第8.25節",
+          "after": "[第8.25節](時刻表と保存ダイヤ.md#s-8-25)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 736,
+          "end": 743,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 751,
+          "end": 757,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e969b1f079757735610fad3072c313baf6c4f28d7bc053d5092610a9bd14a9a6",
+      "output_sha256": "2b9aaf213c4c950e21201fb098088b92cadcbe63a0c30d53281b8db281427699",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-20",
+      "title": "### 8.20 小包・運行タイトル・速度割合（決定）",
+      "dest": "timetable",
+      "start": 47883,
+      "end": 48707,
+      "line_start": 884,
+      "line_end": 894,
+      "changes": [
+        {
+          "start": 533,
+          "end": 538,
+          "before": "第4.1節",
+          "after": "[第4.1節](加減速とノッチ.md#s-4-1)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "82c1cee9118f58aa4ef6027f3ccd20ae9fbfc3f2bb1f3f77bbddb9c438b667ba",
+      "output_sha256": "fedaed1491ab4630143b7fb71cca69fed16b26a6ae8f8edca1b4b59bbea1eb53",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-21",
+      "title": "### 8.21 利用不能・読取不能項目（最新決定／保持方法は要調査）",
+      "dest": "timetable",
+      "start": 48707,
+      "end": 49365,
+      "line_start": 895,
+      "line_end": 904,
+      "changes": [],
+      "source_sha256": "a27b4d0b06f04be04043fe53752fc4edcd5192a5b1017b17bb57b6d1b5d6e244",
+      "output_sha256": "a27b4d0b06f04be04043fe53752fc4edcd5192a5b1017b17bb57b6d1b5d6e244",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-22",
+      "title": "### 8.22 変更時の待機進捗継承（CAT独自仕様として決定）",
+      "dest": "timetable",
+      "start": 49365,
+      "end": 50043,
+      "line_start": 905,
+      "line_end": 915,
+      "changes": [],
+      "source_sha256": "5a57539dac70f5980536237b1996b65b32ee356c851874d915ac96213ad9dfa2",
+      "output_sha256": "5a57539dac70f5980536237b1996b65b32ee356c851874d915ac96213ad9dfa2",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-23",
+      "title": "### 8.23 列車共通時刻表の挿入・取り出し・設定GUI（決定）",
+      "dest": "timetable",
+      "start": 50043,
+      "end": 51458,
+      "line_start": 916,
+      "line_end": 935,
+      "changes": [
+        {
+          "start": 78,
+          "end": 84,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 913,
+          "end": 919,
+          "before": "第7.10節",
+          "after": "[第7.10節](ATOとTASC.md#s-7-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "0d1fcfec793f87d4a5e9b109f66228a9764f003d26f76e8ef59dd50fb1fec7c4",
+      "output_sha256": "19a65840a90c4196692063726324f4ff365464fff0e77f0b6fdbb0f260d82d88",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-24",
+      "title": "### 8.24 駅内の停車後手順・子項目（決定／拡張方式は要調査）",
+      "dest": "timetable",
+      "start": 51458,
+      "end": 53051,
+      "line_start": 936,
+      "line_end": 961,
+      "changes": [
+        {
+          "start": 192,
+          "end": 199,
+          "before": "第11.21節",
+          "after": "[第11.21節](乗務員とドアと停車保持.md#s-11-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 897,
+          "end": 909,
+          "before": "第7.20・11.22節",
+          "after": "[第7.20・11.22節](分割記録/節の対応表.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1427,
+          "end": 1433,
+          "before": "第8.22節",
+          "after": "[第8.22節](時刻表と保存ダイヤ.md#s-8-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1485,
+          "end": 1491,
+          "before": "第8.25節",
+          "after": "[第8.25節](時刻表と保存ダイヤ.md#s-8-25)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1572,
+          "end": 1577,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "33c33eb36dce159b738f30523640319dfd4d19ce8ebc75070d99a602c5a53361",
+      "output_sha256": "11c17228973ab45c9bb325b46799a8879166217229f0bd825e1ed0960f07ba94",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-25",
+      "title": "### 8.25 手動の手順案内と停車駅情報の独立（最新決定）",
+      "dest": "timetable",
+      "start": 53051,
+      "end": 53934,
+      "line_start": 962,
+      "line_end": 975,
+      "changes": [
+        {
+          "start": 847,
+          "end": 853,
+          "before": "第8.27節",
+          "after": "[第8.27節](時刻表と保存ダイヤ.md#s-8-27)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "cf78aff687094ce5630ed8cb7109a2306311c61f077d6d12754aa7154afb22bd",
+      "output_sha256": "9b66d03c88d52c9ec5d77ea1b3a05cdc400955f689c920b51d5a1e85ee51cb22",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-26",
+      "title": "### 8.26 停車後手順の開始・中断（最新決定）",
+      "dest": "timetable",
+      "start": 53934,
+      "end": 54349,
+      "line_start": 976,
+      "line_end": 983,
+      "changes": [],
+      "source_sha256": "d766ef4e8cd96440664e58101ddfe2f5dd7cd031f749248a4b9157f527d05a96",
+      "output_sha256": "d766ef4e8cd96440664e58101ddfe2f5dd7cd031f749248a4b9157f527d05a96",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-27",
+      "title": "### 8.27 手動案内の共有・編集・位置選択（決定）",
+      "dest": "timetable",
+      "start": 54349,
+      "end": 55511,
+      "line_start": 984,
+      "line_end": 999,
+      "changes": [],
+      "source_sha256": "e2bcd57a01b0f05d6f68f2c37745b43c127939a7b6210d8cbf110d1e21bbd615",
+      "output_sha256": "e2bcd57a01b0f05d6f68f2c37745b43c127939a7b6210d8cbf110d1e21bbd615",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-28",
+      "title": "### 8.28 ATOの完了・スキップ・OR待機（決定）",
+      "dest": "timetable",
+      "start": 55511,
+      "end": 56892,
+      "line_start": 1000,
+      "line_end": 1023,
+      "changes": [
+        {
+          "start": 117,
+          "end": 124,
+          "before": "第11.18節",
+          "after": "[第11.18節](マスコン操作とHUD.md#s-11-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1234,
+          "end": 1240,
+          "before": "第8.26節",
+          "after": "[第8.26節](時刻表と保存ダイヤ.md#s-8-26)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1293,
+          "end": 1299,
+          "before": "第8.24節",
+          "after": "[第8.24節](時刻表と保存ダイヤ.md#s-8-24)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1341,
+          "end": 1348,
+          "before": "第13.10節",
+          "after": "[第13.10節](音響とSpeakerController.md#s-13-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e579564b768ef0e4920339507bcdde48e32f3ae9b4b8eaab03144ce2c3fb64b2",
+      "output_sha256": "df973ce7cc9c376ac0fcef56a83fbf889e11ce03f5c8062e7dd95e2f232d367c",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-29",
+      "title": "### 8.29 保存ダイヤ・運行用コピーと管理操作（2026-10-25保存／決定・接続詳細未決定）",
+      "dest": "timetable",
+      "start": 56892,
+      "end": 58949,
+      "line_start": 1024,
+      "line_end": 1070,
+      "changes": [
+        {
+          "start": 706,
+          "end": 722,
+          "before": "第8.10・8.11・8.17節",
+          "after": "[第8.10・8.11・8.17節](分割記録/節の対応表.md#s-8-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1450,
+          "end": 1456,
+          "before": "第8.23節",
+          "after": "[第8.23節](時刻表と保存ダイヤ.md#s-8-23)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1770,
+          "end": 1776,
+          "before": "第8.23節",
+          "after": "[第8.23節](時刻表と保存ダイヤ.md#s-8-23)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9419979260ea09468cc18b56fa5e47f1dc653f5f96ada1412e31aeb1ba4aa30d",
+      "output_sha256": "d11b7a171b5b9b47d29dd9e920573ff4cac7118b8bd0277413f1d51bcb451a21",
+      "file": "docs/organize/整理3/時刻表と保存ダイヤ.md"
+    },
+    {
+      "key": "s-8-30",
+      "title": "### 8.30 出発時機表示器・ATOSの延発指示（決定／表示・同時処理等は未決定）",
+      "dest": "atos",
+      "start": 58949,
+      "end": 61782,
+      "line_start": 1071,
+      "line_end": 1125,
+      "changes": [
+        {
+          "start": 1220,
+          "end": 1226,
+          "before": "第8.11節",
+          "after": "[第8.11節](時刻表と保存ダイヤ.md#s-8-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1623,
+          "end": 1629,
+          "before": "第8.19節",
+          "after": "[第8.19節](時刻表と保存ダイヤ.md#s-8-19)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "ea9a68b9ec4e1d27bd385adce10283af02cb417b5d30ffcaea0f3ddf1a3fbff4",
+      "output_sha256": "ea7570efe7803d5097ee2a1a339c86c3ea51b9f9fd98c8ce3dec223153e247b2",
+      "file": "docs/organize/整理3/ATOSと遠隔操作と延発.md"
+    },
+    {
+      "key": "s-9",
+      "title": "## 9. 信号・距離併用方式の検討状態",
+      "dest": "signal",
+      "start": 61782,
+      "end": 61804,
+      "line_start": 1126,
+      "line_end": 1127,
+      "changes": [],
+      "source_sha256": "cbffb9ccb3a9406ca4a79933441eb49f351cbf199c2a5e357ead5b032edbcf2a",
+      "output_sha256": "cbffb9ccb3a9406ca4a79933441eb49f351cbf199c2a5e357ead5b032edbcf2a",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "u-9-1",
+      "title": "### 決定した方向",
+      "dest": "signal",
+      "start": 61804,
+      "end": 61929,
+      "line_start": 1128,
+      "line_end": 1133,
+      "changes": [],
+      "source_sha256": "2255dfe0d1c8a2c6cb2613269af37f34b401158d89d5d84d94effbd919a18b17",
+      "output_sha256": "2255dfe0d1c8a2c6cb2613269af37f34b401158d89d5d84d94effbd919a18b17",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "u-9-2",
+      "title": "### 併用方式全体は検討中",
+      "dest": "signal",
+      "start": 61929,
+      "end": 62294,
+      "line_start": 1134,
+      "line_end": 1142,
+      "changes": [
+        {
+          "start": 135,
+          "end": 139,
+          "before": "第10章",
+          "after": "[第10章](分割記録/節の対応表.md#s-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c0a370d3249008345ca5786d5c2298e4ea1d7b4a591ecb33afe160aca54bca44",
+      "output_sha256": "92592c46ac1fe3e999807db647982abd4d80818625d38eb39d42ef196260d64c",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "u-9-3",
+      "title": "### 信号現示・進入許可・事故の責任範囲（決定）",
+      "dest": "signal",
+      "start": 62294,
+      "end": 62962,
+      "line_start": 1143,
+      "line_end": 1154,
+      "changes": [],
+      "source_sha256": "cb6f3c961ca45c1a5f8d712672486027aaee7e6261ae681f224b2026d10bda68",
+      "output_sha256": "cb6f3c961ca45c1a5f8d712672486027aaee7e6261ae681f224b2026d10bda68",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-9-1",
+      "title": "### 9.1 地上信号の切替遅延（決定／数値未決定）",
+      "dest": "signal",
+      "start": 62962,
+      "end": 64002,
+      "line_start": 1155,
+      "line_end": 1171,
+      "changes": [],
+      "source_sha256": "88853d6b61130924b1b7b9654be2f4445dde12287bc471eb63dd5056cad5a5a6",
+      "output_sha256": "88853d6b61130924b1b7b9654be2f4445dde12287bc471eb63dd5056cad5a5a6",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-9-2",
+      "title": "### 9.2 速度制限・解除・予告標識ブロック（決定／詳細未決定）",
+      "dest": "signal",
+      "start": 64002,
+      "end": 66937,
+      "line_start": 1172,
+      "line_end": 1221,
+      "changes": [
+        {
+          "start": 1125,
+          "end": 1132,
+          "before": "第11.11節",
+          "after": "[第11.11節](非常制御と故障復旧.md#s-11-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2004,
+          "end": 2009,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1c4fce98170a18975ecca8eaaf96098dd74ca1c1e7420bc3b64eaa08a9df2fb1",
+      "output_sha256": "69c408125a1a9e0733d5fdc11e0bbc555c4048f4283df36c3c14c9ab8b072314",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-9-3",
+      "title": "### 9.3 必要情報の不足・設備不存在・回復（決定）",
+      "dest": "signal",
+      "start": 66937,
+      "end": 69209,
+      "line_start": 1222,
+      "line_end": 1259,
+      "changes": [
+        {
+          "start": 840,
+          "end": 846,
+          "before": "第7.18節",
+          "after": "[第7.18節](ATOとTASC.md#s-7-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2263,
+          "end": 2268,
+          "before": "第9.2節",
+          "after": "[第9.2節](信号と安全装置と進路.md#s-9-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "b1febcff6124d10b8691af83453a122d94067cc25445e6c8386ef90a632354cd",
+      "output_sha256": "1b66dab6580eef1f47ac22d677ef645de82ca71488dca6c2d524a74bc09a657f",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-9-4",
+      "title": "### 9.4 パターン接近・介入開始通知（決定／音・数値未決定）",
+      "dest": "signal",
+      "start": 69209,
+      "end": 69922,
+      "line_start": 1260,
+      "line_end": 1270,
+      "changes": [],
+      "source_sha256": "667e5fad3b6a1327cd4687f3c08a1a482d71f797fbeaa5b13c14a2fbe1b184f1",
+      "output_sha256": "667e5fad3b6a1327cd4687f3c08a1a482d71f797fbeaa5b13c14a2fbe1b184f1",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10",
+      "title": "## 10. 手動の行先指定と進路選択",
+      "dest": "signal",
+      "start": 69922,
+      "end": 69943,
+      "line_start": 1271,
+      "line_end": 1272,
+      "changes": [],
+      "source_sha256": "90158bd383e856e9549861d7aaf385811441d780875d5f8298e6b54278cf2020",
+      "output_sha256": "90158bd383e856e9549861d7aaf385811441d780875d5f8298e6b54278cf2020",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-1",
+      "title": "### 10.1 任意の行先指定（決定）",
+      "dest": "signal",
+      "start": 69943,
+      "end": 70293,
+      "line_start": 1273,
+      "line_end": 1282,
+      "changes": [
+        {
+          "start": 338,
+          "end": 344,
+          "before": "第11.6節",
+          "after": "[第11.6節](マスコン操作とHUD.md#s-11-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "34922506133e54be14a99552695494ce4c43d52191b86e5e9c02b798a3869437",
+      "output_sha256": "406f9a6efc7166eb92a25b56d184281e029c9db228b953a8711f4f5ca23a170c",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-2",
+      "title": "### 10.2 未確定分岐への接近（決定）",
+      "dest": "signal",
+      "start": 70293,
+      "end": 70586,
+      "line_start": 1283,
+      "line_end": 1291,
+      "changes": [],
+      "source_sha256": "71b9c22f2fdbe13135094f2774ad84aeaa488360ea8de3d34146cb1304ff5113",
+      "output_sha256": "71b9c22f2fdbe13135094f2774ad84aeaa488360ea8de3d34146cb1304ff5113",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-3",
+      "title": "### 10.3 確定進路の変更（決定）",
+      "dest": "signal",
+      "start": 70586,
+      "end": 70760,
+      "line_start": 1292,
+      "line_end": 1299,
+      "changes": [],
+      "source_sha256": "48a7fce43fc7dc869aba7b53360117c5d181982ec8a97476bb452bf89d5661c0",
+      "output_sha256": "48a7fce43fc7dc869aba7b53360117c5d181982ec8a97476bb452bf89d5661c0",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-4",
+      "title": "### 10.4 通過中の保護と複数進路の保持（決定）",
+      "dest": "signal",
+      "start": 70760,
+      "end": 71102,
+      "line_start": 1300,
+      "line_end": 1307,
+      "changes": [],
+      "source_sha256": "b1436716535a941bf7b15b22d4bda4b164c5aef0f2852474cd6e7ac0c5ea6f2c",
+      "output_sha256": "b1436716535a941bf7b15b22d4bda4b164c5aef0f2852474cd6e7ac0c5ea6f2c",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-5",
+      "title": "### 10.5 選択と申請の維持・有効範囲（決定）",
+      "dest": "signal",
+      "start": 71102,
+      "end": 71466,
+      "line_start": 1308,
+      "line_end": 1315,
+      "changes": [
+        {
+          "start": 120,
+          "end": 127,
+          "before": "第10.13節",
+          "after": "[第10.13節](信号と安全装置と進路.md#s-10-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 351,
+          "end": 358,
+          "before": "第10.11節",
+          "after": "[第10.11節](信号と安全装置と進路.md#s-10-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "42e57a57f8190ef3ac638e6dd2faedd32a727645f47263d6675ab707bbd88f72",
+      "output_sha256": "31dd5ae6b7584874b5da9b6560cdc82fa909215dcfe416b68f4db687a34686ea",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-6",
+      "title": "### 10.6 複数列車の許可裁定（決定）",
+      "dest": "signal",
+      "start": 71466,
+      "end": 71837,
+      "line_start": 1316,
+      "line_end": 1325,
+      "changes": [],
+      "source_sha256": "73a33871a9cae2ab3fc6063680d27c51247df8baaf9a7903611775360d6695a1",
+      "output_sha256": "73a33871a9cae2ab3fc6063680d27c51247df8baaf9a7903611775360d6695a1",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-7",
+      "title": "### 10.7 停止中の未使用許可の期限と再要求（決定）",
+      "dest": "signal",
+      "start": 71837,
+      "end": 72150,
+      "line_start": 1326,
+      "line_end": 1333,
+      "changes": [
+        {
+          "start": 210,
+          "end": 216,
+          "before": "第10.5節",
+          "after": "[第10.5節](信号と安全装置と進路.md#s-10-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "5ac1211d00cdd72540bfffd25cbdf2f90a7995620c6ad10189d2ef37343838a8",
+      "output_sha256": "aca562fc50820b2e2315cae27a36807cf1f283fab61c886629a663f09b1d9d1b",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-8",
+      "title": "### 10.8 手動での進路選択取消（決定）",
+      "dest": "signal",
+      "start": 72150,
+      "end": 72426,
+      "line_start": 1334,
+      "line_end": 1344,
+      "changes": [
+        {
+          "start": 260,
+          "end": 266,
+          "before": "第10.3節",
+          "after": "[第10.3節](信号と安全装置と進路.md#s-10-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d9b14af26e80a5628cda08bb0c9c40a352f843fc454fb7e100524b5e745c3a55",
+      "output_sha256": "31973f35447b6dda1466a90fc99b8f5e25fa44430da72068376dae4b0a267ade",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-9",
+      "title": "### 10.9 線路・分岐の変更時（決定）",
+      "dest": "signal",
+      "start": 72426,
+      "end": 73178,
+      "line_start": 1345,
+      "line_end": 1357,
+      "changes": [
+        {
+          "start": 584,
+          "end": 591,
+          "before": "第10.11節",
+          "after": "[第10.11節](信号と安全装置と進路.md#s-10-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "48810aef6aa64fcbc9c762017d803254711d31c05b4851635782d5c86c64ca6a",
+      "output_sha256": "9d0c7e7a7b8f6c7109b00eb393081150773cdb94424fc6e4edf18b3fcc208e62",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-10",
+      "title": "### 10.10 共通の進路管理（決定）",
+      "dest": "signal",
+      "start": 73178,
+      "end": 73470,
+      "line_start": 1358,
+      "line_end": 1364,
+      "changes": [],
+      "source_sha256": "2153f7e81716cf277dfad46eb6f33d82ccc861ce5322dd0555f63558b5278567",
+      "output_sha256": "2153f7e81716cf277dfad46eb6f33d82ccc861ce5322dd0555f63558b5278567",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-11",
+      "title": "### 10.11 進路情報の範囲と定義方法",
+      "dest": "signal",
+      "start": 73470,
+      "end": 74328,
+      "line_start": 1365,
+      "line_end": 1387,
+      "changes": [
+        {
+          "start": 266,
+          "end": 272,
+          "before": "第10.9節",
+          "after": "[第10.9節](信号と安全装置と進路.md#s-10-9)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 294,
+          "end": 300,
+          "before": "第10.9節",
+          "after": "[第10.9節](信号と安全装置と進路.md#s-10-9)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d5325025a1612cf7acd7145bdf1cafa65c174066e94850b335a4aa41a5bc9b09",
+      "output_sha256": "969a8404ea7e4d70d901478b062d908f9f975f94e92c70a124abd561843ac823",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "u-10-1",
+      "title": "### 要確認",
+      "dest": "signal",
+      "start": 74328,
+      "end": 74601,
+      "line_start": 1388,
+      "line_end": 1395,
+      "changes": [],
+      "source_sha256": "a1ee5f45c0c5ba52f9a1c37cf57373fca249cdc02831044ff557b8fcbf9519eb",
+      "output_sha256": "a1ee5f45c0c5ba52f9a1c37cf57373fca249cdc02831044ff557b8fcbf9519eb",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-12",
+      "title": "### 10.12 駅名指定・サジェスト・入力検証（決定）",
+      "dest": "signal",
+      "start": 74601,
+      "end": 75201,
+      "line_start": 1396,
+      "line_end": 1405,
+      "changes": [],
+      "source_sha256": "3766839de9b840fba837223d13c0a3f755d6a791e1c0fc0e061e74062bb2cadb",
+      "output_sha256": "3766839de9b840fba837223d13c0a3f755d6a791e1c0fc0e061e74062bb2cadb",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-13",
+      "title": "### 10.13 ATOの空き候補駅選択（決定）",
+      "dest": "signal",
+      "start": 75201,
+      "end": 75777,
+      "line_start": 1406,
+      "line_end": 1415,
+      "changes": [
+        {
+          "start": 523,
+          "end": 529,
+          "before": "第7.17節",
+          "after": "[第7.17節](ATOとTASC.md#s-7-17)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e3655984fd6fd2e7bc59f9fc458ea124e8120a59faa67d2629c94488caffff4d",
+      "output_sha256": "cbfb60e4851a03d5e690950df70ab722acd97aa367deb8ffb8416b14ecc5b487",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-10-14",
+      "title": "### 10.14 競合する無許可侵入の検知後（決定、検知性能は未検証）",
+      "dest": "signal",
+      "start": 75777,
+      "end": 76233,
+      "line_start": 1416,
+      "line_end": 1424,
+      "changes": [],
+      "source_sha256": "d6eb978c23319164204b71269fcb018165e09f8561cdc2e0eb840fc6c4d9c05d",
+      "output_sha256": "d6eb978c23319164204b71269fcb018165e09f8561cdc2e0eb840fc6c4d9c05d",
+      "file": "docs/organize/整理3/信号と安全装置と進路.md"
+    },
+    {
+      "key": "s-11",
+      "title": "## 11. マスコンHUDと入力",
+      "dest": "hud",
+      "start": 76233,
+      "end": 76252,
+      "line_start": 1425,
+      "line_end": 1426,
+      "changes": [],
+      "source_sha256": "33a75fdfd238f179a01f965ce85e8dd231382318dfb3d8cae44a7da0909e0903",
+      "output_sha256": "33a75fdfd238f179a01f965ce85e8dd231382318dfb3d8cae44a7da0909e0903",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-1",
+      "title": "### 11.1 画面構成（決定）",
+      "dest": "hud",
+      "start": 76252,
+      "end": 76602,
+      "line_start": 1427,
+      "line_end": 1434,
+      "changes": [
+        {
+          "start": 196,
+          "end": 202,
+          "before": "第11.4節",
+          "after": "[第11.4節](マスコン操作とHUD.md#s-11-4)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1008bc8153a04e8196843346ab434ccfadfb2a76d1b21137746bf50ad61b878c",
+      "output_sha256": "1cd7df338929a06aad69ec0874ea6d27657ff0b33517baf38b824622591365a0",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-2",
+      "title": "### 11.2 視点とカーソル（決定）",
+      "dest": "hud",
+      "start": 76602,
+      "end": 76863,
+      "line_start": 1435,
+      "line_end": 1443,
+      "changes": [],
+      "source_sha256": "d6be4d29e4fdbba0dff3eb1d0849ab3a90a00d0c279520aa23d6a720ce775900",
+      "output_sha256": "d6be4d29e4fdbba0dff3eb1d0849ab3a90a00d0c279520aa23d6a720ce775900",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-3",
+      "title": "### 11.3 ノッチ・レバーサーのキー／マウス操作（決定）",
+      "dest": "hud",
+      "start": 76863,
+      "end": 77337,
+      "line_start": 1444,
+      "line_end": 1458,
+      "changes": [
+        {
+          "start": 284,
+          "end": 290,
+          "before": "第7.21節",
+          "after": "[第7.21節](ATOとTASC.md#s-7-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 344,
+          "end": 349,
+          "before": "第6.5節",
+          "after": "[第6.5節](非常制御と故障復旧.md#s-6-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c13b42d94f241a77a80e14e3a7241ede845f14973ef81bfff6678dc5635a3469",
+      "output_sha256": "3b3f78b9a19a1ae709ea3962b51c7fc249307d2e21e39a0cfc477bc4d27a51b0",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-4",
+      "title": "### 11.4 HUD正常終了・強制終了（決定）",
+      "dest": "hud",
+      "start": 77337,
+      "end": 78142,
+      "line_start": 1459,
+      "line_end": 1476,
+      "changes": [
+        {
+          "start": 463,
+          "end": 470,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1e762ec2f8c162cb2ecf7a5b3d1d8def85f28d45789dff1647a66973ff0149a2",
+      "output_sha256": "70b6af37a95b1b7d9929d6bfa8cb580a33e0dcc8f568600f549a50d28f99f251",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-5",
+      "title": "### 11.5 Escの統一（決定）",
+      "dest": "hud",
+      "start": 78142,
+      "end": 78419,
+      "line_start": 1477,
+      "line_end": 1485,
+      "changes": [],
+      "source_sha256": "f85dc2546c951b564b1ec61d1a9ea2454323e0c586f2293c74f69193bc22121a",
+      "output_sha256": "f85dc2546c951b564b1ec61d1a9ea2454323e0c586f2293c74f69193bc22121a",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-6",
+      "title": "### 11.6 複数の駅情報と主表示（決定）",
+      "dest": "hud",
+      "start": 78419,
+      "end": 79554,
+      "line_start": 1486,
+      "line_end": 1501,
+      "changes": [
+        {
+          "start": 735,
+          "end": 741,
+          "before": "第8.25節",
+          "after": "[第8.25節](時刻表と保存ダイヤ.md#s-8-25)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "b681261e18506000fce296115498466cec49c860ebd1884581d932d04db081c8",
+      "output_sha256": "5a25d38c066a92610a2c68d05a58ddd07d97961b713c088d8b02994219d05f10",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-7",
+      "title": "### 11.7 次の信号現示と距離（決定）",
+      "dest": "hud",
+      "start": 79554,
+      "end": 80673,
+      "line_start": 1502,
+      "line_end": 1516,
+      "changes": [
+        {
+          "start": 1061,
+          "end": 1066,
+          "before": "第9.1節",
+          "after": "[第9.1節](信号と安全装置と進路.md#s-9-1)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1078,
+          "end": 1083,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "db88316e8955200bf1c05c3bfc5d435c92c82cc0ac76cfcf3add2faaf2d0fa41",
+      "output_sha256": "351ed863f8e28141c53d2d016b2899dc9de6bb71be57575dcc4905b366267599",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-8",
+      "title": "### 11.8 運転情報表示・実効ノッチ（決定）",
+      "dest": "hud",
+      "start": 80673,
+      "end": 81986,
+      "line_start": 1517,
+      "line_end": 1536,
+      "changes": [],
+      "source_sha256": "03229f50eda72098d8df4524193e03f4e6de4d2a0269325b2eed58d65fd0b232",
+      "output_sha256": "03229f50eda72098d8df4524193e03f4e6de4d2a0269325b2eed58d65fd0b232",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-9",
+      "title": "### 11.9 共通キー・HUD占有・操縦担当（決定）",
+      "dest": "hud",
+      "start": 81986,
+      "end": 83597,
+      "line_start": 1537,
+      "line_end": 1562,
+      "changes": [
+        {
+          "start": 930,
+          "end": 937,
+          "before": "第11.19節",
+          "after": "[第11.19節](乗務員とドアと停車保持.md#s-11-19)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1207,
+          "end": 1214,
+          "before": "第11.18節",
+          "after": "[第11.18節](マスコン操作とHUD.md#s-11-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1254,
+          "end": 1260,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "43e0d64a6f1f96ee0b949d747c4f48e1c527a6305a47e240573cdc493ff33957",
+      "output_sha256": "8a538b07ff3568272a2bd0260e6e097eb7d855167160287be1defb60405455b9",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-10",
+      "title": "### 11.10 EB位置基準のインターロック・自動表示（決定）",
+      "dest": "hud",
+      "start": 83597,
+      "end": 84370,
+      "line_start": 1563,
+      "line_end": 1573,
+      "changes": [
+        {
+          "start": 368,
+          "end": 374,
+          "before": "第7.10節",
+          "after": "[第7.10節](ATOとTASC.md#s-7-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 423,
+          "end": 429,
+          "before": "第7.19節",
+          "after": "[第7.19節](ATOとTASC.md#s-7-19)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 592,
+          "end": 598,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 624,
+          "end": 631,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 678,
+          "end": 685,
+          "before": "第11.11節",
+          "after": "[第11.11節](非常制御と故障復旧.md#s-11-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "97bed57944dbb81f0133264117ae855b5c548b50ee6a9a402058f6b6f96ea57e",
+      "output_sha256": "9d8b45ee0696bdbb18983b54c362684d23985bb398f83309a792cc8bece32b00",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-11",
+      "title": "### 11.11 故障系統・耐久値・ステータスバー（決定／数値・UI詳細保留）",
+      "dest": "fault",
+      "start": 84370,
+      "end": 86396,
+      "line_start": 1574,
+      "line_end": 1604,
+      "changes": [
+        {
+          "start": 1099,
+          "end": 1104,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1118,
+          "end": 1123,
+          "before": "第9.2節",
+          "after": "[第9.2節](信号と安全装置と進路.md#s-9-2)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1146,
+          "end": 1153,
+          "before": "第11.17節",
+          "after": "[第11.17節](非常制御と故障復旧.md#s-11-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1568,
+          "end": 1574,
+          "before": "第7.23節",
+          "after": "[第7.23節](ATOとTASC.md#s-7-23)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1627,
+          "end": 1633,
+          "before": "第7.25節",
+          "after": "[第7.25節](非常制御と故障復旧.md#s-7-25)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1972,
+          "end": 1982,
+          "before": "第6.6・7.25節",
+          "after": "[第6.6・7.25節](分割記録/節の対応表.md#s-6-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "574e18e159869533c935d1cc8a6e9abb84c3e49de4df1f073bec3939c4f827f0",
+      "output_sha256": "d30ced97f1714d336b57fbf7b58f5be324519fd56dc8c055fb0ea04b92d62579",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-11-12",
+      "title": "### 11.12 ホームポジション・台別保存・交代（決定）",
+      "dest": "hud",
+      "start": 86396,
+      "end": 86954,
+      "line_start": 1605,
+      "line_end": 1614,
+      "changes": [
+        {
+          "start": 181,
+          "end": 187,
+          "before": "第7.10節",
+          "after": "[第7.10節](ATOとTASC.md#s-7-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 526,
+          "end": 530,
+          "before": "第14章",
+          "after": "[第14章](分割記録/節の対応表.md#s-14)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d0de0be475209349442c7ca7080ea9945fd13e86f0e9a03390001f739aa7bceb",
+      "output_sha256": "955e0735b51cba4a830b62cec3783ef41cc0aa05c55cebf1d64df20a156cd405",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-13",
+      "title": "### 11.13 不正なレバー状態と初期化（決定）",
+      "dest": "hud",
+      "start": 86954,
+      "end": 87568,
+      "line_start": 1615,
+      "line_end": 1624,
+      "changes": [
+        {
+          "start": 603,
+          "end": 608,
+          "before": "第5.3節",
+          "after": "[第5.3節](列車構成とプロファイル.md#s-5-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "09bc20fc749fb6ebb5e1404be6855f286ab18fae484e48e94f65ed04446e96b3",
+      "output_sha256": "2d88271baa84145fd055d2fe28c9fcd31f811839dc8a6af1912cfd6cf3ac0c30",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-14",
+      "title": "### 11.14 非常灯・要復旧灯・自動運転・安全介入灯（決定）",
+      "dest": "hud",
+      "start": 87568,
+      "end": 88448,
+      "line_start": 1625,
+      "line_end": 1643,
+      "changes": [],
+      "source_sha256": "664c933a3accd0630a27a17d9db20690d019dc755ceefaf6103d0e0fa42f0ec8",
+      "output_sha256": "664c933a3accd0630a27a17d9db20690d019dc755ceefaf6103d0e0fa42f0ec8",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-15",
+      "title": "### 11.15 保存・再読込・ATO再開（決定）",
+      "dest": "hud",
+      "start": 88448,
+      "end": 89211,
+      "line_start": 1644,
+      "line_end": 1655,
+      "changes": [
+        {
+          "start": 134,
+          "end": 141,
+          "before": "第11.13節",
+          "after": "[第11.13節](マスコン操作とHUD.md#s-11-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 256,
+          "end": 261,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 493,
+          "end": 498,
+          "before": "第6.6節",
+          "after": "[第6.6節](非常制御と故障復旧.md#s-6-6)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "6ebc9622dd54371e89aa6ca5e4e2554767b734385d030da93cfde05d3df1f9a3",
+      "output_sha256": "2871da61ee06089c3c17caf0fc767a36d6ceb079570a2ff58da3f8a179b9851b",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-16",
+      "title": "### 11.16 停車・カーブの動きと視点設定（決定／実現方法は調査待ち）",
+      "dest": "hud",
+      "start": 89211,
+      "end": 89759,
+      "line_start": 1656,
+      "line_end": 1665,
+      "changes": [],
+      "source_sha256": "c8ddab6cc9083fd222220a485586aedb170f91bf4de666d22bce444f39d4c096",
+      "output_sha256": "c8ddab6cc9083fd222220a485586aedb170f91bf4de666d22bce444f39d4c096",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-17",
+      "title": "### 11.17 脱線・レンチ復線後の状態（決定／標準イベント連携は要調査）",
+      "dest": "fault",
+      "start": 89759,
+      "end": 90439,
+      "line_start": 1666,
+      "line_end": 1677,
+      "changes": [],
+      "source_sha256": "d91a03d3ea6c4b624c68efd2808c6708864a325531cd6773abb98674f0fb61f8",
+      "output_sha256": "d91a03d3ea6c4b624c68efd2808c6708864a325531cd6773abb98674f0fb61f8",
+      "file": "docs/organize/整理3/非常制御と故障復旧.md"
+    },
+    {
+      "key": "s-11-18",
+      "title": "### 11.18 ATO操作担当・反対側への許可（決定）",
+      "dest": "hud",
+      "start": 90439,
+      "end": 91333,
+      "line_start": 1678,
+      "line_end": 1691,
+      "changes": [
+        {
+          "start": 430,
+          "end": 436,
+          "before": "第7.20節",
+          "after": "[第7.20節](ATOとTASC.md#s-7-20)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9fe9a97b6e3196e8c4fb11df48f1394c5040d5f03f0247d3515bcf7a1d45fcbe",
+      "output_sha256": "98d88a1045a3fa19f67f4a4cc3dcc330a6917c76455b1e297eecead76a019759",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-19",
+      "title": "### 11.19 操作設備・運転手／車掌／閲覧・ワンマン（決定）",
+      "dest": "doors",
+      "start": 91333,
+      "end": 92482,
+      "line_start": 1692,
+      "line_end": 1713,
+      "changes": [],
+      "source_sha256": "e37af1e5290a3a548459bc94b96c7c9c296bd0dce5e302d6afeac626321ab968",
+      "output_sha256": "e37af1e5290a3a548459bc94b96c7c9c296bd0dce5e302d6afeac626321ab968",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-20",
+      "title": "### 11.20 ドア開閉・戸閉知らせ灯・異常検知（決定）",
+      "dest": "doors",
+      "start": 92482,
+      "end": 93325,
+      "line_start": 1714,
+      "line_end": 1726,
+      "changes": [
+        {
+          "start": 225,
+          "end": 230,
+          "before": "第3.4節",
+          "after": "[第3.4節](乗務員とドアと停車保持.md#s-3-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 418,
+          "end": 425,
+          "before": "第11.24節",
+          "after": "[第11.24節](乗務員とドアと停車保持.md#s-11-24)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 794,
+          "end": 807,
+          "before": "第11.23～11.31節",
+          "after": "[第11.23～11.31節](分割記録/節の対応表.md#s-11-23)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "114e03c2d8e4eadb09b3149c689594d3544a679d0feda413e8ebe0079d7208cc",
+      "output_sha256": "6a952a1eb8b1ba250fdd27a87b68af76b15ee9784fda54dde2053b4eda17ab00",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-21",
+      "title": "### 11.21 車掌操作自動化と駅子条件（決定）",
+      "dest": "doors",
+      "start": 93325,
+      "end": 94386,
+      "line_start": 1727,
+      "line_end": 1740,
+      "changes": [
+        {
+          "start": 96,
+          "end": 109,
+          "before": "第11.29～11.31節",
+          "after": "[第11.29～11.31節](分割記録/節の対応表.md#s-11-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 446,
+          "end": 453,
+          "before": "第13.10節",
+          "after": "[第13.10節](音響とSpeakerController.md#s-13-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 923,
+          "end": 936,
+          "before": "第11.24・11.25節",
+          "after": "[第11.24・11.25節](分割記録/節の対応表.md#s-11-24)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 984,
+          "end": 991,
+          "before": "第13.10節",
+          "after": "[第13.10節](音響とSpeakerController.md#s-13-10)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c38526a4d11473b870eda9e8e0312a49d4c3ca74128e52fc263f769dd7cba0fe",
+      "output_sha256": "0fd8db1a2d4505767489e428e259ecac43f8413cae750b3b59496d181f625618",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-22",
+      "title": "### 11.22 操作・HUDの見直し対象を保持する（利用者指定）",
+      "dest": "hud",
+      "start": 94386,
+      "end": 95144,
+      "line_start": 1741,
+      "line_end": 1751,
+      "changes": [
+        {
+          "start": 134,
+          "end": 140,
+          "before": "第7.21節",
+          "after": "[第7.21節](ATOとTASC.md#s-7-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 530,
+          "end": 553,
+          "before": "[HUD参考フォルダ](調査関連/HUD参考)",
+          "after": "[HUD参考フォルダ](../調査関連/HUD参考)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "f6119c863fb18a9baefc7a704eca7d24f594fac9e22b5e029fbacc24c431946a",
+      "output_sha256": "4048f4535615f8b941193d7d1af41f6e9efb426f82718deca20ce63df62416b3",
+      "file": "docs/organize/整理3/マスコン操作とHUD.md"
+    },
+    {
+      "key": "s-11-23",
+      "title": "### 11.23 CAT管理対象ドア・直接操作・操作盤（決定／外部仕様は要調査）",
+      "dest": "doors",
+      "start": 95144,
+      "end": 96381,
+      "line_start": 1752,
+      "line_end": 1767,
+      "changes": [
+        {
+          "start": 969,
+          "end": 976,
+          "before": "第11.21節",
+          "after": "[第11.21節](乗務員とドアと停車保持.md#s-11-21)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1d08b76d17648b7cce2cd7eb54ada7bb4856d7269aca380251788317e4ed67ed",
+      "output_sha256": "5bc055df6ec2b23c45ff4449c9ad7d8363c0f77d4d41da30d03fefe4ba2012c1",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-24",
+      "title": "### 11.24 正式な閉扉・ロック・未ロック警告（決定）",
+      "dest": "doors",
+      "start": 96381,
+      "end": 97120,
+      "line_start": 1768,
+      "line_end": 1778,
+      "changes": [
+        {
+          "start": 640,
+          "end": 647,
+          "before": "第11.28節",
+          "after": "[第11.28節](乗務員とドアと停車保持.md#s-11-28)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "41a8780e9a4d3332c5f3fbfe7975c57e267b87a142ad57f1fca115aca6ec8491",
+      "output_sha256": "62cbbd5d02dd76ebae0891d3ab2abebd12978b1a20b89088ac7c860a462ae175",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-25",
+      "title": "### 11.25 ドア手順の完了・中断と運転案内（決定）",
+      "dest": "doors",
+      "start": 97120,
+      "end": 97909,
+      "line_start": 1779,
+      "line_end": 1789,
+      "changes": [],
+      "source_sha256": "2eeb312b067736a7d77a266eca3432f5e06885a0f0436ca9142e749e0e346a44",
+      "output_sha256": "2eeb312b067736a7d77a266eca3432f5e06885a0f0436ca9142e749e0e346a44",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-26",
+      "title": "### 11.26 ドア自動操作の一時停止・明示再開（決定）",
+      "dest": "doors",
+      "start": 97909,
+      "end": 99078,
+      "line_start": 1790,
+      "line_end": 1804,
+      "changes": [
+        {
+          "start": 859,
+          "end": 866,
+          "before": "第11.31節",
+          "after": "[第11.31節](乗務員とドアと停車保持.md#s-11-31)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e33a992699dd45639c94fc1a952bc68194cc6564987868c1dbd46005849e9166",
+      "output_sha256": "db5ca8396e8fe5022a3d53711ab1304e8f2386737ae2339ed9f92a48272f87c6",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-27",
+      "title": "### 11.27 一時停止の自動解除・接近判定（決定／具体値未決定）",
+      "dest": "doors",
+      "start": 99078,
+      "end": 100895,
+      "line_start": 1805,
+      "line_end": 1823,
+      "changes": [
+        {
+          "start": 1743,
+          "end": 1750,
+          "before": "第11.28節",
+          "after": "[第11.28節](乗務員とドアと停車保持.md#s-11-28)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1d0f40fc7363c50937f9354676e15eb683efd380b5d8ac471212657b68ea6e2b",
+      "output_sha256": "81c61931446e9b1722d7e0adaf0681cc2af721e0310bde27e7694bc0d2d809e9",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-28",
+      "title": "### 11.28 ドア状態の保存・CAT連結／分離（決定／実現方法未調査）",
+      "dest": "doors",
+      "start": 100895,
+      "end": 101874,
+      "line_start": 1824,
+      "line_end": 1835,
+      "changes": [
+        {
+          "start": 724,
+          "end": 731,
+          "before": "第11.27節",
+          "after": "[第11.27節](乗務員とドアと停車保持.md#s-11-27)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9bf13d6a2b25de1994425c683e092275737d34e604179e9841259d9720672bc0",
+      "output_sha256": "9081aaa06088b89239278dd015db9ac2d0b5dca3be9fcb4460bfeeab5e7e9829",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-29",
+      "title": "### 11.29 自動開閉設定の途中変更（決定）",
+      "dest": "doors",
+      "start": 101874,
+      "end": 102337,
+      "line_start": 1836,
+      "line_end": 1842,
+      "changes": [
+        {
+          "start": 305,
+          "end": 312,
+          "before": "第11.27節",
+          "after": "[第11.27節](乗務員とドアと停車保持.md#s-11-27)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 424,
+          "end": 431,
+          "before": "第11.30節",
+          "after": "[第11.30節](乗務員とドアと停車保持.md#s-11-30)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9c06ecd1d6d70b67be08cec22e0567105e3c26cc6b24e43bb3ccdfdc35e33934",
+      "output_sha256": "3961d9eb970f2c37e79bef5c7481baf4f7f182c7fad71b0536d5da14c1862991",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-30",
+      "title": "### 11.30 指示駅と停車駅が一致しない場合の案内（決定／時間未決定）",
+      "dest": "doors",
+      "start": 102337,
+      "end": 102908,
+      "line_start": 1843,
+      "line_end": 1850,
+      "changes": [],
+      "source_sha256": "16eac8ee57b389d306c719ec99dcc24c7164feb102d1d9175ce8070a3a3906fe",
+      "output_sha256": "16eac8ee57b389d306c719ec99dcc24c7164feb102d1d9175ce8070a3a3906fe",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-11-31",
+      "title": "### 11.31 再開・時刻表変更と開閉要求の競合（決定）",
+      "dest": "doors",
+      "start": 102908,
+      "end": 103520,
+      "line_start": 1851,
+      "line_end": 1858,
+      "changes": [
+        {
+          "start": 48,
+          "end": 55,
+          "before": "第11.26節",
+          "after": "[第11.26節](乗務員とドアと停車保持.md#s-11-26)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 489,
+          "end": 496,
+          "before": "第11.26節",
+          "after": "[第11.26節](乗務員とドアと停車保持.md#s-11-26)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "55162e7b061720ad3b55b826db497538cc9492d98d51645c98c146fabd05f92b",
+      "output_sha256": "2a55ad2536800f3a940828b7aade09c9f5756635131efb23aedcdd864186b3e1",
+      "file": "docs/organize/整理3/乗務員とドアと停車保持.md"
+    },
+    {
+      "key": "s-12",
+      "title": "## 12. 調査・実機報告の根拠",
+      "dest": "research",
+      "start": 103520,
+      "end": 103679,
+      "line_start": 1859,
+      "line_end": 1862,
+      "changes": [],
+      "source_sha256": "fbff78c21e4f498016915b146e2f0de2c146a72395f26d8e05913d96c160c83c",
+      "output_sha256": "fbff78c21e4f498016915b146e2f0de2c146a72395f26d8e05913d96c160c83c",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-1",
+      "title": "### 12.1 区間・経路・表示・更新順の事実",
+      "dest": "research",
+      "start": 103679,
+      "end": 105253,
+      "line_start": 1863,
+      "line_end": 1878,
+      "changes": [
+        {
+          "start": 94,
+          "end": 229,
+          "before": "[SignalEdgeGroup.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalEdgeGroup.java)",
+          "after": "[SignalEdgeGroup.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalEdgeGroup.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 269,
+          "end": 384,
+          "before": "[Train.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Train.java)",
+          "after": "[Train.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Train.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 449,
+          "end": 574,
+          "before": "[Navigation.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java)",
+          "after": "[Navigation.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 777,
+          "end": 915,
+          "before": "[GlobalRailwayManager.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/GlobalRailwayManager.java)",
+          "after": "[GlobalRailwayManager.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/GlobalRailwayManager.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 981,
+          "end": 1114,
+          "before": "[SignalBoundary.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java)",
+          "after": "[SignalBoundary.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1154,
+          "end": 1293,
+          "before": "[SignalBlockEntity.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBlockEntity.java)",
+          "after": "[SignalBlockEntity.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBlockEntity.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1329,
+          "end": 1466,
+          "before": "[SignalPropagator.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java)",
+          "after": "[SignalPropagator.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "700d2bac3d1fcd03f77e845eb78d079d3ebad963826fb577522eb411456d0736",
+      "output_sha256": "bc2241bef01d8689d28ba4231092d6fa4d07ffcdd0e7989b0b2351d34c49393e",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-2",
+      "title": "### 12.2 速度処理の事実",
+      "dest": "research",
+      "start": 105253,
+      "end": 105536,
+      "line_start": 1879,
+      "line_end": 1885,
+      "changes": [],
+      "source_sha256": "249e8a48f52efdf1a16b08998784d88ea04e3ce2b7803c5f44975d9724e07c82",
+      "output_sha256": "249e8a48f52efdf1a16b08998784d88ea04e3ce2b7803c5f44975d9724e07c82",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-3",
+      "title": "### 12.3 曲線距離の追加調査",
+      "dest": "research",
+      "start": 105536,
+      "end": 107021,
+      "line_start": 1886,
+      "line_end": 1919,
+      "changes": [
+        {
+          "start": 37,
+          "end": 173,
+          "before": "[BezierConnection.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/track/BezierConnection.java)",
+          "after": "[BezierConnection.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/track/BezierConnection.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 264,
+          "end": 399,
+          "before": "[TravellingPoint.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/TravellingPoint.java)",
+          "after": "[TravellingPoint.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/TravellingPoint.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 553,
+          "end": 675,
+          "before": "[TrackEdge.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/TrackEdge.java)",
+          "after": "[TrackEdge.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/TrackEdge.java)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "9feffe92c1c348319416b4971aeee7658ad885f3cd718b27b8ecaa0f6611bfdd",
+      "output_sha256": "faf970d5a1727eff7261b38b42a07f29512e287ff0c6dd54eb3f1d688e552371",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-4",
+      "title": "### 12.4 進路候補と次信号表示の追加調査",
+      "dest": "research",
+      "start": 107021,
+      "end": 107921,
+      "line_start": 1920,
+      "line_end": 1929,
+      "changes": [
+        {
+          "start": 46,
+          "end": 183,
+          "before": "[SignalPropagator.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java)",
+          "after": "[SignalPropagator.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 285,
+          "end": 405,
+          "before": "[EdgeData.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/EdgeData.java)",
+          "after": "[EdgeData.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/EdgeData.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 510,
+          "end": 643,
+          "before": "[SignalBoundary.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java)",
+          "after": "[SignalBoundary.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java)",
+          "kind": "path",
+          "repaired": false
+        }
+      ],
+      "source_sha256": "3a059c396056057575387ac414783e971faa9a9da2ea174c3bb5ff0298a09378",
+      "output_sha256": "ae9b963aa463bab7455834df20e4095bf2ba2d55838442865d4eb274bbc758d6",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-5",
+      "title": "### 12.5 実車TASCの参考調査（CAT仕様とは区別）",
+      "dest": "research",
+      "start": 107921,
+      "end": 108484,
+      "line_start": 1930,
+      "line_end": 1936,
+      "changes": [
+        {
+          "start": 445,
+          "end": 455,
+          "before": "第7.5～7.11節",
+          "after": "[第7.5～7.11節](分割記録/節の対応表.md#s-7-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "34643b4ee0c396bc5b13e79ad35bcbf2562793356a4fdc49c59af97299841f2c",
+      "output_sha256": "8290461b36af64a0be7539edce4a50b5ee7b8b6a1556119b73793b2486ebdbf9",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-6",
+      "title": "### 12.6 運転台方向・編成変更の別チャット調査",
+      "dest": "research",
+      "start": 108484,
+      "end": 109145,
+      "line_start": 1937,
+      "line_end": 1947,
+      "changes": [
+        {
+          "start": 32,
+          "end": 123,
+          "before": "[Create 6.0.8 運転台方向・列車進行方向・編成変更の調査](調査関連/CREATE_6_0_8_CAB_DIRECTION_AND_CONSIST_CHANGES.md)",
+          "after": "[Create 6.0.8 運転台方向・列車進行方向・編成変更の調査](../調査関連/運転・車両特性/CREATE_6_0_8_CAB_DIRECTION_AND_CONSIST_CHANGES.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 636,
+          "end": 641,
+          "before": "第2.3節",
+          "after": "[第2.3節](列車構成とプロファイル.md#s-2-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e824a19283423bcba5a8b41a2f03cab2ceb053d07636ff68b9cd93728294cbd8",
+      "output_sha256": "adffabab2184bf59bbf5b26c96c3254b48fb175a4dc7336f30e6b29aaa027dda",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-7",
+      "title": "### 12.7 駅名・ワイルドカード・経路評価の会話内ソース確認",
+      "dest": "research",
+      "start": 109145,
+      "end": 110106,
+      "line_start": 1948,
+      "line_end": 1955,
+      "changes": [
+        {
+          "start": 37,
+          "end": 200,
+          "before": "[DestinationInstruction.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/schedule/destination/DestinationInstruction.java)",
+          "after": "[DestinationInstruction.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/schedule/destination/DestinationInstruction.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 278,
+          "end": 403,
+          "before": "[Navigation.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java)",
+          "after": "[Navigation.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 505,
+          "end": 638,
+          "before": "[TrackEdgePoint.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/TrackEdgePoint.java)",
+          "after": "[TrackEdgePoint.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/TrackEdgePoint.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 648,
+          "end": 780,
+          "before": "[GlobalStation.java](../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/station/GlobalStation.java)",
+          "after": "[GlobalStation.java](../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/station/GlobalStation.java)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 907,
+          "end": 914,
+          "before": "第10.12節",
+          "after": "[第10.12節](信号と安全装置と進路.md#s-10-12)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "7f3a88de94dd3ab36626a1cfd2436205e864699dd5b443c6115418b546483fb6",
+      "output_sha256": "95454fda52ccf435f18e37879a82bbcdafd415d5513c1cf3178eea2e5e21d96a",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-8",
+      "title": "### 12.8 Create標準の時刻表指示・条件の調査（静的確認済み）",
+      "dest": "research",
+      "start": 110106,
+      "end": 110923,
+      "line_start": 1956,
+      "line_end": 1966,
+      "changes": [
+        {
+          "start": 42,
+          "end": 141,
+          "before": "[Createおよび関連アドオンの時刻表命令・時刻条件調査](調査関連/CREATE_AND_ADDONS_SCHEDULE_INSTRUCTIONS_AND_TIME_CONDITIONS.md)",
+          "after": "[Createおよび関連アドオンの時刻表命令・時刻条件調査](../調査関連/駅・信号・時刻表/CREATE_AND_ADDONS_SCHEDULE_INSTRUCTIONS_AND_TIME_CONDITIONS.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 180,
+          "end": 196,
+          "before": "第7.16・8.16～8.23節",
+          "after": "[第7.16・8.16～8.23節](分割記録/節の対応表.md#s-7-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 400,
+          "end": 406,
+          "before": "第8.19節",
+          "after": "[第8.19節](時刻表と保存ダイヤ.md#s-8-19)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 601,
+          "end": 607,
+          "before": "第8.20節",
+          "after": "[第8.20節](時刻表と保存ダイヤ.md#s-8-20)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 691,
+          "end": 697,
+          "before": "第8.21節",
+          "after": "[第8.21節](時刻表と保存ダイヤ.md#s-8-21)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "7c0a1824ad6a8d1e0d89cfb675ad2cca74772944932247f52334411998cd6b9b",
+      "output_sha256": "e2ac396e561464903d19c94dfff69dbadf7733b833eae801b1b8f7614380850c",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-9",
+      "title": "### 12.9 後日行う調査（待機中）",
+      "dest": "research",
+      "start": 110923,
+      "end": 112355,
+      "line_start": 1967,
+      "line_end": 1987,
+      "changes": [
+        {
+          "start": 246,
+          "end": 251,
+          "before": "第2.4節",
+          "after": "[第2.4節](列車構成とプロファイル.md#s-2-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1215,
+          "end": 1222,
+          "before": "第12.12節",
+          "after": "[第12.12節](調査資料索引.md#s-12-12)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c95b9330e382336b156ca5b875822ab58a610de6f408cb17f77d48b107a436ab",
+      "output_sha256": "567a2d2933ff796ec8cb9d1a608580becd6b1081a41772ab99a8e977b816f6e3",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-10",
+      "title": "### 12.10 力行ノッチ資料の再確認と今後の調査の扱い",
+      "dest": "research",
+      "start": 112355,
+      "end": 112838,
+      "line_start": 1988,
+      "line_end": 1994,
+      "changes": [
+        {
+          "start": 34,
+          "end": 84,
+          "before": "[E235系0番台の力行ノッチ加速度調査](調査関連/E235系0番台の力行ノッチ加速度調査.md)",
+          "after": "[E235系0番台の力行ノッチ加速度調査](../調査関連/運転・車両特性/E235系0番台の力行ノッチ加速度調査.md)",
+          "kind": "path",
+          "repaired": true
+        }
+      ],
+      "source_sha256": "b3b6cfec728e508f749c78a027a31d3a4a4449b7217a136f5708165cdffaed9e",
+      "output_sha256": "cdb615da3f1288f76a0ce8eb77d3b176c953a184f9e5fb5d47733500101d428c",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-11",
+      "title": "### 12.11 ワンハンドルの位置関係資料とCATの採用判断",
+      "dest": "research",
+      "start": 112838,
+      "end": 113442,
+      "line_start": 1995,
+      "line_end": 2003,
+      "changes": [
+        {
+          "start": 36,
+          "end": 98,
+          "before": "[ワンハンドルマスコンのノッチとレバーサー位置の関係](調査関連/ワンハンドルマスコンのノッチとレバーサー位置の関係.md)",
+          "after": "[ワンハンドルマスコンのノッチとレバーサー位置の関係](../調査関連/運転・車両特性/ワンハンドルマスコンのノッチとレバーサー位置の関係.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 537,
+          "end": 549,
+          "before": "第12.9・12.10節",
+          "after": "[第12.9・12.10節](分割記録/節の対応表.md#s-12-9)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "1ab64ae3dc28107593b2993c912ee60222b9674d642948b56e81377a1f05731a",
+      "output_sha256": "2c100c1a81bff03eee3c5e580eb66168e8f73c7f5660e578028dc38035515119",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-12",
+      "title": "### 12.12 無信号環状単線の利用者実機報告（CAT検証ではない）",
+      "dest": "research",
+      "start": 113442,
+      "end": 113936,
+      "line_start": 2004,
+      "line_end": 2012,
+      "changes": [
+        {
+          "start": 408,
+          "end": 413,
+          "before": "第9.3節",
+          "after": "[第9.3節](信号と安全装置と進路.md#s-9-3)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e14b5a73114cb997fee869f0c7031846bc64ddff8451a6200641be7136001fdb",
+      "output_sha256": "de834fe8f87601e4e585c7d482dcd987c726c0caacf5161932a1403712f29204",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-13",
+      "title": "### 12.13 線路敷設条件・線路強化の調査受領（2026-10-11）",
+      "dest": "research",
+      "start": 113936,
+      "end": 114892,
+      "line_start": 2013,
+      "line_end": 2023,
+      "changes": [
+        {
+          "start": 42,
+          "end": 82,
+          "before": "[線路敷設条件と線路強化の調査](調査関連/線路敷設条件と線路強化の調査.md)",
+          "after": "[線路敷設条件と線路強化の調査](../調査関連/線路敷設条件/線路敷設条件と線路強化の調査.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 88,
+          "end": 125,
+          "before": "[線形・カント・勾配](調査関連/線路敷設条件_線形・カント・勾配.md)",
+          "after": "[線形・カント・勾配](../調査関連/線路敷設条件/線路敷設条件_線形・カント・勾配.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 126,
+          "end": 161,
+          "before": "[構造・保守・環境](調査関連/線路敷設条件_構造・保守・環境.md)",
+          "after": "[構造・保守・環境](../調査関連/線路敷設条件/線路敷設条件_構造・保守・環境.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 162,
+          "end": 220,
+          "before": "[Create 6.0.8とCAT検討事項](調査関連/線路敷設条件_Create6.0.8とCAT検討事項.md)",
+          "after": "[Create 6.0.8とCAT検討事項](../調査関連/線路敷設条件/線路敷設条件_Create6.0.8とCAT検討事項.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 221,
+          "end": 260,
+          "before": "[出典照合と未確認事項](調査関連/線路敷設条件_出典照合と未確認事項.md)",
+          "after": "[出典照合と未確認事項](../調査関連/線路敷設条件/線路敷設条件_出典照合と未確認事項.md)",
+          "kind": "path",
+          "repaired": true
+        }
+      ],
+      "source_sha256": "b61fffcda2efb396e50122ee991bc8696bff8d4d727871a8996a660a9c724756",
+      "output_sha256": "ac261e51e1da1fb2c72a9722fd34d91cd0dd7747378a011edd8c5fb506986973",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-12-14",
+      "title": "### 12.14 時刻表の次項目と発車の分離（会話内ソース確認）",
+      "dest": "research",
+      "start": 114892,
+      "end": 115245,
+      "line_start": 2024,
+      "line_end": 2029,
+      "changes": [
+        {
+          "start": 262,
+          "end": 268,
+          "before": "第8.24節",
+          "after": "[第8.24節](時刻表と保存ダイヤ.md#s-8-24)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "b18f27cc096ec84163953f94afb4f29bb984338b83b7cccdebb0fc7e856e4f30",
+      "output_sha256": "3c2b66e4755b5c82cc864c6f5ad708ab92037beb5981d706df2b436b3e46c9cb",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-13",
+      "title": "## 13. 整理2から残す構想・新規機能・未処理の項目",
+      "dest": "additional",
+      "start": 115245,
+      "end": 116184,
+      "line_start": 2030,
+      "line_end": 2045,
+      "changes": [
+        {
+          "start": 333,
+          "end": 338,
+          "before": "第4.3節",
+          "after": "[第4.3節](加減速とノッチ.md#s-4-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 417,
+          "end": 422,
+          "before": "第7・8章",
+          "after": "[第7・8章](分割記録/節の対応表.md#s-7)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 502,
+          "end": 505,
+          "before": "第7章",
+          "after": "[第7章](分割記録/節の対応表.md#s-7)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 597,
+          "end": 603,
+          "before": "第11.9節",
+          "after": "[第11.9節](マスコン操作とHUD.md#s-11-9)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 632,
+          "end": 638,
+          "before": "第8.16節",
+          "after": "[第8.16節](ATOSと遠隔操作と延発.md#s-8-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 670,
+          "end": 673,
+          "before": "第5章",
+          "after": "[第5章](分割記録/節の対応表.md#s-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "39be9ae9157e8baa96e7197a70344c2b6b8d9e492371f5b7a496646af323bd13",
+      "output_sha256": "74016cf635fb985ca976497e3a97ca47b8f63a0597c4062858d884d9843ba425",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "u-13-1",
+      "title": "### SpeakerControllerの構想を維持",
+      "dest": "audio",
+      "start": 116184,
+      "end": 116435,
+      "line_start": 2046,
+      "line_end": 2052,
+      "changes": [],
+      "source_sha256": "a6f1b51593411636b06007ba70cc0fd40d628f929a593584c6cd217b80fdb46d",
+      "output_sha256": "a6f1b51593411636b06007ba70cc0fd40d628f929a593584c6cd217b80fdb46d",
+      "file": "docs/organize/整理3/音響とSpeakerController.md"
+    },
+    {
+      "key": "u-13-2",
+      "title": "### 操作マニュアル（決定／チュートリアル保留）",
+      "dest": "additional",
+      "start": 116435,
+      "end": 117017,
+      "line_start": 2053,
+      "line_end": 2061,
+      "changes": [],
+      "source_sha256": "9fa861dd39f7c4e48cc7ce9ac012b2b77a0705014c227c3583b4bbb24a9a8e21",
+      "output_sha256": "9fa861dd39f7c4e48cc7ce9ac012b2b77a0705014c227c3583b4bbb24a9a8e21",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "u-13-3",
+      "title": "### ドキュメント再構築TODOを維持",
+      "dest": "additional",
+      "start": 117017,
+      "end": 117232,
+      "line_start": 2062,
+      "line_end": 2068,
+      "changes": [
+        {
+          "start": 117,
+          "end": 120,
+          "before": "第1章",
+          "after": "[第1章](分割記録/節の対応表.md#s-1)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "69c9cb22bb9fa5c50a1cb663cfbd48e312d4d1f53a3f95c4ca08675e725e1da0",
+      "output_sha256": "7652c7229bc550f1994c3a279b5a39547e02cc4640d296bbcc3ff99d238ac743",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "s-13-1",
+      "title": "### 13.1 線路強化・敷設拡張の目的と範囲（決定）",
+      "dest": "track",
+      "start": 117232,
+      "end": 117744,
+      "line_start": 2069,
+      "line_end": 2077,
+      "changes": [],
+      "source_sha256": "ff6a859c9f275dee9595c8f8820469e7a4852045f10d62f2275a6404a4407af2",
+      "output_sha256": "ff6a859c9f275dee9595c8f8820469e7a4852045f10d62f2275a6404a4407af2",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-2",
+      "title": "### 13.2 線路等級・未加工線路・軌間（最新決定）",
+      "dest": "track",
+      "start": 117744,
+      "end": 118739,
+      "line_start": 2078,
+      "line_end": 2095,
+      "changes": [],
+      "source_sha256": "38e3974ab1f43c692b9ec1de2089b55e4f13f4e57e253d28038d98f829cedd3c",
+      "output_sha256": "38e3974ab1f43c692b9ec1de2089b55e4f13f4e57e253d28038d98f829cedd3c",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-3",
+      "title": "### 13.3 曲線・勾配と強化の効果（決定／具体式未決定）",
+      "dest": "track",
+      "start": 118739,
+      "end": 119305,
+      "line_start": 2096,
+      "line_end": 2105,
+      "changes": [
+        {
+          "start": 487,
+          "end": 493,
+          "before": "第13.2節",
+          "after": "[第13.2節](線路拡張と電力構想.md#s-13-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "d91e1235103ed5f4036c4688cfe2a51f152ca409d6c8e7e24d06232e9911ddbd",
+      "output_sha256": "e65bd4c5bd66d9d50ecb5c98c0072327c722dba7433995794c59b9de0c6e78a8",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-4",
+      "title": "### 13.4 敷設評価値と基準プロファイル（採用する基本方針／改良可能）",
+      "dest": "track",
+      "start": 119305,
+      "end": 120090,
+      "line_start": 2106,
+      "line_end": 2117,
+      "changes": [],
+      "source_sha256": "74aa8e4f8ee7f544a7d2f9271d70a1cb1479826c330506a2e416830676c0a33d",
+      "output_sha256": "74aa8e4f8ee7f544a7d2f9271d70a1cb1479826c330506a2e416830676c0a33d",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-5",
+      "title": "### 13.5 設定変更・確定直前の再確認（決定）",
+      "dest": "track",
+      "start": 120090,
+      "end": 120443,
+      "line_start": 2118,
+      "line_end": 2125,
+      "changes": [],
+      "source_sha256": "313597b0578d28c2a3ba2b0b67106ce7dabc04d625c625c5f273c951bf244f20",
+      "output_sha256": "313597b0578d28c2a3ba2b0b67106ce7dabc04d625c625c5f273c951bf244f20",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-6",
+      "title": "### 13.6 異等級の接続線路と性能移行（決定／詳細未決定）",
+      "dest": "track",
+      "start": 120443,
+      "end": 121164,
+      "line_start": 2126,
+      "line_end": 2137,
+      "changes": [],
+      "source_sha256": "dc3fb590ece07f43c0911b820c027539ceac7979b25805a42d9b455252608ea6",
+      "output_sha256": "dc3fb590ece07f43c0911b820c027539ceac7979b25805a42d9b455252608ea6",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-7",
+      "title": "### 13.7 既存制御・耐久・保存への接続で残す判断",
+      "dest": "track",
+      "start": 121164,
+      "end": 121712,
+      "line_start": 2138,
+      "line_end": 2147,
+      "changes": [
+        {
+          "start": 346,
+          "end": 351,
+          "before": "第9.2節",
+          "after": "[第9.2節](信号と安全装置と進路.md#s-9-2)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "f5871e8a683deb81bb02fcc78ea8f1d1ab4fe8625c19ebcaef9641bf3bcf62b3",
+      "output_sha256": "c0317607c07619b59ba6ad15cb5c14cb34cd357e808c58a2a6034f79ee3353b0",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-8",
+      "title": "### 13.8 形状収集の引継ぎと待機（資料受領済み／調査未完了・採否保留）",
+      "dest": "track",
+      "start": 121712,
+      "end": 122282,
+      "line_start": 2148,
+      "line_end": 2156,
+      "changes": [
+        {
+          "start": 491,
+          "end": 498,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9b2a3fd78ab2d2199470f9f93fccb698ada3a2998d5568043cbf2aeebd8b4680",
+      "output_sha256": "514195f2f526f721258034fe879c92af287a27a865c6e4c7bdaffa3ced530c55",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-9",
+      "title": "### 13.9 今後の判断順（提案／数値・技術方式は未確定）",
+      "dest": "track",
+      "start": 122282,
+      "end": 122666,
+      "line_start": 2157,
+      "line_end": 2166,
+      "changes": [],
+      "source_sha256": "7d8c53c94e203fbffdb168f63337e0b3bdf76a6741af1fe7f38fd5977f8e2bf7",
+      "output_sha256": "7d8c53c94e203fbffdb168f63337e0b3bdf76a6741af1fe7f38fd5977f8e2bf7",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-13-10",
+      "title": "### 13.10 SpeakerControllerと発車メロディー（決定／実現方法は未調査）",
+      "dest": "audio",
+      "start": 122666,
+      "end": 124923,
+      "line_start": 2167,
+      "line_end": 2213,
+      "changes": [],
+      "source_sha256": "79f6920408929225dcec5af362717db376f8f8a6761baccc61a4b462aa76dcf3",
+      "output_sha256": "79f6920408929225dcec5af362717db376f8f8a6761baccc61a4b462aa76dcf3",
+      "file": "docs/organize/整理3/音響とSpeakerController.md"
+    },
+    {
+      "key": "s-13-11",
+      "title": "### 13.11 新たな追加予定・調査対象（詳細・初期範囲は未決定）",
+      "dest": "additional",
+      "start": 124923,
+      "end": 126375,
+      "line_start": 2214,
+      "line_end": 2236,
+      "changes": [
+        {
+          "start": 983,
+          "end": 990,
+          "before": "第13.13節",
+          "after": "[第13.13節](追加構想と文書整備.md#s-13-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1128,
+          "end": 1135,
+          "before": "第13.18節",
+          "after": "[第13.18節](線路拡張と電力構想.md#s-13-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1368,
+          "end": 1381,
+          "before": "第11.19～11.21節",
+          "after": "[第11.19～11.21節](分割記録/節の対応表.md#s-11-19)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9952fce5d78f1084b49afec624d2e04341b1a973b0bdbd7a72b2f7376584e559",
+      "output_sha256": "56933edbb142f9265889f47c0636e34bdf96905ec100806fc48f7fabb79bab10",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "s-13-12",
+      "title": "### 13.12 新しい調査資料の受領と要件への接続（調査報告参照／提案・採否を分離）",
+      "dest": "research",
+      "start": 126375,
+      "end": 128552,
+      "line_start": 2237,
+      "line_end": 2265,
+      "changes": [
+        {
+          "start": 189,
+          "end": 248,
+          "before": "[RTMモデル連携調査](調査関連/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md)",
+          "after": "[RTMモデル連携調査](../調査関連/車両モデル/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 843,
+          "end": 849,
+          "before": "第14.3節",
+          "after": "[第14.3節](残課題と再開地点.md#s-14-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 982,
+          "end": 987,
+          "before": "第2.4節",
+          "after": "[第2.4節](列車構成とプロファイル.md#s-2-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1284,
+          "end": 1328,
+          "before": "[描画・入力構成調査](調査関連/HUD関連/マスコンHUDの描画・入力構成調査.md)",
+          "after": "[描画・入力構成調査](../調査関連/HUD関連/マスコンHUDの描画・入力構成調査.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1329,
+          "end": 1377,
+          "before": "[レイアウトラフ01の説明](調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.md)",
+          "after": "[レイアウトラフ01の説明](../調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1854,
+          "end": 1878,
+          "before": "[線路形状一覧](調査関連/線路形状一覧.md)",
+          "after": "[線路形状一覧](../調査関連/線路形状/線路形状一覧.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 1879,
+          "end": 1908,
+          "before": "[引継ぎ要約](調査関連/線路形状収集_引継ぎ要約.md)",
+          "after": "[引継ぎ要約](../調査関連/線路形状/線路形状収集_引継ぎ要約.md)",
+          "kind": "path",
+          "repaired": true
+        },
+        {
+          "start": 1909,
+          "end": 1938,
+          "before": "[確認候補総覧](調査関連/線路形状_確認候補総覧.md)",
+          "after": "[確認候補総覧](../調査関連/線路形状/線路形状_確認候補総覧.md)",
+          "kind": "path",
+          "repaired": true
+        }
+      ],
+      "source_sha256": "a69d26ec87dff549b06e91c3a8307a293da17b799db745d8e40f7175f67b5617",
+      "output_sha256": "061af6c2c4f58c09ffb39c9606e2e2ba5fbd1efbfee2533a2a0b04f98c103459",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-13-13",
+      "title": "### 13.13 追加機能と警笛の具体化（決定／詳細未決定）",
+      "dest": "additional",
+      "start": 128552,
+      "end": 129326,
+      "line_start": 2266,
+      "line_end": 2276,
+      "changes": [
+        {
+          "start": 740,
+          "end": 747,
+          "before": "第13.11節",
+          "after": "[第13.11節](追加構想と文書整備.md#s-13-11)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "bc82d05168de8926799901df4063abe1aaafc5a2804018498f1a8fd02a6a96a2",
+      "output_sha256": "55c3237870ad78b40a2b16872996fc0353b488cc6c853e45b2bb04cb52b0e516",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "s-13-14",
+      "title": "### 13.14 10月22日の追加機能草案・見直し候補（採否・詳細未決定）",
+      "dest": "additional",
+      "start": 129326,
+      "end": 131871,
+      "line_start": 2277,
+      "line_end": 2304,
+      "changes": [
+        {
+          "start": 135,
+          "end": 142,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 402,
+          "end": 405,
+          "before": "第9章",
+          "after": "[第9章](分割記録/節の対応表.md#s-9)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 704,
+          "end": 707,
+          "before": "第5章",
+          "after": "[第5章](分割記録/節の対応表.md#s-5)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 875,
+          "end": 880,
+          "before": "第4.3節",
+          "after": "[第4.3節](加減速とノッチ.md#s-4-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1295,
+          "end": 1302,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1464,
+          "end": 1471,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1542,
+          "end": 1548,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1634,
+          "end": 1641,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1675,
+          "end": 1682,
+          "before": "第13.10節",
+          "after": "[第13.10節](音響とSpeakerController.md#s-13-10)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1975,
+          "end": 1982,
+          "before": "第13.15節",
+          "after": "[第13.15節](調査資料索引.md#s-13-15)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2293,
+          "end": 2300,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "0595983558308d1f3c19c4ede61f99bf1af6c8780be9458634a047d120ea2276",
+      "output_sha256": "952155bbbe02ffdb59865dcaf07077cd48cbc23cad5354935b982cb1495d7779",
+      "file": "docs/organize/整理3/追加構想と文書整備.md"
+    },
+    {
+      "key": "s-13-15",
+      "title": "### 13.15 追加基礎調査16件と類似MOD照合の引継ぎ（報告参照／提案未承認）",
+      "dest": "research",
+      "start": 131871,
+      "end": 135280,
+      "line_start": 2305,
+      "line_end": 2337,
+      "changes": [
+        {
+          "start": 409,
+          "end": 456,
+          "before": "[01 信号間距離と現示系列](調査関連/駅・信号・時刻表/01_信号間距離と現示系列.md)",
+          "after": "[01 信号間距離と現示系列](../調査関連/駅・信号・時刻表/01_信号間距離と現示系列.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 568,
+          "end": 613,
+          "before": "[02 信号機の灯式と現示](調査関連/駅・信号・時刻表/02_信号機の灯式と現示.md)",
+          "after": "[02 信号機の灯式と現示](../調査関連/駅・信号・時刻表/02_信号機の灯式と現示.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 693,
+          "end": 741,
+          "before": "[03 電動車付随車と編成性能](調査関連/運転・車両特性/03_電動車付随車と編成性能.md)",
+          "after": "[03 電動車付随車と編成性能](../調査関連/運転・車両特性/03_電動車付随車と編成性能.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 818,
+          "end": 868,
+          "before": "[04 ブレーキ圧と常用非常制動](調査関連/運転・車両特性/04_ブレーキ圧と常用非常制動.md)",
+          "after": "[04 ブレーキ圧と常用非常制動](../調査関連/運転・車両特性/04_ブレーキ圧と常用非常制動.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 947,
+          "end": 1003,
+          "before": "[05 実車の制動パターンとCAT照合](調査関連/運転・車両特性/05_実車の制動パターンとCAT照合.md)",
+          "after": "[05 実車の制動パターンとCAT照合](../調査関連/運転・車両特性/05_実車の制動パターンとCAT照合.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1090,
+          "end": 1144,
+          "before": "[06 無操作監視EB装置とリセット](調査関連/運転・車両特性/06_無操作監視EB装置とリセット.md)",
+          "after": "[06 無操作監視EB装置とリセット](../調査関連/運転・車両特性/06_無操作監視EB装置とリセット.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1239,
+          "end": 1290,
+          "before": "[07 踏切と列車保安装置の連携](調査関連/駅・信号・時刻表/07_踏切と列車保安装置の連携.md)",
+          "after": "[07 踏切と列車保安装置の連携](../調査関連/駅・信号・時刻表/07_踏切と列車保安装置の連携.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1372,
+          "end": 1417,
+          "before": "[08 信号機の名称と識別](調査関連/駅・信号・時刻表/08_信号機の名称と識別.md)",
+          "after": "[08 信号機の名称と識別](../調査関連/駅・信号・時刻表/08_信号機の名称と識別.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1503,
+          "end": 1555,
+          "before": "[09 車内LCDと自由レイアウト](調査関連/案内表示・音響/09_車内LCDと自由レイアウト.md)",
+          "after": "[09 車内LCDと自由レイアウト](../調査関連/案内表示・音響/09_車内LCDと自由レイアウト.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1656,
+          "end": 1710,
+          "before": "[10 電光掲示板とATOS情報連携](調査関連/案内表示・音響/10_電光掲示板とATOS情報連携.md)",
+          "after": "[10 電光掲示板とATOS情報連携](../調査関連/案内表示・音響/10_電光掲示板とATOS情報連携.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1803,
+          "end": 1810,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1836,
+          "end": 1906,
+          "before": "[11 接近案内とSpeakerController](調査関連/案内表示・音響/11_接近案内とSpeakerController.md)",
+          "after": "[11 接近案内とSpeakerController](../調査関連/案内表示・音響/11_接近案内とSpeakerController.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 1993,
+          "end": 2039,
+          "before": "[12 VVVF音と車両音響](調査関連/案内表示・音響/12_VVVF音と車両音響.md)",
+          "after": "[12 VVVF音と車両音響](../調査関連/案内表示・音響/12_VVVF音と車両音響.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 2116,
+          "end": 2158,
+          "before": "[13 乗車視点と車内移動](調査関連/乗車・視点/13_乗車視点と車内移動.md)",
+          "after": "[13 乗車視点と車内移動](../調査関連/乗車・視点/13_乗車視点と車内移動.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 2230,
+          "end": 2278,
+          "before": "[14 ワールド再開時の着席復元](調査関連/乗車・視点/14_ワールド再開時の着席復元.md)",
+          "after": "[14 ワールド再開時の着席復元](../調査関連/乗車・視点/14_ワールド再開時の着席復元.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 2396,
+          "end": 2435,
+          "before": "[16 交流直流と列車電力](調査関連/電力/16_交流直流と列車電力.md)",
+          "after": "[16 交流直流と列車電力](../調査関連/電力/16_交流直流と列車電力.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 2532,
+          "end": 2583,
+          "before": "[17 敷設時の勾配と曲率半径表示](調査関連/線路敷設条件/17_敷設時の勾配と曲率半径表示.md)",
+          "after": "[17 敷設時の勾配と曲率半径表示](../調査関連/線路敷設条件/17_敷設時の勾配と曲率半径表示.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 2706,
+          "end": 2779,
+          "before": "[類似MOD調査・精査最終報告書（2026-10-21）](調査関連/類似MOD調査/類似MOD調査_精査最終報告書_2026-10-21.md)",
+          "after": "[類似MOD調査・精査最終報告書（2026-10-21）](../調査関連/類似MOD調査/類似MOD調査_精査最終報告書_2026-10-21.md)",
+          "kind": "path",
+          "repaired": false
+        },
+        {
+          "start": 3294,
+          "end": 3301,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "e19acb0be4bf2ab3ba16c04ff66d4722b72a49f9d0842355acc20bf2011cc5bd",
+      "output_sha256": "7f4f746156100a266d8a60c99f876f68e071673fb82f95153e04552b27561bfd",
+      "file": "docs/organize/整理3/調査資料索引.md"
+    },
+    {
+      "key": "s-13-16",
+      "title": "### 13.16 CAT本体の目的・基本利用範囲・外部連携との分担（方針決定）",
+      "dest": "common",
+      "start": 135280,
+      "end": 138034,
+      "line_start": 2338,
+      "line_end": 2392,
+      "changes": [
+        {
+          "start": 1431,
+          "end": 1438,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2653,
+          "end": 2660,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2673,
+          "end": 2684,
+          "before": "第8.29・8.30節",
+          "after": "[第8.29・8.30節](分割記録/節の対応表.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2728,
+          "end": 2733,
+          "before": "第1.5節",
+          "after": "[第1.5節](共通方針と責任分担.md#s-1-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "9e685a80853594f074873f21e3da3de70f1a3caa329cd77d43e64846b52633d1",
+      "output_sha256": "374fdb2811b150f67544e4e054dedce1d444783ef4e196a82c56bdc1042ed388",
+      "file": "docs/organize/整理3/共通方針と責任分担.md"
+    },
+    {
+      "key": "s-13-17",
+      "title": "### 13.17 車内LCD・駅電光掲示板と運行情報（決定／レイアウト・予測方式未決定）",
+      "dest": "lcd",
+      "start": 138034,
+      "end": 140337,
+      "line_start": 2393,
+      "line_end": 2434,
+      "changes": [
+        {
+          "start": 705,
+          "end": 711,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1686,
+          "end": 1692,
+          "before": "第8.25節",
+          "after": "[第8.25節](時刻表と保存ダイヤ.md#s-8-25)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "6501fdc09303c465c61f97d9644e3422eb9c827dca25dfc3b32d64108224e6a8",
+      "output_sha256": "e8c9b5caf287baacb5a44a3520be60bb7326f53a226004d2d2bceb2bdb7d4384",
+      "file": "docs/organize/整理3/LCDと旅客案内.md"
+    },
+    {
+      "key": "s-13-18",
+      "title": "### 13.18 線路からの電力供給（追加構想／詳細保留）",
+      "dest": "track",
+      "start": 140337,
+      "end": 140661,
+      "line_start": 2435,
+      "line_end": 2441,
+      "changes": [],
+      "source_sha256": "05d1280d65cb300f0742414c8dd39e59633629c7a1ffb2d5d5e0a523d63baef1",
+      "output_sha256": "05d1280d65cb300f0742414c8dd39e59633629c7a1ffb2d5d5e0a523d63baef1",
+      "file": "docs/organize/整理3/線路拡張と電力構想.md"
+    },
+    {
+      "key": "s-14",
+      "title": "## 14. 進捗と残課題の棚卸し",
+      "dest": "pending",
+      "start": 140661,
+      "end": 140680,
+      "line_start": 2442,
+      "line_end": 2443,
+      "changes": [],
+      "source_sha256": "7b5fddcc71997941bb6edcbabbbb9a20575e51147fdb9ddbe96e426063bf55bf",
+      "output_sha256": "7b5fddcc71997941bb6edcbabbbb9a20575e51147fdb9ddbe96e426063bf55bf",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-1",
+      "title": "### 14.1 元の矛盾・不足点 C-01～C-12",
+      "dest": "pending",
+      "start": 140680,
+      "end": 141705,
+      "line_start": 2444,
+      "line_end": 2462,
+      "changes": [],
+      "source_sha256": "c41cae690e9441fa58844cd3ebf8e07abd20363caa48d43d17287014581d104c",
+      "output_sha256": "c41cae690e9441fa58844cd3ebf8e07abd20363caa48d43d17287014581d104c",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-2",
+      "title": "### 14.2 今回進んだ事項と要検討の扱い",
+      "dest": "pending",
+      "start": 141705,
+      "end": 142763,
+      "line_start": 2463,
+      "line_end": 2476,
+      "changes": [
+        {
+          "start": 174,
+          "end": 187,
+          "before": "第13.14・13.15節",
+          "after": "[第13.14・13.15節](分割記録/節の対応表.md#s-13-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 338,
+          "end": 345,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 419,
+          "end": 426,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 482,
+          "end": 488,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 511,
+          "end": 517,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 528,
+          "end": 535,
+          "before": "第13.18節",
+          "after": "[第13.18節](線路拡張と電力構想.md#s-13-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 576,
+          "end": 581,
+          "before": "第1.5節",
+          "after": "[第1.5節](共通方針と責任分担.md#s-1-5)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 957,
+          "end": 964,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "c7684d9a4be3c2efbea72d4fa1bb44e75d752456ed7be456b8f3a2be3144ad19",
+      "output_sha256": "266d24916e95eb765e525827b419569f546783fc3ba948bfe56ac9670e60b5a3",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-3",
+      "title": "### 14.3 残課題一覧とこれからの相談順（途中議論は再開待ち）",
+      "dest": "pending",
+      "start": 142763,
+      "end": 146365,
+      "line_start": 2477,
+      "line_end": 2545,
+      "changes": [
+        {
+          "start": 612,
+          "end": 625,
+          "before": "第11.21～11.31節",
+          "after": "[第11.21～11.31節](分割記録/節の対応表.md#s-11-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 921,
+          "end": 928,
+          "before": "第11.29節",
+          "after": "[第11.29節](乗務員とドアと停車保持.md#s-11-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1244,
+          "end": 1251,
+          "before": "第13.13節",
+          "after": "[第13.13節](追加構想と文書整備.md#s-13-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1408,
+          "end": 1421,
+          "before": "第13.14・13.16節",
+          "after": "[第13.14・13.16節](分割記録/節の対応表.md#s-13-14)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1650,
+          "end": 1657,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1676,
+          "end": 1683,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1905,
+          "end": 1911,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2016,
+          "end": 2022,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2556,
+          "end": 2561,
+          "before": "第2.2節",
+          "after": "[第2.2節](列車構成とプロファイル.md#s-2-2)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2808,
+          "end": 2815,
+          "before": "第13.11節",
+          "after": "[第13.11節](追加構想と文書整備.md#s-13-11)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2867,
+          "end": 2874,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2992,
+          "end": 2999,
+          "before": "第13.17節",
+          "after": "[第13.17節](LCDと旅客案内.md#s-13-17)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 3444,
+          "end": 3450,
+          "before": "第14.5節",
+          "after": "[第14.5節](残課題と再開地点.md#s-14-5)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 3456,
+          "end": 3462,
+          "before": "第14.4節",
+          "after": "[第14.4節](残課題と再開地点.md#s-14-4)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 3562,
+          "end": 3567,
+          "before": "第1.5節",
+          "after": "[第1.5節](共通方針と責任分担.md#s-1-5)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "94c6e74826a62422afccc9d60ad3866b2a1860224b9887b058fbef8c7f6a4329",
+      "output_sha256": "8b3d007b38d68a5f07cda546f133da8c8a141f5596ef2413622b568b33e84806",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-4",
+      "title": "### 14.4 調査待ち・検証が必要な項目",
+      "dest": "pending",
+      "start": 146365,
+      "end": 149709,
+      "line_start": 2546,
+      "line_end": 2583,
+      "changes": [
+        {
+          "start": 110,
+          "end": 122,
+          "before": "第12.9・12.10節",
+          "after": "[第12.9・12.10節](分割記録/節の対応表.md#s-12-9)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1180,
+          "end": 1187,
+          "before": "第12.12節",
+          "after": "[第12.12節](調査資料索引.md#s-12-12)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1279,
+          "end": 1291,
+          "before": "第13.8・13.12節",
+          "after": "[第13.8・13.12節](分割記録/節の対応表.md#s-13-8)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1415,
+          "end": 1425,
+          "before": "第12.13・13章",
+          "after": "[第12.13・13章](分割記録/節の対応表.md#s-12-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1854,
+          "end": 1861,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1961,
+          "end": 1968,
+          "before": "第13.12節",
+          "after": "[第13.12節](調査資料索引.md#s-13-12)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 2417,
+          "end": 2424,
+          "before": "第13.15節",
+          "after": "[第13.15節](調査資料索引.md#s-13-15)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "febdace026ca346931fabf90ea1e497e00c37a60aca064b1803c04439d8a9fcd",
+      "output_sha256": "bbc893387b26894f4da9c555d6956fa9cbea3caf9978d97c40caaf0dcc333a0f",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-5",
+      "title": "### 14.5 全体整理後にまとめて決める数値",
+      "dest": "pending",
+      "start": 149709,
+      "end": 150885,
+      "line_start": 2584,
+      "line_end": 2603,
+      "changes": [],
+      "source_sha256": "7730f744e990fad26f0506f0369c27b8bc6fed60cfd028bb4e0db14d6bea59cd",
+      "output_sha256": "7730f744e990fad26f0506f0369c27b8bc6fed60cfd028bb4e0db14d6bea59cd",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-14-6",
+      "title": "### 14.6 将来対応・候補・変更済み案",
+      "dest": "pending",
+      "start": 150885,
+      "end": 151832,
+      "line_start": 2604,
+      "line_end": 2618,
+      "changes": [
+        {
+          "start": 743,
+          "end": 750,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "92bb45e23180cdb12888aebf37bb197a01e47fb8a3bc6a7897e47502c185d04f",
+      "output_sha256": "b671452271635191c41cadb93470a550ad0e9c93d2894ca677308f36d051cd41",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "s-15",
+      "title": "## 15. 次の会話への引継ぎ",
+      "dest": "pending",
+      "start": 151832,
+      "end": 151850,
+      "line_start": 2619,
+      "line_end": 2620,
+      "changes": [],
+      "source_sha256": "9ef7136e5a21486d68cd7c4fec87ad9828f0e6b4ead0dc386832ba69fadd45d9",
+      "output_sha256": "9ef7136e5a21486d68cd7c4fec87ad9828f0e6b4ead0dc386832ba69fadd45d9",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "u-15-1",
+      "title": "### 現在地・次に進む順番",
+      "dest": "pending",
+      "start": 151850,
+      "end": 153108,
+      "line_start": 2621,
+      "line_end": 2633,
+      "changes": [
+        {
+          "start": 201,
+          "end": 207,
+          "before": "第14.3節",
+          "after": "[第14.3節](残課題と再開地点.md#s-14-3)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 348,
+          "end": 355,
+          "before": "第13.16節",
+          "after": "[第13.16節](共通方針と責任分担.md#s-13-16)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 569,
+          "end": 575,
+          "before": "第8.30節",
+          "after": "[第8.30節](ATOSと遠隔操作と延発.md#s-8-30)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 692,
+          "end": 698,
+          "before": "第8.29節",
+          "after": "[第8.29節](時刻表と保存ダイヤ.md#s-8-29)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 882,
+          "end": 889,
+          "before": "第13.18節",
+          "after": "[第13.18節](線路拡張と電力構想.md#s-13-18)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1083,
+          "end": 1096,
+          "before": "第13.12・13.15節",
+          "after": "[第13.12・13.15節](分割記録/節の対応表.md#s-13-12)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "a5952597dceea966fa846712c72a297bb6ef800aa62a9d75d907359dca3e96a1",
+      "output_sha256": "dd9bf0126ac44ee28e5d83d1e97b8ac13b06bfbee1d449d262c6f2e2ed64336f",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "u-15-2",
+      "title": "### 最新決定で特に維持する区別",
+      "dest": "pending",
+      "start": 153108,
+      "end": 154920,
+      "line_start": 2634,
+      "line_end": 2656,
+      "changes": [
+        {
+          "start": 21,
+          "end": 34,
+          "before": "第11.21～11.31節",
+          "after": "[第11.21～11.31節](分割記録/節の対応表.md#s-11-21)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 688,
+          "end": 695,
+          "before": "第13.13節",
+          "after": "[第13.13節](追加構想と文書整備.md#s-13-13)",
+          "kind": "section_reference"
+        },
+        {
+          "start": 1036,
+          "end": 1043,
+          "before": "第11.22節",
+          "after": "[第11.22節](マスコン操作とHUD.md#s-11-22)",
+          "kind": "section_reference"
+        }
+      ],
+      "source_sha256": "ec95a43928e43ff82edc25d1d9695b755a5fd3003ed5ddfba38d1dbed0b38fd5",
+      "output_sha256": "87fc92d0a7f29436d9c47ac3d97e07268ccf51b40ab4e0bafb4f391838566b4f",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    },
+    {
+      "key": "u-15-3",
+      "title": "### 保存・調査の境界",
+      "dest": "pending",
+      "start": 154920,
+      "end": 155215,
+      "line_start": 2657,
+      "line_end": 2662,
+      "changes": [],
+      "source_sha256": "ca6109edda22ba8064a5e260a336ae9bbf7129b0d9a35da85f08ba39d02b0810",
+      "output_sha256": "ca6109edda22ba8064a5e260a336ae9bbf7129b0d9a35da85f08ba39d02b0810",
+      "file": "docs/organize/整理3/残課題と再開地点.md"
+    }
+  ],
+  "documents": [
+    "docs/organize/整理3/共通方針と責任分担.md",
+    "docs/organize/整理3/列車構成とプロファイル.md",
+    "docs/organize/整理3/加減速とノッチ.md",
+    "docs/organize/整理3/ATOとTASC.md",
+    "docs/organize/整理3/非常制御と故障復旧.md",
+    "docs/organize/整理3/信号と安全装置と進路.md",
+    "docs/organize/整理3/時刻表と保存ダイヤ.md",
+    "docs/organize/整理3/ATOSと遠隔操作と延発.md",
+    "docs/organize/整理3/マスコン操作とHUD.md",
+    "docs/organize/整理3/乗務員とドアと停車保持.md",
+    "docs/organize/整理3/音響とSpeakerController.md",
+    "docs/organize/整理3/LCDと旅客案内.md",
+    "docs/organize/整理3/線路拡張と電力構想.md",
+    "docs/organize/整理3/追加構想と文書整備.md",
+    "docs/organize/整理3/調査資料索引.md",
+    "docs/organize/整理3/残課題と再開地点.md"
+  ],
+  "link_rewrites": [
+    {
+      "unit": "s-1-1",
+      "old": "下書き・参考/ドキュメント構成の参考.md",
+      "new": "../下書き・参考/ドキュメント構成の参考.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-1-1",
+      "old": "整理2/整理2.md",
+      "new": "../整理2/整理2.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-1-1",
+      "old": "整理2/%5B1%5D整理2で出た不足点の解答と補足.md",
+      "new": "../整理2/[1]整理2で出た不足点の解答と補足.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-1-4",
+      "old": "下書き・参考/CAT_REQUIREMENTS_ENGINEERING_WORKFLOW.md",
+      "new": "../下書き・参考/CAT_REQUIREMENTS_ENGINEERING_WORKFLOW.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-11-22",
+      "old": "調査関連/HUD参考",
+      "new": "../調査関連/HUD参考",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalEdgeGroup.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalEdgeGroup.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Train.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Train.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/GlobalRailwayManager.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/GlobalRailwayManager.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBlockEntity.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBlockEntity.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-1",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-3",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/track/BezierConnection.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/track/BezierConnection.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-3",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/TravellingPoint.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/TravellingPoint.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-3",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/TrackEdge.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/TrackEdge.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-4",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalPropagator.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-4",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/EdgeData.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/graph/EdgeData.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-4",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/SignalBoundary.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-6",
+      "old": "調査関連/CREATE_6_0_8_CAB_DIRECTION_AND_CONSIST_CHANGES.md",
+      "new": "../調査関連/運転・車両特性/CREATE_6_0_8_CAB_DIRECTION_AND_CONSIST_CHANGES.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-7",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/schedule/destination/DestinationInstruction.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/schedule/destination/DestinationInstruction.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-7",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/entity/Navigation.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-7",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/TrackEdgePoint.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/signal/TrackEdgePoint.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-7",
+      "old": "../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/station/GlobalStation.java",
+      "new": "../../../vendor/Create-mc1.20.1-6.0.8/src/main/java/com/simibubi/create/content/trains/station/GlobalStation.java",
+      "repaired": false
+    },
+    {
+      "unit": "s-12-8",
+      "old": "調査関連/CREATE_AND_ADDONS_SCHEDULE_INSTRUCTIONS_AND_TIME_CONDITIONS.md",
+      "new": "../調査関連/駅・信号・時刻表/CREATE_AND_ADDONS_SCHEDULE_INSTRUCTIONS_AND_TIME_CONDITIONS.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-10",
+      "old": "調査関連/E235系0番台の力行ノッチ加速度調査.md",
+      "new": "../調査関連/運転・車両特性/E235系0番台の力行ノッチ加速度調査.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-11",
+      "old": "調査関連/ワンハンドルマスコンのノッチとレバーサー位置の関係.md",
+      "new": "../調査関連/運転・車両特性/ワンハンドルマスコンのノッチとレバーサー位置の関係.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-13",
+      "old": "調査関連/線路敷設条件と線路強化の調査.md",
+      "new": "../調査関連/線路敷設条件/線路敷設条件と線路強化の調査.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-13",
+      "old": "調査関連/線路敷設条件_線形・カント・勾配.md",
+      "new": "../調査関連/線路敷設条件/線路敷設条件_線形・カント・勾配.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-13",
+      "old": "調査関連/線路敷設条件_構造・保守・環境.md",
+      "new": "../調査関連/線路敷設条件/線路敷設条件_構造・保守・環境.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-13",
+      "old": "調査関連/線路敷設条件_Create6.0.8とCAT検討事項.md",
+      "new": "../調査関連/線路敷設条件/線路敷設条件_Create6.0.8とCAT検討事項.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-12-13",
+      "old": "調査関連/線路敷設条件_出典照合と未確認事項.md",
+      "new": "../調査関連/線路敷設条件/線路敷設条件_出典照合と未確認事項.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md",
+      "new": "../調査関連/車両モデル/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/HUD関連/マスコンHUDの描画・入力構成調査.md",
+      "new": "../調査関連/HUD関連/マスコンHUDの描画・入力構成調査.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.md",
+      "new": "../調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/線路形状一覧.md",
+      "new": "../調査関連/線路形状/線路形状一覧.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/線路形状収集_引継ぎ要約.md",
+      "new": "../調査関連/線路形状/線路形状収集_引継ぎ要約.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-13-12",
+      "old": "調査関連/線路形状_確認候補総覧.md",
+      "new": "../調査関連/線路形状/線路形状_確認候補総覧.md",
+      "repaired": true
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/駅・信号・時刻表/01_信号間距離と現示系列.md",
+      "new": "../調査関連/駅・信号・時刻表/01_信号間距離と現示系列.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/駅・信号・時刻表/02_信号機の灯式と現示.md",
+      "new": "../調査関連/駅・信号・時刻表/02_信号機の灯式と現示.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/運転・車両特性/03_電動車付随車と編成性能.md",
+      "new": "../調査関連/運転・車両特性/03_電動車付随車と編成性能.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/運転・車両特性/04_ブレーキ圧と常用非常制動.md",
+      "new": "../調査関連/運転・車両特性/04_ブレーキ圧と常用非常制動.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/運転・車両特性/05_実車の制動パターンとCAT照合.md",
+      "new": "../調査関連/運転・車両特性/05_実車の制動パターンとCAT照合.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/運転・車両特性/06_無操作監視EB装置とリセット.md",
+      "new": "../調査関連/運転・車両特性/06_無操作監視EB装置とリセット.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/駅・信号・時刻表/07_踏切と列車保安装置の連携.md",
+      "new": "../調査関連/駅・信号・時刻表/07_踏切と列車保安装置の連携.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/駅・信号・時刻表/08_信号機の名称と識別.md",
+      "new": "../調査関連/駅・信号・時刻表/08_信号機の名称と識別.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/案内表示・音響/09_車内LCDと自由レイアウト.md",
+      "new": "../調査関連/案内表示・音響/09_車内LCDと自由レイアウト.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/案内表示・音響/10_電光掲示板とATOS情報連携.md",
+      "new": "../調査関連/案内表示・音響/10_電光掲示板とATOS情報連携.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/案内表示・音響/11_接近案内とSpeakerController.md",
+      "new": "../調査関連/案内表示・音響/11_接近案内とSpeakerController.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/案内表示・音響/12_VVVF音と車両音響.md",
+      "new": "../調査関連/案内表示・音響/12_VVVF音と車両音響.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/乗車・視点/13_乗車視点と車内移動.md",
+      "new": "../調査関連/乗車・視点/13_乗車視点と車内移動.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/乗車・視点/14_ワールド再開時の着席復元.md",
+      "new": "../調査関連/乗車・視点/14_ワールド再開時の着席復元.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/電力/16_交流直流と列車電力.md",
+      "new": "../調査関連/電力/16_交流直流と列車電力.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/線路敷設条件/17_敷設時の勾配と曲率半径表示.md",
+      "new": "../調査関連/線路敷設条件/17_敷設時の勾配と曲率半径表示.md",
+      "repaired": false
+    },
+    {
+      "unit": "s-13-15",
+      "old": "調査関連/類似MOD調査/類似MOD調査_精査最終報告書_2026-10-21.md",
+      "new": "../調査関連/類似MOD調査/類似MOD調査_精査最終報告書_2026-10-21.md",
+      "repaired": false
+    }
+  ],
+  "incoming_changes": [
+    {
+      "path": "docs/organize/調査関連/線路形状/線路形状_確認候補総覧.md",
+      "original_sha256": "cd80d41b763decdd5064f3c9be506eeb2004395151660593a29c14734c69a78b",
+      "output_sha256": "cd507cec5a10ceda9500d23edcdc5fa684d1610497cbf42d74b024dc09eb8d5e",
+      "changes": [
+        {
+          "start": 324,
+          "end": 343,
+          "before": "[整理3.md](../整理3.md)",
+          "after": "[整理3.md](../../整理3.md)"
+        }
+      ]
+    },
+    {
+      "path": "docs/organize/調査関連/線路形状/線路形状一覧.md",
+      "original_sha256": "736e6dbeb2df860fe0d23f1d8b087d73aedfd8444d6212b60c76398f3d7a9131",
+      "output_sha256": "a96973aa28faf175370b24ee5b5910bb2133122a7c2754683f2edeae923e6a20",
+      "changes": [
+        {
+          "start": 323,
+          "end": 342,
+          "before": "[整理3.md](../整理3.md)",
+          "after": "[整理3.md](../../整理3.md)"
+        }
+      ]
+    },
+    {
+      "path": "docs/organize/調査関連/線路形状/線路形状収集_引継ぎ要約.md",
+      "original_sha256": "8d9d6188a218fce97b8540824c31c601a0c6f1859e121acb144d594d0ee2dff3",
+      "output_sha256": "13dd2c6c58d79875256b7047a76eed6ca5b2a2b1bb1b1d424ad4d1037ff5f475",
+      "changes": [
+        {
+          "start": 230,
+          "end": 249,
+          "before": "[整理3.md](../整理3.md)",
+          "after": "[整理3.md](../../整理3.md)"
+        }
+      ]
+    },
+    {
+      "path": "docs/organize/調査関連/線路敷設条件/線路敷設条件_Create6.0.8とCAT検討事項.md",
+      "original_sha256": "ca188d4afc1342e27031526a7c5b8a1e3bc77e7b85c06a563c16ed68f9e0894c",
+      "output_sha256": "14df34bb1e7b8831fae5cd5d1cb5774149b6c3bb7239aeb8b47ab9b6d04bb764",
+      "changes": [
+        {
+          "start": 201,
+          "end": 220,
+          "before": "[現行の整理3](../整理3.md)",
+          "after": "[現行の整理3](../../整理3.md)"
+        }
+      ]
+    },
+    {
+      "path": "docs/organize/調査関連/車両モデル/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md",
+      "original_sha256": "9f89b506a8d695535c964fdb98b868e20623f843e9e9debb4de5361a66ffe824",
+      "output_sha256": "eeac89647a85f4ef23a486c3171fc2432321710eb240e34c6f0bda7e45c5373b",
+      "changes": [
+        {
+          "start": 1801,
+          "end": 1820,
+          "before": "[整理3.md](../整理3.md)",
+          "after": "[整理3.md](../../整理3.md)"
+        }
+      ]
+    }
+  ],
+  "baseline": {
+    "docs/organize/整理3.md": "3b8d890584b90d72658894d22836a64f629056ba0e3f4ac525a8ddf8595b1681",
+    "docs/organize/下書き・参考/CAT_REQUIREMENTS_ENGINEERING_WORKFLOW.md": "998b2f09ef6cc973417927c13f88875a25dcb90008356085ccaa7af6a44ebfb9",
+    "docs/organize/下書き・参考/ドキュメント構成の参考.md": "0a1f5dc164fe8a3ca85761517eb07834d1dd79265711073d65ca9ebb54e525e6",
+    "docs/organize/整理1/整理1.md": "82907cdc086119fc701d7bd2cba526a0c6d3efc552292659c7b1e291b50e81cd",
+    "docs/organize/整理2/[1]整理2で出た不足点の解答と補足.md": "087411f862280939bded124e57f497355455ff2e824703178ba00bb0e024ca06",
+    "docs/organize/整理2/整理2.md": "85de9f26d58ab05020fc0329bdeac5f1929757bab2b7c51e5ed985315972134a",
+    "docs/organize/調査関連/HUD参考/JRETS-京浜東北線E233系1000番台_全体.png": "c927c41884c36a4fea15d668f935bdbddc5dbcd3a5c7c32f02c686fd8d9be132",
+    "docs/organize/調査関連/HUD参考/JRETS-京浜東北線E233系1000番台_右.png": "1ae21ea21c5624bfe715a6915fd6d3964f0fb78cae915ca1da9f6aaa5a44f83f",
+    "docs/organize/調査関連/HUD参考/JRETS-京浜東北線E233系1000番台_左.png": "baf0d0debfe4d57f5884522c312b59108adf3f5ed524ce113a091a4039d10a2c",
+    "docs/organize/調査関連/HUD参考/JRETS-山手線E235系0番台_全体.png": "5159fbf63ff4e48b346dbcf0a513a22dd50a46da1a9793b2c555f9939bba8239",
+    "docs/organize/調査関連/HUD参考/JRETS-山手線E235系0番台_右.png": "0f7d2d53802c0c6678c8d23a5a6849ef52e7c2fe31bfcaf787ed4ccc0cf637c7",
+    "docs/organize/調査関連/HUD参考/JRETS-山手線E235系0番台_左.png": "d26631e6dfce29f9f7d34dc37b9154c0cb9503f5a37b56505ca830087ddb5bde",
+    "docs/organize/調査関連/HUD参考/JRETS-常磐線E531系0番台_全体.png": "c2905854d53978138e1b030ef214600bd2f70aae737b44b306094d3258873f53",
+    "docs/organize/調査関連/HUD参考/JRETS-常磐線E531系0番台_右.png": "8027f458a6336b8510b17c60467f1ba4bc561a4526a15d949784a51270b486ec",
+    "docs/organize/調査関連/HUD参考/JRETS-常磐線E531系0番台_左.png": "d6e9bdd599ac12ca0cf6b610f86960b7b8f3f534f9776c4807ff0695e53982c2",
+    "docs/organize/調査関連/HUD参考/JRETS-東海道線E233系3000番台_全体.png": "b0e629375c018dbbf78ace3b6e9465d90805c90fe3ac84a857dbce19effcb19a",
+    "docs/organize/調査関連/HUD参考/JRETS-東海道線E233系3000番台_右.png": "2fdaa363f3e5c0ba110173d6c1be8d7e85280630e91583c8eb17d1d7d2da76c4",
+    "docs/organize/調査関連/HUD参考/JRETS-東海道線E233系3000番台_左.png": "9d1833884da2844c7dac31da7908d0973e3f9a32d3ad09e781a318da8c5086eb",
+    "docs/organize/調査関連/HUD参考/JRETS-総武線快速E217系_全体.png": "c58595bd6e5fca9685990208800b61be7cc6734a7b13af83d19bda9174830a5d",
+    "docs/organize/調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.md": "dddb663c1b5e15069cb24e6609897ae6e1d64a5823e58a6ee62880e90cacfedc",
+    "docs/organize/調査関連/HUD関連/マスコンHUD_レイアウトラフ_01.png": "49350ce6fba835ec7fbdd50f58b8f6ef2105274024664fc41a0aaa5235e994d3",
+    "docs/organize/調査関連/HUD関連/マスコンHUDの描画・入力構成調査.md": "c70e0f3ab42dad00a5791d59d4b2af5d1a073a0bb445669159356ed50f566ec3",
+    "docs/organize/調査関連/レール幅/標準.png": "ed493ada587a7d8910d0c2b85b495abfccd7ad56e1327573efed2083570c6351",
+    "docs/organize/調査関連/レール幅/狭い.png": "87505d84d757aa3fa15888128f77d8f656f4dd918c258324a33ba6889f2a3f68",
+    "docs/organize/調査関連/乗車・視点/13_乗車視点と車内移動.md": "11a86731bbeb791c6859279069f4343e239375a16bb06b8b923edf0ecefbb1eb",
+    "docs/organize/調査関連/乗車・視点/14_ワールド再開時の着席復元.md": "3f9d914c8d4e599e2f806854324b68c878cf8b99855d6cb4b2c8eee8027e0a01",
+    "docs/organize/調査関連/案内表示・音響/09_車内LCDと自由レイアウト.md": "b0e306f430bd89316e59be4dc3f08d1807d7186c3ec886aadf7f59ad68a22029",
+    "docs/organize/調査関連/案内表示・音響/10_電光掲示板とATOS情報連携.md": "39619d18b0cffa7bb3b08a3fda7c2a0ef4aba9494559a06b73313941bf9471d8",
+    "docs/organize/調査関連/案内表示・音響/11_接近案内とSpeakerController.md": "4e51a30d5345bfce1db6e6d61c5b48e447b67776c409e8ebf75856651afb19e6",
+    "docs/organize/調査関連/案内表示・音響/12_VVVF音と車両音響.md": "147cb89f19dba613c7605e30b74194141fad79594c76d0ec7936b9d645b54c4f",
+    "docs/organize/調査関連/線路形状/線路形状_確認候補総覧.md": "cd80d41b763decdd5064f3c9be506eeb2004395151660593a29c14734c69a78b",
+    "docs/organize/調査関連/線路形状/線路形状一覧.md": "736e6dbeb2df860fe0d23f1d8b087d73aedfd8444d6212b60c76398f3d7a9131",
+    "docs/organize/調査関連/線路形状/線路形状収集_引継ぎ要約.md": "8d9d6188a218fce97b8540824c31c601a0c6f1859e121acb144d594d0ee2dff3",
+    "docs/organize/調査関連/線路敷設条件/17_敷設時の勾配と曲率半径表示.md": "28ce09157ed85c4978231a776326be716fe8d886bf85d935fb6cb81086df56c5",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件_Create6.0.8とCAT検討事項.md": "ca188d4afc1342e27031526a7c5b8a1e3bc77e7b85c06a563c16ed68f9e0894c",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件_出典照合と未確認事項.md": "d51f9184817c195f672d646e8abfb0b2935569c56dd0485a0ecf904fb211b3d3",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件_構造・保守・環境.md": "66aced5e2805b4a962229f0955de3578987860278fb07f200b0104167cf8398a",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件_線形・カント・勾配.md": "e32baf2d202cb6697053d32f4e42eda4210ab46154fb87d9284d107d10960b8e",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件と線路強化の調査.md": "0eb94dc58be075c3151b4183dfa1f1d29607e61c4d39d4b5f4e9c4be9bfc5f62",
+    "docs/organize/調査関連/車両モデル/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md": "9f89b506a8d695535c964fdb98b868e20623f843e9e9debb4de5361a66ffe824",
+    "docs/organize/調査関連/運転・車両特性/03_電動車付随車と編成性能.md": "d725fae186b94c097b8392cf00305f6ddd6f5af1ca92ae78769f2618e6e01478",
+    "docs/organize/調査関連/運転・車両特性/04_ブレーキ圧と常用非常制動.md": "04862138506c1d03927fd38186397cb8854619e40975403cbbf0d59c805acc1c",
+    "docs/organize/調査関連/運転・車両特性/05_実車の制動パターンとCAT照合.md": "035320f4903f868db6a2914feea1c2c9fc021fcf62d0fa0bf044b69a2462da15",
+    "docs/organize/調査関連/運転・車両特性/06_無操作監視EB装置とリセット.md": "968ff92e8f8a12a4247f73357a7f4e149df65d8494af71506f83d3912c3cdfcc",
+    "docs/organize/調査関連/運転・車両特性/CREATE_6_0_8_CAB_DIRECTION_AND_CONSIST_CHANGES.md": "d82c031bedc369cacc1f639d9d52bda08d24699c8af84a7770fd2ba38cbfef26",
+    "docs/organize/調査関連/運転・車両特性/E235系0番台の力行ノッチ加速度調査.md": "4b20187fa0cb52f2c0bf1a32ae35a5861056270626a36ab3f997773b2b1fd28f",
+    "docs/organize/調査関連/運転・車両特性/ワンハンドルマスコンのノッチとレバーサー位置の関係.md": "338297733b9d75105d0826327634f4868dea3a5e9552f1d4dfe61a3f2f492fc8",
+    "docs/organize/調査関連/運転・車両特性/鉄道調査結果.md": "acf9c5ccf36e4fc06531435cdfa084e41988058262a58d545bef0969f64aed61",
+    "docs/organize/調査関連/電力/16_交流直流と列車電力.md": "99b28b771f3d43451110173b9bef6333418d0b98ee377392e095abf9cd4fdd78",
+    "docs/organize/調査関連/類似MOD調査/create_train_and_track_addons_1.20.1_forge_2026-10-19.md": "0edb8c3c813c487adf304bc90c903aa564d7caa0f8b4e0fb798883b8b8d45bce",
+    "docs/organize/調査関連/類似MOD調査/類似MOD調査_精査最終報告書_2026-10-21.md": "f565a96aab3b195de5b6482d61d3791c7b310a1210da5c5cef962c6db7504d43",
+    "docs/organize/調査関連/駅・信号・時刻表/01_信号間距離と現示系列.md": "2e1fca99bc8c7dfb0ec2ba68dfd2c43135bd1bbf8a48a958b66f341d6995da2d",
+    "docs/organize/調査関連/駅・信号・時刻表/02_信号機の灯式と現示.md": "3499e3e3cc0aff7b3ad32604fba70b825b501eab7302203f01dc95dc293ab04e",
+    "docs/organize/調査関連/駅・信号・時刻表/07_踏切と列車保安装置の連携.md": "7deafa8908c5d55fdcf6f2bf2253e37bbc94a9e5ef13f06ae21f6cf08bed28bf",
+    "docs/organize/調査関連/駅・信号・時刻表/08_信号機の名称と識別.md": "dff9f5c34a27ae8ca1e544212e85b92cebf165d05d83f996aa3d35cb1263540d",
+    "docs/organize/調査関連/駅・信号・時刻表/Create-6.0.8_鉄道と信号.md": "afd9a282f624b5ae910a92308da4b24e457ff542fc3e0bb2ffbb8fde1c206772",
+    "docs/organize/調査関連/駅・信号・時刻表/Create-6.0.8_駅ブロック.md": "af20e51d7b562c33960df064cabd50d0692b71dc7bbb7d7e9679a05c19e1ee6f",
+    "docs/organize/調査関連/駅・信号・時刻表/CREATE_AND_ADDONS_SCHEDULE_INSTRUCTIONS_AND_TIME_CONDITIONS.md": "fa658cf1e3330fadd49d5322947c10980488ad6989dd828a71b93902b52beb48",
+    "docs/organize/調査関連/線路形状/C001/C001-1.png": "13a5c8d428075186e4909e2fa309e0f399354dd890374f438eaa142ffee0ed4e",
+    "docs/organize/調査関連/線路形状/C001/Coordinates.txt": "9eb4de29186872751551af55068752c2ec65b29ec86ef1b363a3eb353c4ad544",
+    "docs/organize/調査関連/線路形状/C002/C002-1.png": "9513c96cbbf20c5f7124e4dca652b3ed6be5d2643991692a4a81dbc82edcf972",
+    "docs/organize/調査関連/線路形状/C002/Coordinates.txt": "e8cdff5aad3bd9c3cd0f9db2e3bf71d566fa9b8e4b5f518709eb2252f3fe75cb",
+    "docs/organize/調査関連/線路形状/C002/x,y,z = 10,97,2 から45度方向.png": "052f58d3cc96fa22837e7d7556fecae577f7a6b14dcb2eee28fa9d5c6b48f043",
+    "docs/organize/調査関連/線路形状/C002/奥の方から.png": "92b61097f48d8b565f742d96e1e8f87bc621c308e55c172a62c2c2625fb4975f",
+    "docs/organize/調査関連/線路形状/C002/手前から.png": "54072429ce4d12630699b21d0535bcd7d4ed3a9370af36f811419ba108fbc452",
+    "docs/organize/調査関連/線路形状/C003/C003_1.png": "b8faed43cdf33820201204ac7390b1923bea73ac331ce8804f79542bef7d506f",
+    "docs/organize/調査関連/線路形状/C003/C003_2.png": "ad4f1426b159b835bef207fff1983f46efc01e85b807646f7051bbcbc44e2240",
+    "docs/organize/調査関連/線路形状/C003/C003_3.png": "49f3b65ab8cef4187b97c55989efa6bc7f2c53401df111644bdb1665b1235c82",
+    "docs/organize/調査関連/線路形状/C003/Coordinates.txt": "4f5628b8a82907832592ba3bc18e23aaa4d364364acf14891fc303097ce1d347",
+    "docs/organize/調査関連/線路形状/C004/C004_1.png": "e4a5d243c433c952d10f2db65f7568e53dd8ef4f592c9616dd050f760ff77640",
+    "docs/organize/調査関連/線路形状/C004/C004_2.png": "8a8e1e4517741014d2b15af19c4cdaf0cd3a7fc34428dd622c50b7683d215610",
+    "docs/organize/調査関連/線路形状/C004/C004_3.png": "7b91baba1bb27c83f6367da7d06f213f524ab09e31d6db25129ae439d4a5d96c",
+    "docs/organize/調査関連/線路形状/C004/Coordinates.txt": "488106f2cc5615351f94e4c408feaebf4346cc14871dcbde896b97311c148dca"
+  },
+  "structural_files": [
+    "docs/organize/整理3.md",
+    "docs/organize/整理3/分割記録/節の対応表.md"
+  ],
+  "generated_hashes": {
+    "docs/organize/整理3/共通方針と責任分担.md": "b023f42cdc100219af117cb32e726067530047a024337786b9e05dd6499c99fd",
+    "docs/organize/整理3/列車構成とプロファイル.md": "bae55d420198a31d899f7888c0bdf5eade08fe3bce2a6a7e52915d75c06d2446",
+    "docs/organize/整理3/加減速とノッチ.md": "3872deb495c66c23fab46c4ddb127c606199b30e6425acaa5bec654179e0c013",
+    "docs/organize/整理3/ATOとTASC.md": "98ac72758316a4d2bd07c2df5403b71efe0235af4aecb59e7759070cbab1de06",
+    "docs/organize/整理3/非常制御と故障復旧.md": "cac087b6bce5f96501ea96e0665260d75054b98a6271ace21dfb0d626402bec5",
+    "docs/organize/整理3/信号と安全装置と進路.md": "c8e5451cf74585190d859d052c730f1c5fca2f56c9dde688dd8d4e97c818c04a",
+    "docs/organize/整理3/時刻表と保存ダイヤ.md": "e85c325cfdcdf05f96b573499a54fdb79a7d13f8543e1ae78e27d08b7b49ab4c",
+    "docs/organize/整理3/ATOSと遠隔操作と延発.md": "ebefe14c5643cb9ab4169f356f3b36550149181ad4377f8411d4ff3895649187",
+    "docs/organize/整理3/マスコン操作とHUD.md": "19a5a0f69e0b9c638c6536d6aee509ad380037978e4a24aea66402e2f4256600",
+    "docs/organize/整理3/乗務員とドアと停車保持.md": "8c64b9a090f4e1d17d345f7d4fdbe1987e6f5fce74f7fb07b86cbbd8bd100f57",
+    "docs/organize/整理3/音響とSpeakerController.md": "643828cd6dd8fa3f2577887210abea8d17c1d79eac48387d33cb614b5c3af592",
+    "docs/organize/整理3/LCDと旅客案内.md": "f819599c41d884a388923b28ce082544cfc3e154caabc00e6f36f383ab96c3e4",
+    "docs/organize/整理3/線路拡張と電力構想.md": "44a16f36731148274eab803698eee03724c1accf7b158612114a9aca9697cf52",
+    "docs/organize/整理3/追加構想と文書整備.md": "1ace4a5bfbeafe1676e23581afb3ae7e1f6a9344c9a4cd37cbe8e9a8d5799e3f",
+    "docs/organize/整理3/調査資料索引.md": "34185dbebd30585a59aef806915cb36b222982ada14f2754c9dad98df604b7f7",
+    "docs/organize/整理3/残課題と再開地点.md": "0630d648533452286187a04e7e120f8ddda14becaea1e6a90ff212ca01d4532c",
+    "docs/organize/整理3.md": "d353de0fc340674e8372608e14325cd5a2ef1113a5ae2979ad24c85e9b64148a",
+    "docs/organize/整理3/分割記録/節の対応表.md": "0941f53b562d77cc825ae4cc5d4ab109bb754cbf8eac2eb13aa8d6e0fcf2a5c4",
+    "docs/organize/調査関連/線路形状/線路形状_確認候補総覧.md": "cd507cec5a10ceda9500d23edcdc5fa684d1610497cbf42d74b024dc09eb8d5e",
+    "docs/organize/調査関連/線路形状/線路形状一覧.md": "a96973aa28faf175370b24ee5b5910bb2133122a7c2754683f2edeae923e6a20",
+    "docs/organize/調査関連/線路形状/線路形状収集_引継ぎ要約.md": "13dd2c6c58d79875256b7047a76eed6ca5b2a2b1bb1b1d424ad4d1037ff5f475",
+    "docs/organize/調査関連/線路敷設条件/線路敷設条件_Create6.0.8とCAT検討事項.md": "14df34bb1e7b8831fae5cd5d1cb5774149b6c3bb7239aeb8b47ab9b6d04bb764",
+    "docs/organize/調査関連/車両モデル/RTM_MODEL_CREATE_INTEGRATION_RESEARCH.md": "eeac89647a85f4ef23a486c3171fc2432321710eb240e34c6f0bda7e45c5373b"
+  }
+}

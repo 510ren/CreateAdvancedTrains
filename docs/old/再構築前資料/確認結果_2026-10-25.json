@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-25",
+  "original_files": 161,
+  "moved_files_verified": 59,
+  "unchanged_original_files": 160,
+  "intended_content_updates": [
+    "organize/下書き・参考/CATドキュメント管理手順_下書き.md"
+  ],
+  "unexpected_content_changes": [],
+  "agents_unchanged": true,
+  "new_and_updated_docs_local_links_checked": 68,
+  "link_problems": [],
+  "removed_empty_directories": 12,
+  "verification_scope": "元161ファイルの保存先・SHA-256、旧位置の重複、AGENTS.md不変、新規・更新5文書のローカルリンク。既存調査の外部出典・実装・実機は未検証。"
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-25",
+  "baseline_files": 168,
+  "unchanged_existing_files": 163,
+  "expected_changed_files": [
+    "docs/README.md",
+    "docs/文書台帳.md",
+    "docs/organize/整理3.md",
+    "docs/organize/下書き・参考/CATドキュメント管理手順_下書き.md",
+    "AGENTS.md"
+  ],
+  "unexpected_changes": [],
+  "draft_snapshot_matches_original": true,
+  "agreed_sections_4_1_to_4_3_preserved": true,
+  "local_links_checked": 90,
+  "link_problems": [],
+  "text_problems": [],
+  "scope": "文書・参照の静的確認。既存の詳細作業規則、要求工学方針、分野別要件本文、調査資料、旧資料の内容不変を確認。製品実装・ビルド・実機試験は未実施。"
+}
